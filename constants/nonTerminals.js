@@ -1,4 +1,4 @@
-const TABLE_ROWS =
+const NON_TERMINALS =
 [
   "0",
   "prog",
@@ -41,5 +41,5 @@ const TABLE_ROWS =
 ];
 
 module.exports = {
-  TABLE_ROWS,
+  NON_TERMINALS,
 };

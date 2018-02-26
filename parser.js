@@ -1,6 +1,6 @@
 const { PARSE_TABLE, PUSH_MAP_TABLE } = require('./constants/parseTable');
 const { RULES } = require('./constants/rules');
-const { TABLE_ROWS } = require('./constants/tableRows');
+const { NON_TERMINALS } = require('./constants/nonTerminals');
 const fs = require('fs');
 const outputFile = 'output.txt';
 const terminals = [0,"program",";","class","id","{","}","(",")",":",",","sr","for","if","then","else","return","get","put","+","-","floatNum","intNum","not","[","]","float","int","=","eq","geq","gt","leq","lt","neq","or","*","/","and","$"];
@@ -81,7 +81,7 @@ function getSentencialForm(){
   for (let i = 0 ; i < stackCopy.length ; i++){
     const element = stackCopy[i];
     if (!terminals.includes(element)){
-      stackCopy[i] = TABLE_ROWS[element].split(' ')[0];
+      stackCopy[i] = NON_TERMINALS[element];
     }
   }
   const sentencialForm = readTokens.concat(stackCopy.reverse());
@@ -94,4 +94,4 @@ if(parse()){
 }
 else
   console.log('fail');
-fs.writeFile(outputFile, outputArray.join(''), function(err) {});
+fs.writeFileSync(outputFile, outputArray.join(''));

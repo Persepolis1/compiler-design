@@ -4,7 +4,7 @@ const LineByLineReader = require('line-by-line');
 const jsonfile = require('jsonfile');
 const lr = new LineByLineReader('grammar.txt');
 
-const outputFile = 'tableRows.js';
+const outputFile = 'nonTerminals.js';
 let ruleArray = [];
 let lineNumber = 0;
 const TOTAL_LINES = 78;
