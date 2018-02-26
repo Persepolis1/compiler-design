@@ -1,0 +1,78 @@
+prog               -> classDecl funcDef program funcBody ;
+classDecl          -> class id classDeclInner { varAndFuncDecl } ; classDecl
+classDecl          -> EPSILON
+varAndFuncDecl     -> type id varAndFuncDeclTail
+varAndFuncDecl     -> EPSILON
+varAndFuncDeclTail -> ( fParams ) ; varAndFuncDecl
+varAndFuncDeclTail -> arraySize ; varAndFuncDecl
+classDeclInner     -> : id classDeclInnerTail
+classDeclInner     -> EPSILON
+classDeclInnerTail -> , id classDeclInnerTail
+classDeclInnerTail -> EPSILON
+funcHead           -> type id funcHeadInner ( fParams )
+funcHeadInner      -> sr id
+funcHeadInner      -> EPSILON
+funcDef            -> funcHead funcBody ; funcDef
+funcDef            -> EPSILON
+funcBody           -> { varDecl statement }
+varDecl            -> type id arraySize ; varDecl
+varDecl            -> EPSILON
+statement          -> for ( type id assignOp expr ; relExpr ; assignStat ) statBlock ; statement
+statement          -> if ( expr ) then statBlock else statBlock ; statement
+statement          -> return ( expr ) ; statement
+statement          -> get ( variable ) ; statement
+statement          -> put ( expr ) ; statement
+statement          -> assignStat ; statement
+statement          -> EPSILON
+assignStat         -> variable assignOp expr
+statBlock          -> { statement }
+statBlock          -> statement
+expr               -> arithExpr exprTail
+exprTail           -> relExpr
+exprTail           -> EPSILON
+relExpr            -> relOp arithExpr
+arithExpr          -> term arithExprTail
+arithExprTail      -> addOp term arithExprTail
+arithExprTail      -> EPSILON
+sign               -> +
+sign               -> -
+term               -> factor termTail
+termTail           -> multOp factor termTail
+termTail           -> EPSILON
+factor             -> ( arithExpr )
+factor             -> floatNum
+factor             -> id varOrFunc
+factor             -> intNum
+factor             -> not factor
+factor             -> sign factor
+varOrFunc          -> functionCall
+varOrFunc          -> indice
+variable           -> id indice
+functionCall       -> ( aParams )
+indice             -> [ arithExpr ] indice
+indice             -> EPSILON
+arraySize          -> [ intNum ] arraySize
+arraySize          -> EPSILON
+type               -> float
+type               -> int
+fParams            -> type id arraySize fParamsTail
+fParams            -> EPSILON
+aParams            -> expr aParamsTail
+aParams            -> EPSILON
+fParamsTail        -> , type id arraySize fParamsTail
+fParamsTail        -> EPSILON
+aParamsTail        -> , expr aParamsTail
+aParamsTail        -> EPSILON
+assignOp           -> =
+relOp              -> eq
+relOp              -> geq
+relOp              -> gt
+relOp              -> leq
+relOp              -> lt
+relOp              -> neq
+addOp              -> +
+addOp              -> -
+addOp              -> or
+multOp             -> *
+multOp             -> /
+multOp             -> and
