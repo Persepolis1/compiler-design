@@ -58,10 +58,10 @@ function nextToken(){
   return tokenStream[currentTokenIndex++];
 }
 
-function inverseRHSMultiplePush(state) {
+function inverseRHSMultiplePush(ruleNumber) {
   // console.log(`USED RULE : ${RULES[state]}`);
-  outputArray.push(`USED RULE :\n ${RULES[state]} \n\n`);
-  const statesToPush = PUSH_MAP_TABLE[state];
+  outputArray.push(`USED RULE :\n ${RULES[ruleNumber]} \n\n`);
+  const statesToPush = PUSH_MAP_TABLE[ruleNumber];
   if (statesToPush === undefined) {
     return;
   }
