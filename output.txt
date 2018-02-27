@@ -26,11 +26,279 @@ USED RULE :
 Sentencial Form:
  program { statement } ; 
 USED RULE :
+ statement          -> if ( expr ) then statBlock else statBlock ; statement 
+
+Sentencial Form:
+ program { if ( expr ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ expr               -> arithExpr exprTail 
+
+Sentencial Form:
+ program { if ( arithExpr exprTail ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ arithExpr          -> term arithExprTail 
+
+Sentencial Form:
+ program { if ( term arithExprTail exprTail ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ program { if ( factor termTail arithExprTail exprTail ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ factor             -> id varOrFunc 
+
+Sentencial Form:
+ program { if ( id varOrFunc termTail arithExprTail exprTail ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ varOrFunc          -> indice 
+
+Sentencial Form:
+ program { if ( id indice termTail arithExprTail exprTail ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ indice             -> EPSILON 
+
+Sentencial Form:
+ program { if ( id termTail arithExprTail exprTail ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ program { if ( id arithExprTail exprTail ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ arithExprTail      -> EPSILON 
+
+Sentencial Form:
+ program { if ( id exprTail ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ exprTail           -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then statBlock else statBlock ; statement } ; 
+USED RULE :
+ statBlock          -> { statement } 
+
+Sentencial Form:
+ program { if ( id ) then { statement } else statBlock ; statement } ; 
+USED RULE :
+ statement          -> get ( variable ) ; statement 
+
+Sentencial Form:
+ program { if ( id ) then { get ( variable ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ variable           -> id indice 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id indice ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ indice             -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ statement          -> return ( expr ) ; statement 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( expr ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ expr               -> arithExpr exprTail 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( arithExpr exprTail ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ arithExpr          -> term arithExprTail 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( term arithExprTail exprTail ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( factor termTail arithExprTail exprTail ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ factor             -> id varOrFunc 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id varOrFunc termTail arithExprTail exprTail ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ varOrFunc          -> indice 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id indice termTail arithExprTail exprTail ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ indice             -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id termTail arithExprTail exprTail ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id arithExprTail exprTail ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ arithExprTail      -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id exprTail ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ exprTail           -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; statement } else statBlock ; statement } ; 
+USED RULE :
+ statement          -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else statBlock ; statement } ; 
+USED RULE :
+ statBlock          -> { statement } 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { statement } ; statement } ; 
+USED RULE :
+ statement          -> if ( expr ) then statBlock else statBlock ; statement 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( expr ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ expr               -> arithExpr exprTail 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( arithExpr exprTail ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ arithExpr          -> term arithExprTail 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( term arithExprTail exprTail ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( factor termTail arithExprTail exprTail ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ factor             -> id varOrFunc 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id varOrFunc termTail arithExprTail exprTail ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ varOrFunc          -> indice 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id indice termTail arithExprTail exprTail ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ indice             -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id termTail arithExprTail exprTail ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id arithExprTail exprTail ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ arithExprTail      -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id exprTail ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ exprTail           -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then statBlock else statBlock ; statement } ; statement } ; 
+USED RULE :
+ statBlock          -> statement 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then statement else statBlock ; statement } ; statement } ; 
+USED RULE :
+ statement          -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else statBlock ; statement } ; statement } ; 
+USED RULE :
+ statBlock          -> { statement } 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { statement } ; statement } ; statement } ; 
+USED RULE :
+ statement          -> get ( variable ) ; statement 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( variable ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ variable           -> id indice 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id indice ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ indice             -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ statement          -> return ( expr ) ; statement 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( expr ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ expr               -> arithExpr exprTail 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( arithExpr exprTail ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ arithExpr          -> term arithExprTail 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( term arithExprTail exprTail ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( factor termTail arithExprTail exprTail ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ factor             -> id varOrFunc 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id varOrFunc termTail arithExprTail exprTail ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ varOrFunc          -> indice 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id indice termTail arithExprTail exprTail ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ indice             -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id termTail arithExprTail exprTail ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id arithExprTail exprTail ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ arithExprTail      -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id exprTail ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ exprTail           -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; statement } ; statement } ; statement } ; 
+USED RULE :
+ statement          -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; } ; statement } ; statement } ; 
+USED RULE :
+ statement          -> EPSILON 
+
+Sentencial Form:
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; } ; } ; statement } ; 
+USED RULE :
  statement          -> EPSILON 
 
 Successfully parsed! 
- program { } ; 
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; } ; } ; } ; 
 Token Stream : 
- program { } ; $Syntax Error at position 4: program { } ;  return 
-Token Stream : 
- program { } ; $ return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; } ; } ; } ; $
+ program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; } ; } ; } ; $

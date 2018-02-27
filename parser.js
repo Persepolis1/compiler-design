@@ -13,7 +13,7 @@ let currentTokenIndex = 0;
 let error = false;
 const POP_ERROR = Object.keys(RULES).length + 1;
 const SCAN_ERROR = POP_ERROR + 1;
-const unitTest = true;
+const unitTest = false;
 if (!unitTest) {
   const lr = new LineByLineReader('input.txt');
   lr.on('line', (line) => {
