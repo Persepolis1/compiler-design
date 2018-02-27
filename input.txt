@@ -1,0 +1,12 @@
+program {
+ if (idx) then {
+  get(idx);
+  return(idx);
+ } else {
+  if (idx) then
+   else {
+    get(idx);
+    return(idx);
+   };
+ };
+};

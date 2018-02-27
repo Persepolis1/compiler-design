@@ -298,5 +298,5 @@ Sentencial Form:
 USED RULE :
  statement          -> EPSILON 
 
-Sentencial Form:
+Successfully parsed! 
  program { if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; } ; } ; } ; 

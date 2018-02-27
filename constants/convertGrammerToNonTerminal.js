@@ -1,4 +1,4 @@
-// Convert grammar into JSON row format (one time setup)
+// Convert grammar into JSON non Termimal (one time setup)
 
 const LineByLineReader = require('line-by-line');
 const jsonfile = require('jsonfile');
