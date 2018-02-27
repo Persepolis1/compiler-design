@@ -1,0 +1,11 @@
+class car : engine {
+   int sides[10][20];
+   int width();
+   int func();
+   float func2();
+};
+program{
+   int car;
+   int id;
+   return (car);
+};

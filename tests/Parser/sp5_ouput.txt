@@ -1,0 +1,109 @@
+Sentencial Form:
+ prog 
+USED RULE :
+ prog               -> classDecl funcDef program funcBody ; 
+
+Sentencial Form:
+ classDecl funcDef program funcBody ; 
+USED RULE :
+ classDecl          -> class id classDeclInner { varAndFuncDecl } ; classDecl 
+
+Sentencial Form:
+ class id classDeclInner { varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ classDeclInner     -> : id classDeclInnerTail 
+
+Sentencial Form:
+ class id : id classDeclInnerTail { varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ classDeclInnerTail -> EPSILON 
+
+Sentencial Form:
+ class id : id { varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ varAndFuncDecl     -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id : id { type id varAndFuncDeclTail } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id : id { int id varAndFuncDeclTail } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ varAndFuncDeclTail -> arraySize ; varAndFuncDecl 
+
+Sentencial Form:
+ class id : id { int id arraySize ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ arraySize          -> [ intNum ] arraySize 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] arraySize ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ arraySize          -> [ intNum ] arraySize 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] arraySize ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ arraySize          -> [ intNum ] arraySize 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] arraySize ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ arraySize          -> [ intNum ] arraySize 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] arraySize ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ arraySize          -> [ intNum ] arraySize 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] arraySize ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ arraySize          -> [ intNum ] arraySize 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] arraySize ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ arraySize          -> [ intNum ] arraySize 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] arraySize ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ varAndFuncDecl     -> EPSILON 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ classDecl          -> EPSILON 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; } ; funcDef program funcBody ; 
+USED RULE :
+ funcDef            -> EPSILON 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; } ; program funcBody ; 
+USED RULE :
+ funcBody           -> { varDecl statement } 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; } ; program { varDecl statement } ; 
+USED RULE :
+ varDecl            -> EPSILON 
+
+Sentencial Form:
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; } ; program { statement } ; 
+USED RULE :
+ statement          -> EPSILON 
+
+Successfully parsed! 
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; } ; program { } ; 
+Token Stream : 
+ class id : id { int id [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; } ; program { } ; $

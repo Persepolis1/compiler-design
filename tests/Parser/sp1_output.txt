@@ -31,6 +31,4 @@ USED RULE :
 Successfully parsed! 
  program { } ; 
 Token Stream : 
- program { } ; $Syntax Error at position 4: program { } ;  return 
-Token Stream : 
- program { } ; $ return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; } ; } ; } ; $
+ program { } ; $

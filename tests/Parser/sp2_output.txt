@@ -21,16 +21,29 @@ USED RULE :
 Sentencial Form:
  program { varDecl statement } ; 
 USED RULE :
+ varDecl            -> type id arraySize ; varDecl 
+
+Sentencial Form:
+ program { type id arraySize ; varDecl statement } ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ program { int id arraySize ; varDecl statement } ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ program { int id ; varDecl statement } ; 
+USED RULE :
  varDecl            -> EPSILON 
 
 Sentencial Form:
- program { statement } ; 
+ program { int id ; statement } ; 
 USED RULE :
  statement          -> EPSILON 
 
 Successfully parsed! 
- program { } ; 
+ program { int id ; } ; 
 Token Stream : 
- program { } ; $Syntax Error at position 4: program { } ;  return 
-Token Stream : 
- program { } ; $ return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; } ; } ; } ; $
+ program { int id ; } ; $

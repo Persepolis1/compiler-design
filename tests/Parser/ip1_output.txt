@@ -1,0 +1,18 @@
+Sentencial Form:
+ prog 
+USED RULE :
+ prog               -> classDecl funcDef program funcBody ; 
+
+Sentencial Form:
+ classDecl funcDef program funcBody ; 
+USED RULE :
+ classDecl          -> EPSILON 
+
+Sentencial Form:
+ funcDef program funcBody ; 
+USED RULE :
+ funcDef            -> EPSILON 
+
+Syntax Error at position 1: program  if 
+Token Stream : 
+ program if ( id ) then { get ( id ) ; return ( id ) ; } else { if ( id ) then else { get ( id ) ; return ( id ) ; } ; } ; } ; $

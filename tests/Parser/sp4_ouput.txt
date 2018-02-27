@@ -1,0 +1,84 @@
+Sentencial Form:
+ prog 
+USED RULE :
+ prog               -> classDecl funcDef program funcBody ; 
+
+Sentencial Form:
+ classDecl funcDef program funcBody ; 
+USED RULE :
+ classDecl          -> class id classDeclInner { varAndFuncDecl } ; classDecl 
+
+Sentencial Form:
+ class id classDeclInner { varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ classDeclInner     -> EPSILON 
+
+Sentencial Form:
+ class id { varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ varAndFuncDecl     -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id { type id varAndFuncDeclTail } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id varAndFuncDeclTail } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ varAndFuncDeclTail -> arraySize ; varAndFuncDecl 
+
+Sentencial Form:
+ class id { int id arraySize ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; varAndFuncDecl } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ varAndFuncDecl     -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; } ; classDecl funcDef program funcBody ; 
+USED RULE :
+ classDecl          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; } ; funcDef program funcBody ; 
+USED RULE :
+ funcDef            -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; } ; program funcBody ; 
+USED RULE :
+ funcBody           -> { varDecl statement } 
+
+Sentencial Form:
+ class id { int id ; } ; program { varDecl statement } ; 
+USED RULE :
+ varDecl            -> type id arraySize ; varDecl 
+
+Sentencial Form:
+ class id { int id ; } ; program { type id arraySize ; varDecl statement } ; 
+USED RULE :
+ type               -> float 
+
+Sentencial Form:
+ class id { int id ; } ; program { float id arraySize ; varDecl statement } ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; } ; program { float id ; varDecl statement } ; 
+USED RULE :
+ varDecl            -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; } ; program { float id ; statement } ; 
+USED RULE :
+ statement          -> EPSILON 
+
+Successfully parsed! 
+ class id { int id ; } ; program { float id ; } ; 
+Token Stream : 
+ class id { int id ; } ; program { float id ; } ; $

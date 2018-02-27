@@ -1,0 +1,124 @@
+Sentencial Form:
+ prog 
+USED RULE :
+ prog               -> classDecl funcDef program funcBody ; 
+
+Sentencial Form:
+ classDecl funcDef program funcBody ; 
+USED RULE :
+ classDecl          -> EPSILON 
+
+Sentencial Form:
+ funcDef program funcBody ; 
+USED RULE :
+ funcDef            -> EPSILON 
+
+Sentencial Form:
+ program funcBody ; 
+USED RULE :
+ funcBody           -> { varDecl statement } 
+
+Sentencial Form:
+ program { varDecl statement } ; 
+USED RULE :
+ varDecl            -> type id arraySize ; varDecl 
+
+Sentencial Form:
+ program { type id arraySize ; varDecl statement } ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ program { int id arraySize ; varDecl statement } ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ program { int id ; varDecl statement } ; 
+USED RULE :
+ varDecl            -> type id arraySize ; varDecl 
+
+Sentencial Form:
+ program { int id ; type id arraySize ; varDecl statement } ; 
+USED RULE :
+ type               -> float 
+
+Sentencial Form:
+ program { int id ; float id arraySize ; varDecl statement } ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ program { int id ; float id ; varDecl statement } ; 
+USED RULE :
+ varDecl            -> EPSILON 
+
+Sentencial Form:
+ program { int id ; float id ; statement } ; 
+USED RULE :
+ statement          -> assignStat ; statement 
+
+Sentencial Form:
+ program { int id ; float id ; assignStat ; statement } ; 
+USED RULE :
+ assignStat         -> variable assignOp expr 
+
+Sentencial Form:
+ program { int id ; float id ; variable assignOp expr ; statement } ; 
+USED RULE :
+ variable           -> id indice 
+
+Sentencial Form:
+ program { int id ; float id ; id indice assignOp expr ; statement } ; 
+USED RULE :
+ indice             -> EPSILON 
+
+Sentencial Form:
+ program { int id ; float id ; id assignOp expr ; statement } ; 
+USED RULE :
+ assignOp           -> = 
+
+Sentencial Form:
+ program { int id ; float id ; id = expr ; statement } ; 
+USED RULE :
+ expr               -> arithExpr exprTail 
+
+Sentencial Form:
+ program { int id ; float id ; id = arithExpr exprTail ; statement } ; 
+USED RULE :
+ arithExpr          -> term arithExprTail 
+
+Sentencial Form:
+ program { int id ; float id ; id = term arithExprTail exprTail ; statement } ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ program { int id ; float id ; id = factor termTail arithExprTail exprTail ; statement } ; 
+USED RULE :
+ factor             -> intNum 
+
+Sentencial Form:
+ program { int id ; float id ; id = intNum termTail arithExprTail exprTail ; statement } ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ program { int id ; float id ; id = intNum arithExprTail exprTail ; statement } ; 
+USED RULE :
+ arithExprTail      -> EPSILON 
+
+Sentencial Form:
+ program { int id ; float id ; id = intNum exprTail ; statement } ; 
+USED RULE :
+ exprTail           -> EPSILON 
+
+Sentencial Form:
+ program { int id ; float id ; id = intNum ; statement } ; 
+USED RULE :
+ statement          -> EPSILON 
+
+Successfully parsed! 
+ program { int id ; float id ; id = intNum ; } ; 
+Token Stream : 
+ program { int id ; float id ; id = intNum ; } ; $

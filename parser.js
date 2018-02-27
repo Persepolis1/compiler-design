@@ -1,11 +1,9 @@
 const LineByLineReader = require('line-by-line');
-const lr = new LineByLineReader('input.txt');
 const { PARSE_TABLE, PUSH_MAP_TABLE } = require('./constants/parseTable');
 const { RULES } = require('./constants/rules');
 const { NON_TERMINALS } = require('./constants/nonTerminals');
 const getAllTokens = require('./lexer/lexer');
 const fs = require('fs');
-const outputFile = 'output.txt';
 const terminals = [0,"program",";","class","id","{","}","(",")",":",",","sr","for","if","then","else","return","get","put","+","-","floatNum","intNum","not","[","]","float","int","=","eq","geq","gt","leq","lt","neq","or","*","/","and","$"];
 const stack = [];
 let tokenStream = [];
@@ -15,21 +13,28 @@ let currentTokenIndex = 0;
 let error = false;
 const POP_ERROR = Object.keys(RULES).length + 1;
 const SCAN_ERROR = POP_ERROR + 1;
-lr.on('line', (line) =>{
-  const allTokens = getAllTokens(line);
-  for (let i = 0 ; i < allTokens.length; i++){
-    tokenStream.push(allTokens[i].Token);
-  }
-});
-lr.on('end', function () {
-  tokenStream.push('$');
-  parse();
-  // All lines are read, file is closed now.
-});
+const unitTest = true;
+if (!unitTest) {
+  const lr = new LineByLineReader('input.txt');
+  lr.on('line', (line) => {
+    const allTokens = getAllTokens(line);
+    for (let i = 0; i < allTokens.length; i++) {
+      tokenStream.push(allTokens[i].Token);
+    }
+  });
+  lr.on('end', function () {
+    tokenStream.push('$');
+    parse();
+    // All lines are read, file is closed now.
+  });
+}
 let token;
-function parse(){
+function parse(outputFile = 'output.txt', tokens = []){
   stack.push('$');
   stack.push(1);
+  if (tokens.length > 0){
+    tokenStream = tokens;
+  }
   console.log(`token stream: ${tokenStream}`);
   let token = nextToken();
   do {
@@ -60,12 +65,14 @@ function parse(){
     }
   } while (top() !== '$');
   if (token !== '$' || error){
+    outputArray.push(`Token Stream : \n ${tokenStream.join(' ')}`);
     fs.writeFileSync(outputFile, outputArray.join(''));
     console.log('Parsing Failed!');
     return false;
   }
   else {
     outputArray.push(`Successfully parsed! \n ${getSentencialForm()} \n`);
+    outputArray.push(`Token Stream : \n ${tokenStream.join(' ')}`);
     fs.writeFileSync(outputFile, outputArray.join(''));
     console.log('Parsing Success!');
     return true;
@@ -132,3 +139,4 @@ function skipError(stackTop, errorCode){
   }
 
 }
+module.exports = parse;
