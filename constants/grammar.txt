@@ -2,6 +2,7 @@ prog               -> classDecl funcDef program funcBody ;
 classDecl          -> class id classDeclInner { varAndFuncDecl } ; classDecl
 classDecl          -> EPSILON
 varAndFuncDecl     -> type id varAndFuncDeclTail
+varAndFuncDecl     -> id id varAndFuncDeclTail
 varAndFuncDecl     -> EPSILON
 varAndFuncDeclTail -> ( fParams ) ; varAndFuncDecl
 varAndFuncDeclTail -> arraySize ; varAndFuncDecl
@@ -10,23 +11,43 @@ classDeclInner     -> EPSILON
 classDeclInnerTail -> , id classDeclInnerTail
 classDeclInnerTail -> EPSILON
 funcHead           -> type id funcHeadInner ( fParams )
+funcHead           -> id id funcHeadInner ( fParams )
 funcHeadInner      -> sr id
 funcHeadInner      -> EPSILON
 funcDef            -> funcHead funcBody ; funcDef
 funcDef            -> EPSILON
-funcBody           -> { varDecl statement }
-varDecl            -> type id arraySize ; varDecl
-varDecl            -> EPSILON
-statement          -> for ( type id assignOp expr ; relExpr ; assignStat ) statBlock ; statement
-statement          -> if ( expr ) then statBlock else statBlock ; statement
-statement          -> return ( expr ) ; statement
-statement          -> get ( variable ) ; statement
-statement          -> put ( expr ) ; statement
-statement          -> assignStat ; statement
+funcBody           -> { funcBodyInner }
+funcBodyInner      -> id varDeclId statement
+funcBodyInner      -> statement
+funcBodyInner      -> varDecl statement
+varDecl            -> type id varDeclTail
+varDeclId 		   -> id varDeclTail
+varDeclTail        -> arraySize ; varDeclTailTwo
+varDeclTailTwo     -> id varDeclTailThree
+varDeclTailTwo	   -> varDecl
+varDeclTailTwo     -> EPSILON
+varDeclTailThree   -> varDeclId
+varDeclTailThree   -> statementIdTwo
+statement          -> for ( statementForTail
+statement          -> if ( expr ) then statBlock else statBlock ; statementTail
+statement          -> return ( expr ) ; statementTail
+statement          -> get ( id idnest ) ; statementTail
+statement          -> put ( expr ) ; statementTail
 statement          -> EPSILON
+statementForTail   -> type id assignOp expr ; arithExpr relExpr ; id assignStat ) statBlock ; statementTail
+statementForTail   -> id id assignOp expr ; arithExpr relExpr ; id assignStat ) statBlock ; statementTail
+statementId        -> assignStat ; statementTail
+statementIdTwo     -> assignStat ; statementIdThree
+statementIdThree   -> EPSILON
+statementIdThree   -> id statementIdTwo
+statementTail	   -> id statementId
+statementTail	   -> statement
 assignStat         -> variable assignOp expr
-statBlock          -> { statement }
+statBlock          -> { statBlockTail }
 statBlock          -> statement
+statBlock		   -> id statementId
+statBlockTail	   -> statement
+statBlockTail      -> id statementId
 expr               -> arithExpr exprTail
 exprTail           -> relExpr
 exprTail           -> EPSILON
@@ -41,14 +62,25 @@ termTail           -> multOp factor termTail
 termTail           -> EPSILON
 factor             -> ( arithExpr )
 factor             -> floatNum
-factor             -> id varOrFunc
+factor             -> id idnest
 factor             -> intNum
 factor             -> not factor
 factor             -> sign factor
 varOrFunc          -> functionCall
 varOrFunc          -> indice
-variable           -> id indice
+idnest			   -> indice idnestTail
+idnest			   -> ( aParams ) idnestTail
+idnestTail		   -> . id idnest
+idnestTail         -> id idnestTailTwo
+idnestTail         -> EPSILON
+idnestTailTwo      -> indice
+idnestTailTwo	   -> functionCall
 functionCall       -> ( aParams )
+variable           -> [ arithExpr ] indice variableTail
+variable           -> EPSILON
+variable		   -> . id idnest
+variableTail       -> . id idnest
+variableTail       -> EPSILON
 indice             -> [ arithExpr ] indice
 indice             -> EPSILON
 arraySize          -> [ intNum ] arraySize
@@ -56,11 +88,14 @@ arraySize          -> EPSILON
 type               -> float
 type               -> int
 fParams            -> type id arraySize fParamsTail
+fParams            -> id id arraySize fParamsTail
 fParams            -> EPSILON
 aParams            -> expr aParamsTail
 aParams            -> EPSILON
-fParamsTail        -> , type id arraySize fParamsTail
+fParamsTail        -> , fParamsTailTwo
 fParamsTail        -> EPSILON
+fParamsTailTwo	   -> type id arraySize fParamsTail
+fParamsTailTwo	   -> id id arraySize fParamsTail
 aParamsTail        -> , expr aParamsTail
 aParamsTail        -> EPSILON
 assignOp           -> =

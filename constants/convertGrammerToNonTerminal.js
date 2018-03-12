@@ -7,7 +7,7 @@ const lr = new LineByLineReader('grammar.txt');
 const outputFile = 'nonTerminals.js';
 let ruleArray = [];
 let lineNumber = 0;
-const TOTAL_LINES = 78;
+const TOTAL_LINES = 113;
 lr.on('line', (line) =>{
   lineNumber++;
   ruleArray.push(line.split(' ')[0]);

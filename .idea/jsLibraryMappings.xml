@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{@types/node, express-DefinitelyTyped, jest-DefinitelyTyped, jest-validate-DefinitelyTyped}" />
+    <file url="PROJECT" libraries="{@types/node, @types/requirejs, express-DefinitelyTyped, jest-DefinitelyTyped, jest-validate-DefinitelyTyped}" />
   </component>
 </project>

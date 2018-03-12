@@ -1,10 +1,9 @@
 const LineByLineReader = require('line-by-line');
-const { PARSE_TABLE, PUSH_MAP_TABLE } = require('./constants/parseTable');
+const { PARSE_TABLE, PUSH_MAP_TABLE, TERMINALS } = require('./constants/parseTable');
 const { RULES } = require('./constants/rules');
 const { NON_TERMINALS } = require('./constants/nonTerminals');
 const getAllTokens = require('./lexer/lexer');
 const fs = require('fs');
-const terminals = [0,"program",";","class","id","{","}","(",")",":",",","sr","for","if","then","else","return","get","put","+","-","floatNum","intNum","not","[","]","float","int","=","eq","geq","gt","leq","lt","neq","or","*","/","and","$"];
 const stack = [];
 let tokenStream = [];
 const readTokens = [];
@@ -14,6 +13,48 @@ let error = false;
 const POP_ERROR = Object.keys(RULES).length + 1;
 const SCAN_ERROR = POP_ERROR + 1;
 const unitTest = false;
+// Modify table
+for (let i = 1; i < PARSE_TABLE.length ; i++){
+  const isNull = isNullable(i);
+  if (isNull.yes) {
+    for (let j = 0; j < PARSE_TABLE[i].length; j++) {
+      if (PARSE_TABLE[i][j] === POP_ERROR) {
+        PARSE_TABLE[i][j] = isNull.rule;
+      }
+    }
+  }
+}
+function isNullable(nonTerminal){
+  const nts = NON_TERMINALS[nonTerminal];
+  const ruleArray = [];
+  for (let i = 1; i < Object.keys(RULES).length; i++){
+    const splitRule = RULES[i].split(' ');
+    const index = splitRule.findIndex((arrow) => arrow === '->');
+    if (splitRule[0] === nts){
+      if (splitRule.includes('EPSILON')){
+        return {yes: true, rule: i};
+      }
+      else if (NON_TERMINALS.includes(splitRule[index+1])){
+        const nonterm = splitRule[index+1];
+        const index2 = NON_TERMINALS.findIndex((nonTerm) => nonTerm === nonterm);
+        ruleArray.push({index : index2, rule: i});
+      }
+    }
+  }
+  for (let k = 0;  k < ruleArray.length ; k++){
+    const obj = ruleArray[k];
+    const ntss = NON_TERMINALS[obj.index];
+    for (let i = 1; i < Object.keys(RULES).length; i++){
+      const splitRule = RULES[i].split(' ');
+      if (splitRule[0] === ntss){
+        if (splitRule.includes('EPSILON')){
+          return {yes: true, rule: obj.rule};
+        }
+      }
+    }
+  }
+  return false;
+}
 if (!unitTest) {
   const lr = new LineByLineReader('input.txt');
   lr.on('line', (line) => {
@@ -39,7 +80,7 @@ function parse(outputFile = 'output.txt', tokens = []){
   let token = nextToken();
   do {
     const stackTop = top();
-    if (terminals.includes(stackTop)){
+    if (TERMINALS.includes(stackTop)){
       if(stackTop === token){
         readTokens.push(stack.pop());
         token = nextToken();
@@ -51,10 +92,11 @@ function parse(outputFile = 'output.txt', tokens = []){
       }
     }
     else{
-      if(!(PARSE_TABLE[stackTop][terminals.indexOf(token)] === POP_ERROR || PARSE_TABLE[stackTop][terminals.indexOf(token)] == SCAN_ERROR) ){
+      if(!(PARSE_TABLE[stackTop][TERMINALS.indexOf(token)] === POP_ERROR || PARSE_TABLE[stackTop][TERMINALS.indexOf(token)] == SCAN_ERROR)){
         outputArray.push(`Sentencial Form:\n ${getSentencialForm()} \n`);
         stack.pop();
-        inverseRHSMultiplePush(PARSE_TABLE[stackTop][terminals.indexOf(token)]);
+        // DEBUG : console.log(`Current position : row ${stackTop}, col ${TERMINALS.indexOf(token)} gives ${PARSE_TABLE[stackTop][TERMINALS.indexOf(token)]}  `);
+        inverseRHSMultiplePush(PARSE_TABLE[stackTop][TERMINALS.indexOf(token)]);
       }
       else{
         readTokens.push((''));
@@ -97,7 +139,7 @@ function inverseRHSMultiplePush(ruleNumber) {
   // Remove negative states
   for (let i = 0; i < statesToInsertStack.length; i++){
     if (statesToInsertStack[i] < 0 ){
-      statesToInsertStack[i] = terminals[statesToInsertStack[i] * -1]
+      statesToInsertStack[i] = TERMINALS[statesToInsertStack[i] * -1]
     }
   }
   // Push in stack
@@ -109,7 +151,7 @@ function getSentencialForm(){
   const stackCopy = [...stack];
   for (let i = 0 ; i < stackCopy.length ; i++){
     const element = stackCopy[i];
-    if (!terminals.includes(element)){
+    if (!TERMINALS.includes(element)){
       stackCopy[i] = NON_TERMINALS[element];
     }
   }
