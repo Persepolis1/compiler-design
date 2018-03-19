@@ -1,11 +1,15 @@
+const jsonFile = require('jsonfile');
 const LineByLineReader = require('line-by-line');
-const { PARSE_TABLE, PUSH_MAP_TABLE, TERMINALS } = require('./constants/parseTable');
+const { PARSE_TABLE, PUSH_MAP_TABLE, TERMINALS, TOKEN_LEAFS, TOKEN_NODES_OFFSET, TOKEN_NODES } = require('./constants/parseTable');
 const { RULES } = require('./constants/rules');
 const { NON_TERMINALS } = require('./constants/nonTerminals');
+const { Node } = require('./node')
 const getAllTokens = require('./lexer/lexer');
 const fs = require('fs');
 const stack = [];
+const semanticStack = [];
 let tokenStream = [];
+const tokensFull = [];
 const readTokens = [];
 const outputArray = [];
 let currentTokenIndex = 0;
@@ -61,13 +65,18 @@ if (!unitTest) {
     const allTokens = getAllTokens(line);
     for (let i = 0; i < allTokens.length; i++) {
       tokenStream.push(allTokens[i].Token);
+      tokensFull.push(allTokens[i]);
     }
   });
   lr.on('end', function () {
     tokenStream.push('$');
+    tokensFull.push({Token: '$', value : '$'});
     parse();
     // All lines are read, file is closed now.
   });
+}
+function hasNumber(myString) {
+  return /\d/.test(myString);
 }
 let token;
 function parse(outputFile = 'output.txt', tokens = []){
@@ -76,10 +85,55 @@ function parse(outputFile = 'output.txt', tokens = []){
   if (tokens.length > 0){
     tokenStream = tokens;
   }
-  console.log(`token stream: ${tokenStream}`);
+  console.log(`token stream: ${tokenStream.join(' ')}`);
   let token = nextToken();
   do {
-    const stackTop = top();
+    let stackTop = top();
+    //console.log(stack);
+    if (stackTop.toString().includes('@')){
+        const nodeName = stack.pop().substring(1);
+        if (hasNumber(nodeName)){
+          const action = nodeName.split(',');
+          const temp = [];
+          for (let i = 0; i < action[0]; i++){
+            temp.unshift(semanticStack.pop());
+          }
+          // get parent node
+          const parent = temp[action[1]-1];
+          //remove parent node
+          temp.splice(action[1] -1,1);
+          //set rest as children
+          parent.makeFamily(temp);
+          semanticStack.push(parent)
+        }
+        else if (TOKEN_NODES_OFFSET.includes(nodeName)){
+          const offset = nodeName.split('!');
+          const node = new Node(offset[0],null);
+          node.setLeaf(tokensFull[currentTokenIndex - offset.length])
+          semanticStack.push(node);
+        }
+        else if(nodeName === 'noScoped'){
+          const scopeSpecNode = semanticStack[semanticStack.length - 3];
+          const scopeSpecId = semanticStack[semanticStack.length - 2];
+          scopeSpecNode.makeFamily(scopeSpecId);
+          semanticStack.splice(semanticStack.length - 2, 1);
+
+        }
+        else {
+          const node = new Node(nodeName, null);
+          if (TOKEN_LEAFS.includes(nodeName)){
+            node.setLeaf(tokensFull[currentTokenIndex  -1 ]);
+          }
+          else if (TOKEN_NODES.includes(nodeName)){
+            node.setHasToken(tokensFull[currentTokenIndex  -1 ]);
+          }
+          semanticStack.push(node);
+        }
+        // console.log("SEMANTIC STACK: ")
+        // console.log(semanticStack);
+        // console.log("SEMANTIC STACK END");
+        continue;
+    }
     if (TERMINALS.includes(stackTop)){
       if(stackTop === token){
         readTokens.push(stack.pop());
@@ -116,6 +170,7 @@ function parse(outputFile = 'output.txt', tokens = []){
     outputArray.push(`Successfully parsed! \n ${getSentencialForm()} \n`);
     outputArray.push(`Token Stream : \n ${tokenStream.join(' ')}`);
     fs.writeFileSync(outputFile, outputArray.join(''));
+    jsonFile.writeFile('ast.txt', semanticStack, {spaces: 2}, function(err) {})
     console.log('Parsing Success!');
     return true;
   }

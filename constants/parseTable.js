@@ -55,12 +55,238 @@ const PARSE_TABLE =
     [0,115,115,115,114,115,115,114,115,115,115,115,115,115,115,115,115,115,115,114,114,114,114,114,115,115,115,115,115,115,115,115,115,115,115,115,115,111,112,113,115]];
 
 const TERMINALS = [0,"program",";","class","id","{","}","(",")",":",",","sr","for","if","then","else","return","get","put","+","-","floatNum","intNum","not",".","[","]","float","int","=","eq","geq","gt","leq","lt","neq","or","*","/","and","$"];
+const TOKEN_LEAFS = ['type','id', 'num'];
+const TOKEN_NODES = ['not','sign','addOp','multOp','relOp'];
+const TOKEN_NODES_OFFSET = ['type!type', 'id!id'];
+const prog = {token : '@prog', x:  -1 * TERMINALS.length}
+TERMINALS.push(prog.token);
 
+const classList = {token: '@classList', x: -1 * TERMINALS.length}
+TERMINALS.push(classList.token);
 
-const PUSH_MAP_TABLE =
-  {"1":[-2,10,-1,9,2],"2":[2,-2,-6,3,-5,5,-4,-3],"4":[4,-4,44],"5":[4,-4,-4],"7":[3,-2,-8,45,-7],"8":[3,-2,43],"9":[6,-4,-9],"11":[6,-4,-10],"13":[-8,45,-7,8,-4,44],"14":[-8,45,-7,8,-4,-4],"15":[-4,-11],"17":[9,-2,10,7],"19":[-6,11,-5],"20":[17,13,-4],"21":[17],"22":[17,12],"23":[14,-4,44],"24":[14,-4],"25":[15,-2,43],"26":[16,-4],"27":[12],"29":[13],"30":[20],"31":[18,-7,-12],"32":[22,-2,24,-15,24,-14,-8,26,-7,-13],"33":[22,-2,-8,26,-7,-16],"34":[22,-2,-8,36,-4,-7,-17],"35":[22,-2,-8,26,-7,-18],"37":[22,-2,24,-8,23,-4,-2,28,29,-2,26,50,-4,44],"38":[22,-2,24,-8,23,-4,-2,28,29,-2,26,50,-4,-4],"39":[22,-2,23],"40":[21,-2,23],"42":[20,-4],"43":[19,-4],"44":[17],"45":[26,50,40],"46":[-6,25,-5],"47":[17],"48":[19,-4],"49":[17],"50":[19,-4],"51":[27,29],"52":[28],"54":[29,51],"55":[30,32],"56":[30,32,52],"58":[-19],"59":[-20],"60":[33,34],"61":[33,34,53],"63":[-8,29,-7],"64":[-21],"65":[36,-4],"66":[-22],"67":[34,-23],"68":[34,31],"69":[39],"70":[42],"71":[37,42],"72":[37,-8,46,-7],"73":[36,-4,-24],"74":[38,-4],"76":[42],"77":[39],"78":[-8,46,-7],"79":[41,42,-26,29,-25],"81":[36,-4,-24],"82":[36,-4,-24],"84":[42,-26,29,-25],"86":[43,-26,-22,-25],"88":[-27],"89":[-28],"90":[47,43,-4,44],"91":[47,43,-4,-4],"93":[49,26],"95":[48,-10],"97":[47,43,-4,44],"98":[47,43,-4,-4],"99":[49,26,-10],"101":[-29],"102":[-30],"103":[-31],"104":[-32],"105":[-33],"106":[-34],"107":[-35],"108":[-19],"109":[-20],"110":[-36],"111":[-37],"112":[-38],"113":[-39]};
+const funcDefList = {token: '@funcDefList', x: -1 * TERMINALS.length}
+TERMINALS.push(funcDefList.token);
+
+const statBlock = {token: '@statBlock', x: -1 * TERMINALS.length}
+TERMINALS.push(statBlock.token);
+
+const action41 = {token: '@4,1', x: -1 * TERMINALS.length}
+TERMINALS.push(action41.token);
+
+const action43 = {token: '@4,3', x: -1 * TERMINALS.length}
+TERMINALS.push(action43.token);
+
+const action31 = {token: '@3,1', x: -1 * TERMINALS.length}
+TERMINALS.push(action31.token);
+
+const action32 = {token: '@3,2', x: -1 * TERMINALS.length}
+TERMINALS.push(action32.token);
+
+const action21 = {token: '@2,1', x: -1 * TERMINALS.length}
+TERMINALS.push(action21.token);
+
+const action61 = {token: '@6,1', x: -1 * TERMINALS.length}
+TERMINALS.push(action61.token);
+
+const action71 = {token: '@7,1', x: -1 * TERMINALS.length}
+TERMINALS.push(action71.token);
+
+const varDecl = {token : '@varDecl', x: -1 * TERMINALS.length}
+TERMINALS.push(varDecl.token);
+
+const type = {token : '@type', x: -1 * TERMINALS.length}
+TERMINALS.push(type.token);
+
+const id = {token : '@id', x: -1 * TERMINALS.length}
+TERMINALS.push(id.token);
+
+const dimList = {token : '@dimList', x: -1 * TERMINALS.length}
+TERMINALS.push(dimList.token);
+
+const num = {token : '@num', x: -1 * TERMINALS.length}
+TERMINALS.push(num.token);
+
+const type2 = {token : '@type!type', x: -1 * TERMINALS.length}
+TERMINALS.push(type2.token);
+
+const putStat = {token : '@putStat', x: -1 * TERMINALS.length}
+TERMINALS.push(putStat.token);
+
+const not = {token : '@not', x: -1 * TERMINALS.length}
+TERMINALS.push(not.token);
+
+const sign = {token : '@sign', x: -1 * TERMINALS.length}
+TERMINALS.push(sign.token);
+
+const addOp = {token : '@addOp', x: -1 * TERMINALS.length}
+TERMINALS.push(addOp.token);
+
+const multOp = {token : '@multOp', x: -1 * TERMINALS.length}
+TERMINALS.push(multOp.token);
+
+const fCall = {token : '@fCall', x: -1 * TERMINALS.length}
+TERMINALS.push(fCall.token);
+
+const aParams = {token : '@aParams', x: -1 * TERMINALS.length}
+TERMINALS.push(aParams.token);
+
+const id2 = {token : '@id!id', x: -1 * TERMINALS.length}
+TERMINALS.push(id2.token);
+
+const _var = {token : '@var', x: -1 * TERMINALS.length}
+TERMINALS.push(_var.token);
+
+const dataMember = {token : '@dataMember', x: -1 * TERMINALS.length}
+TERMINALS.push(dataMember.token);
+
+const indexList = {token : '@indexList', x: -1 * TERMINALS.length}
+TERMINALS.push(indexList.token);
+
+const relOp = {token : '@relOp', x: -1 * TERMINALS.length}
+TERMINALS.push(relOp.token);
+
+const returnStat = {token : '@returnStat', x: -1 * TERMINALS.length}
+TERMINALS.push(returnStat.token);
+
+const getStat = {token : '@getStat', x: -1 * TERMINALS.length}
+TERMINALS.push(getStat.token);
+
+const ifStat = {token : '@ifStat', x: -1 * TERMINALS.length}
+TERMINALS.push(ifStat.token);
+
+const assignStat = {token : '@assignStat', x: -1 * TERMINALS.length}
+TERMINALS.push(assignStat.token);
+
+const forStat = {token : '@forStat', x: -1 * TERMINALS.length}
+TERMINALS.push(forStat.token);
+
+const classDecl = {token : '@classDecl', x: -1 * TERMINALS.length}
+TERMINALS.push(classDecl.token);
+
+const inherList = {token : '@inherList', x: -1 * TERMINALS.length}
+TERMINALS.push(inherList.token);
+
+const membList = {token : '@membList', x: -1 * TERMINALS.length}
+TERMINALS.push(membList.token);
+
+const funcDecl = {token : '@funcDecl', x: -1 * TERMINALS.length}
+TERMINALS.push(funcDecl.token);
+
+const fparamList = {token : '@fparamList', x: -1 * TERMINALS.length}
+TERMINALS.push(fparamList.token);
+
+const fparam = {token : '@fparam', x: -1 * TERMINALS.length}
+TERMINALS.push(fparam.token);
+
+const funcDef = {token : '@funcDef', x: -1 * TERMINALS.length}
+TERMINALS.push(funcDef.token);
+
+const scopeSpec = {token : '@scopeSpec', x: -1 * TERMINALS.length}
+TERMINALS.push(scopeSpec.token);
+
+const noScoped = {token : '@noScoped', x: -1 * TERMINALS.length}
+TERMINALS.push(noScoped.token);
+
+const PUSH_MAP_TABLE = {
+  "1":[-2,action41.x,10,-1,9,funcDefList.x,2,classList.x,prog.x],
+  "2":[2,action21.x,-2,action41.x,-6,3,-5,membList.x,5,inherList.x,-4,id.x,-3, classDecl.x],
+  "4":[4,-4,id.x,44],
+  "5":[4,-4,id.x,-4,type.x],
+  "7":[3,action21.x,-2,action43.x,-8,45,-7,fparamList.x,funcDecl.x],
+  "8":[3,action21.x,-2,action43.x,43,dimList.x,varDecl.x],
+  "9":[6,action21.x,-4,id.x,-9],
+  "11":[6,action21.x,-4,id.x,-10],
+  "13":[-8,45,-7,fparamList.x,8,-4,id.x,scopeSpec.x,44],
+  "14":[-8,45,-7,fparamList.x,8,-4,id.x,scopeSpec.x,-4,type.x],
+  "15":[noScoped.x,-4,id.x,-11],
+  "17":[9,action21.x,-2,action61.x,10,7,funcDef.x],
+  "19":[-6,11,-5, statBlock.x],
+  "20":[17,13,-4,type.x,varDecl.x],
+  "21":[17],
+  "22":[17,12, varDecl.x],
+  "23":[14,-4,id.x,44],
+  "24":[14,-4, id.x],
+  "25":[15,action21.x,action41.x,-2,43, dimList.x],
+  "26":[16,-4],
+  "27":[12, varDecl.x],
+  "29":[13,type2.x,varDecl.x],
+  "30":[20],
+  "31":[18,-7,-12,forStat.x],
+  "32":[22,action21.x,-2,action41.x,24,statBlock.x,-15,24,statBlock.x,-14,-8,26,-7,-13, ifStat.x],
+  "33":[22,action21.x,-2,action21.x,-8,26,-7,-16, returnStat.x],
+  "34":[22,action21.x,-2,action21.x,-8,36,_var.x,-4,-7,-17, getStat.x],
+  "35":[22,action21.x,-2,action21.x,-8,26,-7,-18, putStat.x],
+  "37":[22,action21.x,-2,action71.x,24,statBlock.x,-8,23,-4,-2,28,29,-2,26,50,-4,id.x,44],
+  "38":[22,action21.x,-2,action71.x,24,statBlock.x,-8,23,-4,-2,28,29,-2,26,50,-4,id.x,-4, type.x],
+  "39":[22,action21.x,-2,23],
+  "40":[21,action21.x,-2,23],
+  "42":[20,-4],
+  "43":[19,-4],
+  "44":[17],
+  "45":[action32.x,26,50,assignStat.x,40,indexList.x,id2.x,dataMember.x,_var.x],
+  "46":[-6,25,-5],
+  "47":[17],
+  "48":[19,-4],
+  "49":[17],
+  "50":[19,-4],
+  "51":[27,29],
+  "52":[28],
+  "54":[action32.x,29,51],
+  "55":[30,32],
+  "56":[30,action32.x,32,52],
+  "58":[-19],
+  "59":[-20],
+  "60":[33,34],
+  "61":[33,action32.x,34,53],
+  "63":[-8,29,-7],
+  "64":[-21, num.x],
+  "65":[36,_var.x,-4],
+  "66":[-22, num.x],
+  "67":[action21.x,34,-23, not.x],
+  "68":[action21.x,34,31,sign.x],
+  "69":[39],
+  "70":[42],
+  "71":[37,action21.x,action31.x,42,indexList.x,id2.x,dataMember.x],
+  "72":[37,action21.x,action31.x,-8,46,aParams.x,-7,id2.x,fCall.x],
+  "73":[36,-4,-24],
+  "74":[38,-4],
+  "76":[42],
+  "77":[39],
+  "78":[-8,46,-7],
+  "79":[41,action21.x,action31.x,42,action21.x,-26,29,-25],
+  "80":[action21.x, action31.x],
+  "81":[36,-4,-24,action21.x, action31.x],
+  "82":[36,-4,-24],
+  "84":[42,action21.x,-26,29,-25],
+  "86":[43,action21.x,-26,-22,num.x,-25],
+  "88":[-27, type.x],
+  "89":[-28, type.x],
+  "90":[47,action21.x,action41.x,43,dimList.x,-4,id.x,44,fparam.x],
+  "91":[47,action21.x,action41.x,43,dimList.x,-4,id.x,-4,type.x,fparam.x],
+  "93":[49,action21.x,26],
+  "95":[48,-10],
+  "97":[47,action21.x,action41.x,43,dimList.x,-4,id.x,44,fparam.x],
+  "98":[47,action21.x,action41.x,43,dimList.x,-4,id.x,-4,type.x,fparam.x],
+  "99":[49,action21.x,26,-10],
+  "101":[-29],
+  "102":[-30, relOp.x],
+  "103":[-31, relOp.x],
+  "104":[-32, relOp.x],
+  "105":[-33, relOp.x],
+  "106":[-34, relOp.x],
+  "107":[-35, relOp.x],
+  "108":[-19, addOp.x],
+  "109":[-20, addOp.x],
+  "110":[-36, addOp.x],
+  "111":[-37, multOp.x],
+  "112":[-38, multOp.x],
+  "113":[-39, multOp.x]
+};
 module.exports = {
   PARSE_TABLE,
   PUSH_MAP_TABLE,
   TERMINALS,
+  TOKEN_LEAFS,
+  TOKEN_NODES_OFFSET,
+  TOKEN_NODES
 };

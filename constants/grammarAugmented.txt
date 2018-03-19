@@ -1,0 +1,113 @@
+prog               -> @prog @classList classDecl @funcDefList funcDef program funcBody @4,1 ;
+classDecl          -> @classDecl class @id id @inherList classDeclInner @membList { varAndFuncDecl } @4,1 ; @2,1 classDecl
+classDecl          -> EPSILON
+varAndFuncDecl     -> type @id id varAndFuncDeclTail
+varAndFuncDecl     -> @type id @id id varAndFuncDeclTail
+varAndFuncDecl     -> EPSILON
+varAndFuncDeclTail -> @funcDecl @fparamList ( fParams ) @4,3 ; @2,1 varAndFuncDecl
+varAndFuncDeclTail -> @varDecl @dimList arraySize @4,3 ; @2,1 varAndFuncDecl
+classDeclInner     -> : @id id @2,1 classDeclInnerTail
+classDeclInner     -> EPSILON
+classDeclInnerTail -> , @id id @2,1 classDeclInnerTail
+classDeclInnerTail -> EPSILON
+funcHead           -> type @scopeSpec @id id funcHeadInner @fparamList ( fParams )
+funcHead           -> @type id @scopeSpec @id id funcHeadInner @fparamList ( fParams )
+funcHeadInner      -> sr @id id @noScoped
+funcHeadInner      -> EPSILON
+funcDef            -> @funcDef funcHead funcBody @6,1 ; @2,1 funcDef
+funcDef            -> EPSILON
+funcBody           -> @statBlock { funcBodyInner }
+funcBodyInner      -> @varDecl @type id varDeclId statement
+funcBodyInner      -> statement
+funcBodyInner      -> @varDecl varDecl statement
+varDecl            -> type @id id varDeclTail
+varDeclId 		   -> @id id varDeclTail
+varDeclTail        -> @dimList arraySize ; @4,1 @2,1 varDeclTailTwo
+varDeclTailTwo     -> id varDeclTailThree
+varDeclTailTwo	   -> @varDecl varDecl
+varDeclTailTwo     -> EPSILON
+varDeclTailThree   -> @varDecl @type!type varDeclId
+varDeclTailThree   -> statementIdTwo
+statement          -> @forStat for ( statementForTail
+statement          -> @ifStat if ( expr ) then @statBlock statBlock else @statBlock statBlock @4,1 ; @2,1 statementTail
+statement          -> @returnStat return ( expr ) @2,1 ; @2,1 statementTail
+statement          -> @getStat get ( id @var idnest ) @2,1 ; @2,1 statementTail
+statement          -> @putStat put ( expr ) @2,1 ; @2,1 statementTail
+statement          -> EPSILON
+statementForTail   -> type @id id assignOp expr ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail
+statementForTail   -> @type id @id id assignOp expr ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail
+statementId        -> assignStat ; @2,1 statementTail
+statementIdTwo     -> assignStat ; @2,1 statementIdThree
+statementIdThree   -> EPSILON
+statementIdThree   -> id statementIdTwo
+statementTail	   -> id statementId
+statementTail	   -> statement
+assignStat         -> @var @dataMember @id!id @indexList variable @assignStat assignOp expr @3,2
+statBlock          -> { statBlockTail }
+statBlock          -> statement
+statBlock		   -> id statementId
+statBlockTail	   -> statement
+statBlockTail      -> id statementId
+expr               -> arithExpr exprTail
+exprTail           -> relExpr
+exprTail           -> EPSILON
+relExpr            -> relOp arithExpr @3,2
+arithExpr          -> term arithExprTail
+arithExprTail      -> addOp term @3,2 arithExprTail
+arithExprTail      -> EPSILON
+sign               -> +
+sign               -> -
+term               -> factor termTail
+termTail           -> multOp factor @3,2 termTail
+termTail           -> EPSILON
+factor             -> ( arithExpr )
+factor             -> @num floatNum
+factor             -> id @var idnest
+factor             -> @num intNum
+factor             -> @not not factor @2,1
+factor             -> @sign sign factor @2,1
+// varOrFunc       -> functionCall
+// varOrFunc       -> indice
+idnest			   -> @dataMember @id!id @indexList indice @3,1 @2,1 idnestTail
+idnest			   -> @fCall @id!id ( @aParams aParams ) @3,1 @2,1 idnestTail
+idnestTail		   -> . id idnest
+// idnestTail      -> id idnestTailTwo
+idnestTail         -> EPSILON
+// idnestTailTwo   -> indice
+// idnestTailTwo   -> functionCall
+// functionCall    -> ( aParams )
+variable           -> [ arithExpr ] @2,1 indice @3,1 @2,1 variableTail
+variable           -> @3,1 @2,1 EPSILON
+variable		   -> @3,1 @2,1 . id idnest
+variableTail       -> . id idnest
+variableTail       -> EPSILON
+indice             -> [ arithExpr ] @2,1 indice
+indice             -> EPSILON
+arraySize          -> [ @num intNum ] @2,1 arraySize
+arraySize          -> EPSILON
+type               -> @type float
+type               -> @type int
+fParams            -> @fparam type @id id @dimList arraySize @4,1 @2,1 fParamsTail
+fParams            -> @fparam @type id @id id @dimList arraySize @4,1 @2,1 fParamsTail
+fParams            -> EPSILON
+aParams            -> expr @2,1 aParamsTail
+aParams            -> EPSILON
+fParamsTail        -> , fParamsTailTwo
+fParamsTail        -> EPSILON
+fParamsTailTwo	   -> @fparam type @id id @dimList arraySize @4,1 @2,1 fParamsTail
+fParamsTailTwo	   -> @fparam @type id @id id @dimList arraySize @4,1 @2,1 fParamsTail
+aParamsTail        -> , expr @2,1 aParamsTail
+aParamsTail        -> EPSILON
+assignOp           -> =
+relOp              -> @relOp eq
+relOp              -> @relOp geq
+relOp              -> @relOp gt
+relOp              -> @relOp leq
+relOp              -> @relOp lt
+relOp              -> @relOp neq
+addOp              -> @addOp +
+addOp              -> @addOp -
+addOp              -> @addOp or
+multOp             -> @multOp *
+multOp             -> @multOp /
+multOp             -> @multOp and

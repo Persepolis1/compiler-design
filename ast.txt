@@ -1,0 +1,106 @@
+[
+  {
+    "node": "prog",
+    "parent": null,
+    "children": [
+      {
+        "node": "classList",
+        "parent": null
+      },
+      {
+        "node": "funcDefList",
+        "parent": null
+      },
+      {
+        "node": "statBlock",
+        "parent": null,
+        "children": [
+          {
+            "node": "varDecl",
+            "parent": null,
+            "children": [
+              {
+                "node": "type",
+                "parent": null,
+                "leaf": {
+                  "Token": "int",
+                  "position": 10,
+                  "value": "int"
+                }
+              },
+              {
+                "node": "id",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 12,
+                  "value": "x"
+                }
+              },
+              {
+                "node": "dimList",
+                "parent": null
+              }
+            ]
+          },
+          {
+            "node": "varDecl",
+            "parent": null,
+            "children": [
+              {
+                "node": "type",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 17,
+                  "value": "Car"
+                }
+              },
+              {
+                "node": "id",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 19,
+                  "value": "y"
+                }
+              },
+              {
+                "node": "dimList",
+                "parent": null
+              }
+            ]
+          },
+          {
+            "node": "varDecl",
+            "parent": null,
+            "children": [
+              {
+                "node": "type",
+                "parent": null,
+                "leaf": {
+                  "Token": "float",
+                  "position": 26,
+                  "value": "float"
+                }
+              },
+              {
+                "node": "id",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 28,
+                  "value": "z"
+                }
+              },
+              {
+                "node": "dimList",
+                "parent": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
