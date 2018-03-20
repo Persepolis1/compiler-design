@@ -1,0 +1,63 @@
+---ERRORS---
+
+Duplicate class declaration: 'class Tesla' in 'Global' scope
+
+---SYMBOL TABLES---
+
+Symbol Table : Global
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+Car			class			nil			Car
+Engine			class			nil			Engine
+Tesla			class			nil			Tesla
+Tesla			class			nil			Tesla
+program			function			nil			program
+--------------------------------------------------------
+
+Symbol Table : program
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+sample			variable			int[100]			nil
+idx			variable			int			nil
+maxValue			variable			int			nil
+minValue			variable			int			nil
+car			variable			Car			nil
+y			variable			float			nil
+--------------------------------------------------------
+
+Symbol Table : Tesla
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+a			variable			float			nil
+b			variable			int			nil
+--------------------------------------------------------
+
+Symbol Table : Tesla
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+electricityUsage			function			float : int			nil
+--------------------------------------------------------
+
+Symbol Table : Engine
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+y			variable			int			nil
+z			variable			int			nil
+x			variable			int[1][2][4]			nil
+--------------------------------------------------------
+
+Symbol Table : Car
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+x			variable			int[1][2][3]			nil
+y			variable			float			nil
+findMax			function			int : int, float			nil
+findMin			function			float : int			nil
+--------------------------------------------------------
+

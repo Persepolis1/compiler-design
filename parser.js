@@ -5,6 +5,7 @@ const { RULES } = require('./constants/rules');
 const { NON_TERMINALS } = require('./constants/nonTerminals');
 const { Node } = require('./node')
 const getAllTokens = require('./lexer/lexer');
+const semantics = require('./semantics');
 const fs = require('fs');
 const stack = [];
 const semanticStack = [];
@@ -70,8 +71,9 @@ if (!unitTest) {
   });
   lr.on('end', function () {
     tokenStream.push('$');
-    tokensFull.push({Token: '$', value : '$'});
-    parse();
+    tokensFull.push({Token: '$', value: '$'});
+     const result = parse();
+     semantics(result.ast);
     // All lines are read, file is closed now.
   });
 }
@@ -79,7 +81,7 @@ function hasNumber(myString) {
   return /\d/.test(myString);
 }
 let token;
-function parse(outputFile = 'output.txt', tokens = []){
+function parse(outputFile = 'derivations.txt', tokens = []){
   stack.push('$');
   stack.push(1);
   if (tokens.length > 0){
@@ -172,7 +174,7 @@ function parse(outputFile = 'output.txt', tokens = []){
     fs.writeFileSync(outputFile, outputArray.join(''));
     jsonFile.writeFile('ast.txt', semanticStack, {spaces: 2}, function(err) {})
     console.log('Parsing Success!');
-    return true;
+    return {success:true, ast:semanticStack};
   }
 }
 

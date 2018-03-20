@@ -1,0 +1,21 @@
+---SYMBOL TABLES---
+
+Symbol Table : Global
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+program			function			nil			program
+--------------------------------------------------------
+
+Symbol Table : program
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+sample			variable			int[100]			nil
+idx			variable			int			nil
+maxValue			variable			int			nil
+minValue			variable			int			nil
+utility			variable			Utility			nil
+arrayUtility			variable			Utility[2][3][6][7]			nil
+--------------------------------------------------------
+

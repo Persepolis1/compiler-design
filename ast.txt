@@ -5,7 +5,484 @@
     "children": [
       {
         "node": "classList",
-        "parent": null
+        "parent": null,
+        "children": [
+          {
+            "node": "classDecl",
+            "parent": null,
+            "children": [
+              {
+                "node": "id",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 8,
+                  "value": "Car"
+                }
+              },
+              {
+                "node": "inherList",
+                "parent": null
+              },
+              {
+                "node": "membList",
+                "parent": null,
+                "children": [
+                  {
+                    "node": "varDecl",
+                    "parent": null,
+                    "children": [
+                      {
+                        "node": "type",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "int",
+                          "position": 12,
+                          "value": "int"
+                        }
+                      },
+                      {
+                        "node": "id",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "id",
+                          "position": 14,
+                          "value": "x"
+                        }
+                      },
+                      {
+                        "node": "dimList",
+                        "parent": null,
+                        "children": [
+                          {
+                            "node": "num",
+                            "parent": null,
+                            "leaf": {
+                              "Token": "intNum",
+                              "position": 16,
+                              "value": "1"
+                            }
+                          },
+                          {
+                            "node": "num",
+                            "parent": null,
+                            "leaf": {
+                              "Token": "intNum",
+                              "position": 19,
+                              "value": "2"
+                            }
+                          },
+                          {
+                            "node": "num",
+                            "parent": null,
+                            "leaf": {
+                              "Token": "intNum",
+                              "position": 22,
+                              "value": "3"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "node": "varDecl",
+                    "parent": null,
+                    "children": [
+                      {
+                        "node": "type",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "float",
+                          "position": 30,
+                          "value": "float"
+                        }
+                      },
+                      {
+                        "node": "id",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "id",
+                          "position": 32,
+                          "value": "y"
+                        }
+                      },
+                      {
+                        "node": "dimList",
+                        "parent": null
+                      }
+                    ]
+                  },
+                  {
+                    "node": "funcDecl",
+                    "parent": null,
+                    "children": [
+                      {
+                        "node": "type",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "int",
+                          "position": 37,
+                          "value": "int"
+                        }
+                      },
+                      {
+                        "node": "id",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "id",
+                          "position": 45,
+                          "value": "findMax"
+                        }
+                      },
+                      {
+                        "node": "fparamList",
+                        "parent": null,
+                        "children": [
+                          {
+                            "node": "fparam",
+                            "parent": null,
+                            "children": [
+                              {
+                                "node": "type",
+                                "parent": null,
+                                "leaf": {
+                                  "Token": "int",
+                                  "position": 49,
+                                  "value": "int"
+                                }
+                              },
+                              {
+                                "node": "id",
+                                "parent": null,
+                                "leaf": {
+                                  "Token": "id",
+                                  "position": 51,
+                                  "value": "a"
+                                }
+                              },
+                              {
+                                "node": "dimList",
+                                "parent": null
+                              }
+                            ]
+                          },
+                          {
+                            "node": "fparam",
+                            "parent": null,
+                            "children": [
+                              {
+                                "node": "type",
+                                "parent": null,
+                                "leaf": {
+                                  "Token": "float",
+                                  "position": 58,
+                                  "value": "float"
+                                }
+                              },
+                              {
+                                "node": "id",
+                                "parent": null,
+                                "leaf": {
+                                  "Token": "id",
+                                  "position": 60,
+                                  "value": "b"
+                                }
+                              },
+                              {
+                                "node": "dimList",
+                                "parent": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "node": "funcDecl",
+                    "parent": null,
+                    "children": [
+                      {
+                        "node": "type",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "float",
+                          "position": 68,
+                          "value": "float"
+                        }
+                      },
+                      {
+                        "node": "id",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "id",
+                          "position": 76,
+                          "value": "findMin"
+                        }
+                      },
+                      {
+                        "node": "fparamList",
+                        "parent": null,
+                        "children": [
+                          {
+                            "node": "fparam",
+                            "parent": null,
+                            "children": [
+                              {
+                                "node": "type",
+                                "parent": null,
+                                "leaf": {
+                                  "Token": "int",
+                                  "position": 80,
+                                  "value": "int"
+                                }
+                              },
+                              {
+                                "node": "id",
+                                "parent": null,
+                                "leaf": {
+                                  "Token": "id",
+                                  "position": 82,
+                                  "value": "a"
+                                }
+                              },
+                              {
+                                "node": "dimList",
+                                "parent": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node": "classDecl",
+            "parent": null,
+            "children": [
+              {
+                "node": "id",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 99,
+                  "value": "Engine"
+                }
+              },
+              {
+                "node": "inherList",
+                "parent": null
+              },
+              {
+                "node": "membList",
+                "parent": null,
+                "children": [
+                  {
+                    "node": "varDecl",
+                    "parent": null,
+                    "children": [
+                      {
+                        "node": "type",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "int",
+                          "position": 103,
+                          "value": "int"
+                        }
+                      },
+                      {
+                        "node": "id",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "id",
+                          "position": 105,
+                          "value": "y"
+                        }
+                      },
+                      {
+                        "node": "dimList",
+                        "parent": null
+                      }
+                    ]
+                  },
+                  {
+                    "node": "varDecl",
+                    "parent": null,
+                    "children": [
+                      {
+                        "node": "type",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "int",
+                          "position": 110,
+                          "value": "int"
+                        }
+                      },
+                      {
+                        "node": "id",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "id",
+                          "position": 112,
+                          "value": "z"
+                        }
+                      },
+                      {
+                        "node": "dimList",
+                        "parent": null
+                      }
+                    ]
+                  },
+                  {
+                    "node": "varDecl",
+                    "parent": null,
+                    "children": [
+                      {
+                        "node": "type",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "int",
+                          "position": 117,
+                          "value": "int"
+                        }
+                      },
+                      {
+                        "node": "id",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "id",
+                          "position": 119,
+                          "value": "x"
+                        }
+                      },
+                      {
+                        "node": "dimList",
+                        "parent": null,
+                        "children": [
+                          {
+                            "node": "num",
+                            "parent": null,
+                            "leaf": {
+                              "Token": "intNum",
+                              "position": 121,
+                              "value": "1"
+                            }
+                          },
+                          {
+                            "node": "num",
+                            "parent": null,
+                            "leaf": {
+                              "Token": "intNum",
+                              "position": 124,
+                              "value": "2"
+                            }
+                          },
+                          {
+                            "node": "num",
+                            "parent": null,
+                            "leaf": {
+                              "Token": "intNum",
+                              "position": 127,
+                              "value": "4"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node": "classDecl",
+            "parent": null,
+            "children": [
+              {
+                "node": "id",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 143,
+                  "value": "Tesla"
+                }
+              },
+              {
+                "node": "inherList",
+                "parent": null
+              },
+              {
+                "node": "membList",
+                "parent": null,
+                "children": [
+                  {
+                    "node": "funcDecl",
+                    "parent": null,
+                    "children": [
+                      {
+                        "node": "type",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "float",
+                          "position": 149,
+                          "value": "float"
+                        }
+                      },
+                      {
+                        "node": "id",
+                        "parent": null,
+                        "leaf": {
+                          "Token": "id",
+                          "position": 166,
+                          "value": "electricityUsage"
+                        }
+                      },
+                      {
+                        "node": "fparamList",
+                        "parent": null,
+                        "children": [
+                          {
+                            "node": "fparam",
+                            "parent": null,
+                            "children": [
+                              {
+                                "node": "type",
+                                "parent": null,
+                                "leaf": {
+                                  "Token": "int",
+                                  "position": 170,
+                                  "value": "int"
+                                }
+                              },
+                              {
+                                "node": "id",
+                                "parent": null,
+                                "leaf": {
+                                  "Token": "id",
+                                  "position": 176,
+                                  "value": "miles"
+                                }
+                              },
+                              {
+                                "node": "dimList",
+                                "parent": null
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         "node": "funcDefList",
@@ -24,7 +501,7 @@
                 "parent": null,
                 "leaf": {
                   "Token": "int",
-                  "position": 10,
+                  "position": 195,
                   "value": "int"
                 }
               },
@@ -33,8 +510,103 @@
                 "parent": null,
                 "leaf": {
                   "Token": "id",
-                  "position": 12,
-                  "value": "x"
+                  "position": 202,
+                  "value": "sample"
+                }
+              },
+              {
+                "node": "dimList",
+                "parent": null,
+                "children": [
+                  {
+                    "node": "num",
+                    "parent": null,
+                    "leaf": {
+                      "Token": "intNum",
+                      "position": 206,
+                      "value": "100"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "node": "varDecl",
+            "parent": null,
+            "children": [
+              {
+                "node": "type",
+                "parent": null,
+                "leaf": {
+                  "Token": "int",
+                  "position": 214,
+                  "value": "int"
+                }
+              },
+              {
+                "node": "id",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 218,
+                  "value": "idx"
+                }
+              },
+              {
+                "node": "dimList",
+                "parent": null
+              }
+            ]
+          },
+          {
+            "node": "varDecl",
+            "parent": null,
+            "children": [
+              {
+                "node": "type",
+                "parent": null,
+                "leaf": {
+                  "Token": "int",
+                  "position": 225,
+                  "value": "int"
+                }
+              },
+              {
+                "node": "id",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 234,
+                  "value": "maxValue"
+                }
+              },
+              {
+                "node": "dimList",
+                "parent": null
+              }
+            ]
+          },
+          {
+            "node": "varDecl",
+            "parent": null,
+            "children": [
+              {
+                "node": "type",
+                "parent": null,
+                "leaf": {
+                  "Token": "int",
+                  "position": 241,
+                  "value": "int"
+                }
+              },
+              {
+                "node": "id",
+                "parent": null,
+                "leaf": {
+                  "Token": "id",
+                  "position": 250,
+                  "value": "minValue"
                 }
               },
               {
@@ -52,7 +624,7 @@
                 "parent": null,
                 "leaf": {
                   "Token": "id",
-                  "position": 17,
+                  "position": 257,
                   "value": "Car"
                 }
               },
@@ -61,8 +633,8 @@
                 "parent": null,
                 "leaf": {
                   "Token": "id",
-                  "position": 19,
-                  "value": "y"
+                  "position": 261,
+                  "value": "car"
                 }
               },
               {
@@ -80,7 +652,7 @@
                 "parent": null,
                 "leaf": {
                   "Token": "float",
-                  "position": 26,
+                  "position": 270,
                   "value": "float"
                 }
               },
@@ -89,8 +661,8 @@
                 "parent": null,
                 "leaf": {
                   "Token": "id",
-                  "position": 28,
-                  "value": "z"
+                  "position": 272,
+                  "value": "y"
                 }
               },
               {

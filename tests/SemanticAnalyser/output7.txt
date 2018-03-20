@@ -1,0 +1,37 @@
+---SYMBOL TABLES---
+
+Symbol Table : Global
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+Car			class			nil			Car
+Engine			class			nil			Engine
+Tesla			class			nil			Tesla
+--------------------------------------------------------
+
+Symbol Table : Tesla
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+electricityUsage			function			float : int			nil
+--------------------------------------------------------
+
+Symbol Table : Engine
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+y			variable			int			nil
+z			variable			int			nil
+x			variable			int[1][2][4]			nil
+--------------------------------------------------------
+
+Symbol Table : Car
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+x			variable			int[1][2][3]			nil
+y			variable			float			nil
+findMax			function			int : int, float			nil
+findMin			function			float : int			nil
+--------------------------------------------------------
+

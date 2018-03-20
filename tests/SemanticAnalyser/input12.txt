@@ -1,6 +1,7 @@
 class Car{int x[1][2][3]; float y; int findMax(int a, float b); float findMin(int a);};
 class Engine{int y; int z; int x[1][2][4];};
 class Tesla{float electricityUsage(int miles);};
+class Door : Car {float a; int b;};
 program{
   int sample[100];
   int idx;

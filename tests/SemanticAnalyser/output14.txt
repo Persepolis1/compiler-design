@@ -1,0 +1,19 @@
+---ERRORS---
+
+Duplicate variable declaration: 'int y' in 'program'
+
+---SYMBOL TABLES---
+
+Symbol Table : Global
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+program			function			nil			program
+--------------------------------------------------------
+
+Symbol Table : program
+--------------------------------------------------------
+Name			Kind			Type			Link
+--------------------------------------------------------
+y			variable			float			nil
+--------------------------------------------------------
