@@ -3,7 +3,7 @@ const LineByLineReader = require('line-by-line');
 const { PARSE_TABLE, PUSH_MAP_TABLE, TERMINALS, TOKEN_LEAFS, TOKEN_NODES_OFFSET, TOKEN_NODES } = require('./constants/parseTable');
 const { RULES } = require('./constants/rules');
 const { NON_TERMINALS } = require('./constants/nonTerminals');
-const { Node } = require('./node')
+const {Node} = require('./node');
 const getAllTokens = require('./lexer/lexer');
 const semantics = require('./semantics');
 const fs = require('fs');
@@ -111,7 +111,7 @@ function parse(outputFile = 'derivations.txt', tokens = []){
         else if (TOKEN_NODES_OFFSET.includes(nodeName)){
           const offset = nodeName.split('!');
           const node = new Node(offset[0],null);
-          node.setLeaf(tokensFull[currentTokenIndex - offset.length])
+          node.setLeaf(tokensFull[currentTokenIndex - offset.length]);
           semanticStack.push(node);
         }
         else if(nodeName === 'noScoped'){
@@ -165,15 +165,15 @@ function parse(outputFile = 'derivations.txt', tokens = []){
   if (token !== '$' || error){
     outputArray.push(`Token Stream : \n ${tokenStream.join(' ')}`);
     fs.writeFileSync(outputFile, outputArray.join(''));
-    console.log('Parsing Failed!');
+    console.error('Parsing Failed!');
     return false;
   }
   else {
     outputArray.push(`Successfully parsed! \n ${getSentencialForm()} \n`);
     outputArray.push(`Token Stream : \n ${tokenStream.join(' ')}`);
     fs.writeFileSync(outputFile, outputArray.join(''));
-    jsonFile.writeFile('ast.txt', semanticStack, {spaces: 2}, function(err) {})
-    console.log('Parsing Success!');
+    jsonFile.writeFile('ast.txt', semanticStack, {spaces: 2}, function (err) {
+    });
     return {success:true, ast:semanticStack};
   }
 }
