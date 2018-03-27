@@ -3,22 +3,16 @@
     "table": "Global",
     "entries": [
       {
-        "name": "Car",
-        "kind": "class",
-        "type": "nil",
-        "link": "Car"
+        "name": "findMax",
+        "kind": "function",
+        "type": "float : int, int",
+        "link": "findMax"
       },
       {
-        "name": "Engine",
-        "kind": "class",
-        "type": "nil",
-        "link": "Engine"
-      },
-      {
-        "name": "Tesla",
-        "kind": "class",
-        "type": "nil",
-        "link": "Tesla"
+        "name": "findMin",
+        "kind": "function",
+        "type": "int : float, float",
+        "link": "findMin"
       },
       {
         "name": "program",
@@ -32,102 +26,9 @@
     "table": "program",
     "entries": [
       {
-        "name": "sample",
-        "kind": "variable",
-        "type": "int[100]",
-        "link": "nil"
-      },
-      {
         "name": "idx",
         "kind": "variable",
         "type": "int",
-        "link": "nil"
-      },
-      {
-        "name": "maxValue",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil"
-      },
-      {
-        "name": "minValue",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil"
-      },
-      {
-        "name": "car",
-        "kind": "variable",
-        "type": "Car",
-        "link": "nil"
-      },
-      {
-        "name": "y",
-        "kind": "variable",
-        "type": "float",
-        "link": "nil"
-      }
-    ]
-  },
-  {
-    "table": "Tesla",
-    "entries": [
-      {
-        "name": "electricityUsage",
-        "kind": "function",
-        "type": "float : int",
-        "link": "nil"
-      }
-    ]
-  },
-  {
-    "table": "Engine",
-    "entries": [
-      {
-        "name": "y",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil"
-      },
-      {
-        "name": "z",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil"
-      },
-      {
-        "name": "x",
-        "kind": "variable",
-        "type": "int[1][2][4]",
-        "link": "nil"
-      }
-    ]
-  },
-  {
-    "table": "Car",
-    "entries": [
-      {
-        "name": "x",
-        "kind": "variable",
-        "type": "int[1][2][3]",
-        "link": "nil"
-      },
-      {
-        "name": "y",
-        "kind": "variable",
-        "type": "float",
-        "link": "nil"
-      },
-      {
-        "name": "findMax",
-        "kind": "function",
-        "type": "int : int, float",
-        "link": "nil"
-      },
-      {
-        "name": "findMin",
-        "kind": "function",
-        "type": "float : int",
         "link": "nil"
       }
     ]

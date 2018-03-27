@@ -8,12 +8,15 @@ function semantics(ast){
   const TABLE_CREATOR_MAP = {
     'prog': createProgSymTab,
     'classList': createClasslistSymTab,
+    'funcDefList': createFuncDefListTable,
     'classDecl': createClassDeclTable,
     'statBlock': createStatBlockTable,
   };
   const ENTRY_CREATOR_MAP = {
     'classList': createClassListEntries,
     'classDecl': createClassDeclEntries,
+    'funcDefList': createFuncDefListEntries,
+    'funcDef': createFuncDefEntries,
     'varDecl': createVarDeclEntries,
     'funcDecl': createFuncDeclEntries,
     'fparam': createFParamEntries,
@@ -23,13 +26,17 @@ function semantics(ast){
   const errors = [];
   const rootNode = [...ast][0];
   buildTables(rootNode);
-  //printAllTables(tables);
   printAllTables(tables);
   printErrors(errors);
-
+  printAugmentedAst(rootNode);
   function buildTables(node) {
-    if (TABLE_CREATOR_MAP[node.node]) {
-      node['symtab'] = TABLE_CREATOR_MAP[node.node](node);
+    try {
+      if (TABLE_CREATOR_MAP[node.node]) {
+        node['symtab'] = TABLE_CREATOR_MAP[node.node](node);
+      }
+    }
+    catch (e) {
+      console.error(e);
     }
   }
 
@@ -82,7 +89,7 @@ function semantics(ast){
   // Class List
   function createClassListEntries(node){
     buildTables(node);
-    return node.symtab.entries
+    return node.symtab.entries;
   }
   function createClasslistSymTab(node){
    const symtab = {
@@ -127,6 +134,52 @@ function semantics(ast){
       })
     }
     return symtab;
+  }
+
+  // Func Def List
+  function createFuncDefListEntries(node) {
+    buildTables(node);
+    return node.symtab.entries;
+  }
+
+  function createFuncDefListTable(node) {
+    const symtab = {
+      table: 'funcDefList',
+      entries: [],
+    };
+    node.children.forEach((child) => {
+      symtab.entries.push(ENTRY_CREATOR_MAP[child.node](child));
+    });
+    return symtab;
+  }
+
+  // Func Def
+  function createFuncDefEntries(node) {
+    const entry = {
+      name: node.children[2].leaf.value,
+      kind: 'function',
+      type: `${node.children[0].leaf.value} : `,
+      link: node.children[2].leaf.value,
+    };
+    if (node.children[3].children) {
+      const paramEntry = [];
+      const bucket = [];
+      node.children[3].children.forEach((child) => {
+        paramEntry.push(ENTRY_CREATOR_MAP[child.node](child));
+      });
+      paramEntry.forEach((param) => {
+        if (!bucket.includes(param.name)) {
+          bucket.push(param.name);
+          entry.type = entry.type.concat(`${param.type}, `)
+        }
+        else {
+          errors.push(`Duplicate param declaration: '${param.name} in ${entry.name}' `)
+        }
+      });
+      entry.type = entry.type.slice(0, -2);
+    }
+
+    return entry;
   }
 
   // Var Decl
@@ -259,6 +312,11 @@ function semantics(ast){
     else {
       fs.writeFileSync('errors.txt', 'No Semantic Errors');
     }
+  }
+
+  function printAugmentedAst(rootNode) {
+    jsonFile.writeFileSync('augmentedAST.txt', rootNode, {spaces: 2}, function (err) {
+    })
   }
 }
 
