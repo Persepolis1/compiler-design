@@ -9,6 +9,7 @@ function semantics(ast){
     'prog': createProgSymTab,
     'classList': createClasslistSymTab,
     'funcDefList': createFuncDefListTable,
+    'funcDef': createFuncDefTable,
     'classDecl': createClassDeclTable,
     'statBlock': createStatBlockTable,
   };
@@ -141,7 +142,6 @@ function semantics(ast){
     buildTables(node);
     return node.symtab.entries;
   }
-
   function createFuncDefListTable(node) {
     const symtab = {
       table: 'funcDefList',
@@ -178,8 +178,31 @@ function semantics(ast){
       });
       entry.type = entry.type.slice(0, -2);
     }
-
+    buildTables(node);
+    tables.push(node.symtab);
     return entry;
+  }
+
+  function createFuncDefTable(node) {
+    const symtab = {
+      table: node.children[2].leaf.value,
+      entries: [],
+    };
+    // Duplicate check
+    const bucket = [];
+    if (node.children[4].children) {
+      node.children[4].children.forEach((child) => {
+        const entry = ENTRY_CREATOR_MAP[child.node](child);
+        if (!bucket.includes(entry.name)) {
+          bucket.push(entry.name);
+          symtab.entries.push(entry);
+        }
+        else {
+          errors.push(`Duplicate variable declaration: '${entry.type} ${entry.name}' in function '${symtab.table}' `)
+        }
+      })
+    }
+    return symtab;
   }
 
   // Var Decl
@@ -270,6 +293,9 @@ function semantics(ast){
     };
     const bucket = [];
     node.children.forEach((child) =>{
+      if (!ENTRY_CREATOR_MAP[child.node]) {
+        return;
+      }
       const entry = ENTRY_CREATOR_MAP[child.node](child);
       if (!bucket.includes(entry.name)) {
         bucket.push(entry.name);

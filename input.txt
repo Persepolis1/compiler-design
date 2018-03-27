@@ -1,5 +1,4 @@
-float findMax(int a, int b){};
-int findMin(float a, float b){};
 program{
   int idx;
+  idx = findMax(5,2);
 };

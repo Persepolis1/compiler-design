@@ -1,11 +1,9 @@
 ---SYMBOL TABLES--- 
 
 Table: Global
-Name     Kind      Type                Link   
--------  --------  ------------------  -------
-findMax  function  float : int, int    findMax
-findMin  function  int : float, float  findMin
-program  function  nil                 program
+Name     Kind      Type  Link   
+-------  --------  ----  -------
+program  function  nil   program
 
 
 Table: program

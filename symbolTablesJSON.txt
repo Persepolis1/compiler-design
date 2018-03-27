@@ -3,18 +3,6 @@
     "table": "Global",
     "entries": [
       {
-        "name": "findMax",
-        "kind": "function",
-        "type": "float : int, int",
-        "link": "findMax"
-      },
-      {
-        "name": "findMin",
-        "kind": "function",
-        "type": "int : float, float",
-        "link": "findMin"
-      },
-      {
         "name": "program",
         "kind": "function",
         "type": "nil",
