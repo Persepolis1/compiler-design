@@ -3,6 +3,34 @@
     "table": "Global",
     "entries": [
       {
+        "name": "InheritedUtility",
+        "kind": "class",
+        "type": "nil",
+        "link": "InheritedUtility",
+        "line": 1
+      },
+      {
+        "name": "Utility",
+        "kind": "class",
+        "type": "nil",
+        "link": "Utility",
+        "line": 6
+      },
+      {
+        "name": "Car",
+        "kind": "class",
+        "type": "nil",
+        "link": "Car",
+        "line": 13
+      },
+      {
+        "name": "wew",
+        "kind": "function",
+        "type": "float : ",
+        "link": "wew",
+        "line": 16
+      },
+      {
         "name": "program",
         "kind": "function",
         "type": "nil",
@@ -11,13 +39,146 @@
     ]
   },
   {
+    "table": "InheritedUtility",
+    "entries": [
+      {
+        "name": "x",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 2
+      },
+      {
+        "name": "y",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 3
+      },
+      {
+        "name": "findMax",
+        "kind": "function",
+        "type": "int : int",
+        "link": "nil",
+        "line": 4
+      }
+    ]
+  },
+  {
+    "table": "Utility",
+    "entries": [
+      {
+        "name": "InheritedUtility",
+        "kind": "class",
+        "type": "parent",
+        "link": "InheritedUtility",
+        "line": 6
+      },
+      {
+        "name": "x",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 7
+      },
+      {
+        "name": "y",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 8
+      },
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "float",
+        "link": "nil",
+        "line": 9
+      },
+      {
+        "name": "findMax",
+        "kind": "function",
+        "type": "int : int",
+        "link": "nil",
+        "line": 11
+      }
+    ]
+  },
+  {
+    "table": "Car",
+    "entries": [
+      {
+        "name": "InheritedUtility",
+        "kind": "class",
+        "type": "parent",
+        "link": "InheritedUtility",
+        "line": 13
+      },
+      {
+        "name": "y",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 14
+      }
+    ]
+  },
+  {
+    "table": "wew",
+    "entries": [
+      {
+        "name": "x",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 17
+      }
+    ]
+  },
+  {
     "table": "program",
     "entries": [
+      {
+        "name": "sample",
+        "kind": "variable",
+        "type": "int[100]",
+        "link": "nil",
+        "line": 20
+      },
       {
         "name": "idx",
         "kind": "variable",
         "type": "int",
-        "link": "nil"
+        "link": "nil",
+        "line": 21
+      },
+      {
+        "name": "maxValue",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 23
+      },
+      {
+        "name": "minValue",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 24
+      },
+      {
+        "name": "utility",
+        "kind": "variable",
+        "type": "Utility",
+        "link": "nil",
+        "line": 25
+      },
+      {
+        "name": "arrayUtility",
+        "kind": "variable",
+        "type": "Utility[2][3][6][7]",
+        "link": "nil",
+        "line": 26
       }
     ]
   }

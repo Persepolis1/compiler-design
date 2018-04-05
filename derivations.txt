@@ -6,214 +6,559 @@ USED RULE :
 Sentencial Form:
  classDecl @funcDefList funcDef program funcBody @4,1 ; 
 USED RULE :
- classDecl           -> EPSILON 
+ classDecl           -> class id classDeclInner { varAndFuncDecl } ; classDecl 
 
 Sentencial Form:
- funcDef program funcBody @4,1 ; 
+ class id classDeclInner @membList { varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
 USED RULE :
- funcDef            -> EPSILON 
+ classDeclInner     -> EPSILON 
 
 Sentencial Form:
- program funcBody @4,1 ; 
+ class id { varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
 USED RULE :
- funcBody           -> { funcBodyInner } 
+ varAndFuncDecl      -> type id varAndFuncDeclTail 
 
 Sentencial Form:
- program { funcBodyInner } @4,1 ; 
-USED RULE :
- funcBodyInner      -> varDecl statement 
-
-Sentencial Form:
- program { varDecl statement } @4,1 ; 
-USED RULE :
- varDecl            -> type id varDeclTail 
-
-Sentencial Form:
- program { type @id id varDeclTail statement } @4,1 ; 
+ class id { type @id id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
 USED RULE :
  type               -> int 
 
 Sentencial Form:
- program { int id varDeclTail statement } @4,1 ; 
+ class id { int id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
 USED RULE :
- varDeclTail        -> arraySize ; varDeclTailTwo 
+ varAndFuncDeclTail  -> arraySize ; varAndFuncDecl 
 
 Sentencial Form:
- program { int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
+ class id { int id arraySize @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
 USED RULE :
  arraySize          -> EPSILON 
 
 Sentencial Form:
- program { int id ; varDeclTailTwo statement } @4,1 ; 
+ class id { int id ; varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id { int id ; type @id id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDeclTail  -> arraySize ; varAndFuncDecl 
+
+Sentencial Form:
+ class id { int id ; int id arraySize @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; type @id id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDeclTail  -> ( fParams ) ; varAndFuncDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( fParams ) @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ fParams            -> type id arraySize fParamsTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( type @id id @dimList arraySize @4,1 @2,1 fParamsTail ) @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id arraySize @4,1 @2,1 fParamsTail ) @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id fParamsTail ) @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ fParamsTail        -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ classDecl           -> class id classDeclInner { varAndFuncDecl } ; classDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id classDeclInner @membList { varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ classDeclInner      -> : id classDeclInnerTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id classDeclInnerTail @membList { varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ classDeclInnerTail -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { type @id id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDeclTail  -> arraySize ; varAndFuncDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id arraySize @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; type @id id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDeclTail  -> arraySize ; varAndFuncDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id arraySize @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; type @id id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> float 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDeclTail  -> arraySize ; varAndFuncDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id arraySize @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; type @id id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> float 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDeclTail  -> arraySize ; varAndFuncDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id arraySize @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; type @id id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDeclTail  -> ( fParams ) ; varAndFuncDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( fParams ) @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ fParams            -> type id arraySize fParamsTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( type @id id @dimList arraySize @4,1 @2,1 fParamsTail ) @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id arraySize @4,1 @2,1 fParamsTail ) @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id fParamsTail ) @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ fParamsTail        -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ classDecl           -> class id classDeclInner { varAndFuncDecl } ; classDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id classDeclInner @membList { varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ classDeclInner      -> : id classDeclInnerTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id classDeclInnerTail @membList { varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ classDeclInnerTail -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> type id varAndFuncDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { type @id id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id varAndFuncDeclTail } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDeclTail  -> arraySize ; varAndFuncDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id arraySize @4,3 ; @2,1 varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; varAndFuncDecl } @4,1 ; @2,1 classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ varAndFuncDecl      -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; classDecl @funcDefList funcDef program funcBody @4,1 ; 
+USED RULE :
+ classDecl           -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; funcDef program funcBody @4,1 ; 
+USED RULE :
+ funcDef            -> funcHead funcBody ; funcDef 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; funcHead funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ funcHead           -> type id funcHeadInner ( fParams ) 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; type @scopeSpec @id id funcHeadInner @fparamList ( fParams ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> float 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id funcHeadInner @fparamList ( fParams ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ funcHeadInner      -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( fParams ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ fParams            -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ funcBody           -> { funcBodyInner } 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { funcBodyInner } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ funcBodyInner      -> varDecl statement 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { varDecl statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ varDecl            -> type id varDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { type @id id varDeclTail statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id varDeclTail statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ varDeclTail        -> arraySize ; varDeclTailTwo 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; varDeclTailTwo statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ varDeclTailTwo     -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
+USED RULE :
+ statement          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; funcDef program funcBody @4,1 ; 
+USED RULE :
+ funcDef            -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program funcBody @4,1 ; 
+USED RULE :
+ funcBody           -> { funcBodyInner } 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { funcBodyInner } @4,1 ; 
+USED RULE :
+ funcBodyInner      -> varDecl statement 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { varDecl statement } @4,1 ; 
+USED RULE :
+ varDecl            -> type id varDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { type @id id varDeclTail statement } @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id varDeclTail statement } @4,1 ; 
+USED RULE :
+ varDeclTail        -> arraySize ; varDeclTailTwo 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ arraySize          -> [ intNum ] arraySize 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ varDeclTailTwo     -> varDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; varDecl statement } @4,1 ; 
+USED RULE :
+ varDecl            -> type id varDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; type @id id varDeclTail statement } @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id varDeclTail statement } @4,1 ; 
+USED RULE :
+ varDeclTail        -> arraySize ; varDeclTailTwo 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ varDeclTailTwo     -> varDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; varDecl statement } @4,1 ; 
+USED RULE :
+ varDecl            -> type id varDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; type @id id varDeclTail statement } @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id varDeclTail statement } @4,1 ; 
+USED RULE :
+ varDeclTail        -> arraySize ; varDeclTailTwo 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ varDeclTailTwo     -> varDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; varDecl statement } @4,1 ; 
+USED RULE :
+ varDecl            -> type id varDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; type @id id varDeclTail statement } @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id varDeclTail statement } @4,1 ; 
+USED RULE :
+ varDeclTail        -> arraySize ; varDeclTailTwo 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ varDeclTailTwo     -> varDecl 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; varDecl statement } @4,1 ; 
+USED RULE :
+ varDecl            -> type id varDeclTail 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; type @id id varDeclTail statement } @4,1 ; 
+USED RULE :
+ type               -> int 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id varDeclTail statement } @4,1 ; 
+USED RULE :
+ varDeclTail        -> arraySize ; varDeclTailTwo 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
+USED RULE :
+ arraySize          -> EPSILON 
+
+Sentencial Form:
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; varDeclTailTwo statement } @4,1 ; 
 USED RULE :
  varDeclTailTwo     -> id varDeclTailThree 
 
 Sentencial Form:
- program { int id ; id varDeclTailThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id varDeclTailThree statement } @4,1 ; 
 USED RULE :
- varDeclTailThree   -> statementIdTwo 
+ varDeclTailThree   -> varDeclId 
 
 Sentencial Form:
- program { int id ; id statementIdTwo statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id varDeclId statement } @4,1 ; 
 USED RULE :
- statementIdTwo     -> assignStat ; statementIdThree 
+ varDeclId          -> id varDeclTail 
 
 Sentencial Form:
- program { int id ; id assignStat ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id varDeclTail statement } @4,1 ; 
 USED RULE :
- assignStat         -> variable assignOp expr 
+ varDeclTail        -> arraySize ; varDeclTailTwo 
 
 Sentencial Form:
- program { int id ; id variable @assignStat assignOp expr @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
 USED RULE :
- variable           -> EPSILON 
+ arraySize          -> EPSILON 
 
 Sentencial Form:
- program { int id ; id assignOp expr @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; varDeclTailTwo statement } @4,1 ; 
 USED RULE :
- assignOp          -> = 
+ varDeclTailTwo     -> id varDeclTailThree 
 
 Sentencial Form:
- program { int id ; id = expr @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id varDeclTailThree statement } @4,1 ; 
 USED RULE :
- expr               -> arithExpr exprTail 
+ varDeclTailThree   -> varDeclId 
 
 Sentencial Form:
- program { int id ; id = arithExpr exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id varDeclId statement } @4,1 ; 
 USED RULE :
- arithExpr          -> term arithExprTail 
+ varDeclId          -> id varDeclTail 
 
 Sentencial Form:
- program { int id ; id = term arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id varDeclTail statement } @4,1 ; 
 USED RULE :
- term               -> factor termTail 
+ varDeclTail        -> arraySize ; varDeclTailTwo 
 
 Sentencial Form:
- program { int id ; id = factor termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
 USED RULE :
- factor             -> id idnest 
+ arraySize          -> [ intNum ] arraySize 
 
 Sentencial Form:
- program { int id ; id = id idnest termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id [ intNum ] arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
 USED RULE :
- idnest             -> ( aParams ) idnestTail 
+ arraySize          -> [ intNum ] arraySize 
 
 Sentencial Form:
- program { int id ; id = id ( aParams ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id [ intNum ] [ intNum ] arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
 USED RULE :
- aParams            -> expr aParamsTail 
+ arraySize          -> [ intNum ] arraySize 
 
 Sentencial Form:
- program { int id ; id = id ( expr @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id [ intNum ] [ intNum ] [ intNum ] arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
 USED RULE :
- expr               -> arithExpr exprTail 
+ arraySize          -> [ intNum ] arraySize 
 
 Sentencial Form:
- program { int id ; id = id ( arithExpr exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id [ intNum ] [ intNum ] [ intNum ] [ intNum ] arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
 USED RULE :
- arithExpr          -> term arithExprTail 
+ arraySize          -> EPSILON 
 
 Sentencial Form:
- program { int id ; id = id ( term arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; varDeclTailTwo statement } @4,1 ; 
 USED RULE :
- term               -> factor termTail 
+ varDeclTailTwo     -> EPSILON 
 
 Sentencial Form:
- program { int id ; id = id ( factor termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- program { int id ; id = id ( intNum termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- aParamsTail        -> , expr aParamsTail 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , expr @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , arithExpr exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , term arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , factor termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- aParamsTail       -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum ) idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum ) termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum ) arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum ) exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum ) ; statementIdThree statement } @4,1 ; 
-USED RULE :
- statementIdThree   -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = id ( intNum , intNum ) ; statement } @4,1 ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; statement } @4,1 ; 
 USED RULE :
  statement          -> EPSILON 
 
 Successfully parsed! 
- program { int id ; id = id ( intNum , intNum ) ; } ; 
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; } ; 
 Token Stream : 
- program { int id ; id = id ( intNum , intNum ) ; } ; $
+ class id { int id ; int id ; int id ( int id ) ; } ; class id : id { int id ; int id ; float id ; float id ; int id ( int id ) ; } ; class id : id { int id ; } ; float id ( ) { int id ; } ; program { int id [ intNum ] ; int id ; int id ; int id ; int id ; id id ; id id [ intNum ] [ intNum ] [ intNum ] [ intNum ] ; } ; $

@@ -25,10 +25,12 @@ function semantics(ast){
   };
   const tables = [];
   const errors = [];
+  const warnings = [];
   const rootNode = [...ast][0];
   buildTables(rootNode);
   printAllTables(tables);
-  printErrors(errors);
+  printErrorsOrWarnings(errors, 'Errors');
+  printErrorsOrWarnings(warnings, 'Warnings');
   printAugmentedAst(rootNode);
   function buildTables(node) {
     try {
@@ -110,6 +112,7 @@ function semantics(ast){
       kind: 'class',
       type: 'nil',
       link: node.children[0].leaf.value,
+      line: node.children[0].leaf.line,
     };
     buildTables(node);
     tables.push(node.symtab);
@@ -120,9 +123,35 @@ function semantics(ast){
       table: node.children[0].leaf.value,
       entries: [],
     };
-    // Duplicate check
-    const bucket = [];
-    if(node.children[2].children) {
+    const inheritedClasses = [];
+    // inherit list
+    let bucket = [];
+    if (node.children[1].children) {
+      node.children[1].children.forEach((child) => {
+        const entry = {
+          name: child.leaf.value,
+          kind: 'class',
+          type: 'parent',
+          link: child.leaf.value,
+          line: child.leaf.line,
+        };
+        // check if parent is declared
+        if (!doesTableExist(entry.link)) {
+          errors.push(`Undeclared parent class: '${entry.name}' in child class '${symtab.table}' @ line ${entry.line} `);
+        }
+        else if (!bucket.includes(entry.name)) {
+          bucket.push(entry.name);
+          inheritedClasses.push(entry.link);
+          symtab.entries.push(entry);
+        }
+        else {
+          errors.push(`Duplicate parent class: '${entry.name}' in child class '${symtab.table}' @ line ${entry.line} `);
+        }
+      })
+    }
+    // Duplicate and shadowing check for memberList
+    bucket = [];
+    if (node.children[2].children) {
       node.children[2].children.forEach((child) => {
         const entry = ENTRY_CREATOR_MAP[child.node](child);
         if (!bucket.includes(entry.name)) {
@@ -130,7 +159,15 @@ function semantics(ast){
           symtab.entries.push(entry);
         }
         else {
-          errors.push(`Duplicate variable declaration: '${entry.type} ${entry.name}' in class '${symtab.table}' `)
+          errors.push(`Duplicate ${entry.kind} declaration: '${entry.type} ${entry.name}' in class '${symtab.table}' @ line ${entry.line} `)
+        }
+        // shadow member check
+        if (inheritedClasses.length > 0) {
+          for (let i = 0; i < inheritedClasses.length; i++) {
+            if (doesEntryExist(entry, inheritedClasses[i])) {
+              warnings.push(`${entry.kind} '${entry.name}' in class '${symtab.table}' shadows the same member in its parent '${inheritedClasses[i]}' @ line ${entry.line}`)
+            }
+          }
         }
       })
     }
@@ -160,6 +197,7 @@ function semantics(ast){
       kind: 'function',
       type: `${node.children[0].leaf.value} : `,
       link: node.children[2].leaf.value,
+      line: node.children[2].leaf.line,
     };
     if (node.children[3].children) {
       const paramEntry = [];
@@ -182,7 +220,6 @@ function semantics(ast){
     tables.push(node.symtab);
     return entry;
   }
-
   function createFuncDefTable(node) {
     const symtab = {
       table: node.children[2].leaf.value,
@@ -212,6 +249,7 @@ function semantics(ast){
       kind:'variable',
       type: node.children[0].leaf.value,
       link:'nil',
+      line: node.children[1].leaf.line,
     };
     if(node.children[2].children) {
       const dimlist = [];
@@ -232,6 +270,7 @@ function semantics(ast){
       kind: 'function',
       type: `${node.children[0].leaf.value} : `,
       link: 'nil',
+      line: node.children[1].leaf.line,
     };
     if(node.children[2].children){
       const paramEntry = [];
@@ -302,14 +341,37 @@ function semantics(ast){
         symtab.entries.push(entry);
       }
       else {
-        errors.push(`Duplicate variable declaration: '${entry.type} ${entry.name}' in '${symtab.table}' `)
+        errors.push(`Duplicate variable declaration: '${entry.type} ${entry.name}' in '${symtab.table}' @ line ${entry.line} `)
       }
     });
     return symtab;
   }
 
+  function doesTableExist(name) {
+    for (let i = 0; i < tables.length; i++) {
+      if (tables[i].table === name) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  function doesEntryExist(entry, name) {
+    for (let i = 0; i < tables.length; i++) {
+      // Find the table
+      if (tables[i].table === name) {
+        // Compare entries one-by-one
+        for (let j = 0; j < tables[i].entries.length; j++) {
+          if (tables[i].entries[j].name === entry.name && tables[i].entries[j].kind === entry.kind) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
   function printAllTables(tables){
-    tables = tables.reverse();
+    tables.unshift(tables.pop());
     fs.writeFileSync('symbolTables.txt', '---SYMBOL TABLES--- \n\n');
     tables.forEach((table) => {
       const t = new Table;
@@ -317,6 +379,7 @@ function semantics(ast){
         t.cell('Name', entry.name);
         t.cell('Kind', entry.kind);
         t.cell('Type', entry.type);
+        t.cell('Line', entry.line);
         t.cell('Link', entry.link);
         t.newRow();
       });
@@ -327,16 +390,16 @@ function semantics(ast){
     })
   }
 
-  function printErrors(errors) {
-    if (errors.length > 0 ){
-      fs.writeFileSync('errors.txt', '---Semantic Errors--- \n\n');
+  function printErrorsOrWarnings(errors, type) {
+    if (errors.length > 0) {
+      fs.writeFileSync(`${type}.txt`, `---Semantic ${type}--- \n\n`);
       errors.forEach((error) =>{
-        console.error(`Semantic Error: ${error}`);
-        fs.appendFileSync('errors.txt', `${error} \n`);
+        console.error(`Semantic ${type}: ${error}`);
+        fs.appendFileSync(`${type}.txt`, `${error} \n`);
       });
     }
     else {
-      fs.writeFileSync('errors.txt', 'No Semantic Errors');
+      fs.writeFileSync(`${type}.txt`, `No Semantic ${type}`);
     }
   }
 
@@ -344,6 +407,7 @@ function semantics(ast){
     jsonFile.writeFileSync('augmentedAST.txt', rootNode, {spaces: 2}, function (err) {
     })
   }
+
 }
 
 module.exports = semantics;

@@ -1,4 +1,27 @@
-program{
-  int idx;
-  idx = findMax(5,2);
+class InheritedUtility {
+  int x;
+  int y;
+  int findMax(int a);
+  };
+class Utility : InheritedUtility {
+  int x;
+  int y;
+  float z;
+  float z;
+  int findMax(int a);
 };
+class Car : InheritedUtility {
+  int y;
+};
+float wew(){
+  int x;
+};
+program {
+  int sample[100];
+  int idx;
+  int idx;
+  int maxValue;
+  int minValue;
+  Utility utility;
+  Utility arrayUtility[2][3][6][7];
+  };

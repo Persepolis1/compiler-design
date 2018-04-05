@@ -1,1 +1,4 @@
-No Semantic Errors
+---Semantic Errors--- 
+
+Duplicate variable declaration: 'float z' in class 'Utility' @ line 10  
+Duplicate variable declaration: 'int idx' in 'program' @ line 22  

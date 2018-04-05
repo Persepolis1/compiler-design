@@ -3,7 +3,7 @@ let currentCharacter = -1;
 //SET TO TRUE IF UNIT TESTING
 const unitTest = false;
 
-function getAllTokens(input){
+function getAllTokens(input, line) {
   let state = 1;
   const tokens = [];
   let tokenStart;
@@ -20,7 +20,12 @@ function getAllTokens(input){
     state = TRANSITION_TABLE[state][currentChar];
     //Invalid token
     if (state === undefined) {
-      tokens.push({Token: 'Error', position: currentCharacter, value: inputToBuffer.slice(tokenStart, i+1).join("").trim() });
+      tokens.push({
+        Token: 'Error',
+        position: currentCharacter,
+        value: inputToBuffer.slice(tokenStart, i + 1).join("").trim(),
+        line
+      });
       state = 1;
       tokenFound = true;
       continue;
@@ -31,7 +36,12 @@ function getAllTokens(input){
         i -= 1;
         currentCharacter--;
       }
-      tokens.push({Token: TRANSITION_TABLE[state].token, position: currentCharacter, value: inputToBuffer.slice(tokenStart, i+1).join("").trim() });
+      tokens.push({
+        Token: TRANSITION_TABLE[state].token,
+        position: currentCharacter,
+        value: inputToBuffer.slice(tokenStart, i + 1).join("").trim(),
+        line
+      });
       state = 1;
     }
   }

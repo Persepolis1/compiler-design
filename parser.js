@@ -61,13 +61,15 @@ function isNullable(nonTerminal){
   return false;
 }
 if (!unitTest) {
+  let lineNumber = 1;
   const lr = new LineByLineReader('input.txt');
   lr.on('line', (line) => {
-    const allTokens = getAllTokens(line);
+    const allTokens = getAllTokens(line, lineNumber);
     for (let i = 0; i < allTokens.length; i++) {
       tokenStream.push(allTokens[i].Token);
       tokensFull.push(allTokens[i]);
     }
+    lineNumber++;
   });
   lr.on('end', function () {
     tokenStream.push('$');
