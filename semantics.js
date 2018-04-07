@@ -27,7 +27,7 @@ function semantics(ast){
   const errors = [];
   const warnings = [];
   const rootNode = [...ast][0];
-  graphAST(rootNode);
+  //graphAST(rootNode);
   buildTables(rootNode);
   printAllTables(tables);
   printErrorsOrWarnings(errors, 'Errors');
@@ -157,6 +157,9 @@ function semantics(ast){
         const entry = ENTRY_CREATOR_MAP[child.node](child);
         if (!bucket.includes(entry.name)) {
           bucket.push(entry.name);
+          if (entry.kind === 'function') {
+            entry.link = entry.link.concat(` (${node.children[0].leaf.value})`);
+          }
           symtab.entries.push(entry);
         }
         else {
@@ -186,7 +189,8 @@ function semantics(ast){
       entries: [],
     };
     node.children.forEach((child) => {
-      symtab.entries.push(ENTRY_CREATOR_MAP[child.node](child));
+      const entry = ENTRY_CREATOR_MAP[child.node](child);
+      entry ? symtab.entries.push(entry) : '';
     });
     return symtab;
   }
@@ -212,13 +216,16 @@ function semantics(ast){
           entry.type = entry.type.concat(`${param.type}, `)
         }
         else {
-          errors.push(`Duplicate param declaration: '${param.name} in ${entry.name}' `)
+          errors.push(`Duplicate param declaration: '${param.name}' in '${entry.name}' @ line ${entry.line} `)
         }
       });
       entry.type = entry.type.slice(0, -2);
     }
     buildTables(node);
     tables.push(node.symtab);
+    if (node.children[1].children) {
+      return false;
+    }
     return entry;
   }
   function createFuncDefTable(node) {
@@ -226,6 +233,15 @@ function semantics(ast){
       table: node.children[2].leaf.value,
       entries: [],
     };
+    const params = [];
+    // add params, already checked for dupes above
+    if (node.children[3].children) {
+      node.children[3].children.forEach((child) => {
+        const param = ENTRY_CREATOR_MAP[child.node](child);
+        symtab.entries.push(param);
+        params.push(param.type);
+      });
+    }
     // Duplicate check
     const bucket = [];
     if (node.children[4].children) {
@@ -239,6 +255,33 @@ function semantics(ast){
           errors.push(`Duplicate variable declaration: '${entry.type} ${entry.name}' in function '${symtab.table}' @ line ${entry.line} `)
         }
       })
+    }
+    // additional checks if scopeSpec
+    if (node.children[1].children) {
+      const classDecl = node.children[1].children[0].leaf.value;
+      // first check if functions exists in class decl
+      const entryToVerify = {
+        name: node.children[2].leaf.value,
+        kind: 'function',
+      };
+      const scopeEntry = doesEntryExist(entryToVerify, classDecl);
+      if (scopeEntry) {
+        // extract return type and params
+        const funcType = scopeEntry.type.split(':');
+        const funcReturnType = funcType[0];
+        const funcParams = funcType[1].split(',');
+        const returnType = node.children[0].leaf.value;
+        if (funcReturnType.trim() !== returnType.trim()) {
+          errors.push(`Function '${node.children[2].leaf.value}' return type does not match the declared function's type in class '${classDecl}' @ line ${node.children[2].leaf.line}`)
+        }
+        if (!compareParamArray(funcParams, params)) {
+          errors.push(`Function '${node.children[2].leaf.value}' parameter types do not match the declared function's paramater types in class '${classDecl}' @ line ${node.children[2].leaf.line}`)
+        }
+      }
+      else {
+        errors.push(`Function '${node.children[2].leaf.value}' has not been declared in class '${classDecl}' @ line ${node.children[2].leaf.line}`)
+      }
+      symtab.table = symtab.table.concat(` (${classDecl})`);
     }
     return symtab;
   }
@@ -270,7 +313,7 @@ function semantics(ast){
       name: node.children[1].leaf.value,
       kind: 'function',
       type: `${node.children[0].leaf.value} : `,
-      link: 'nil',
+      link: node.children[1].leaf.value,
       line: node.children[1].leaf.line,
     };
     if(node.children[2].children){
@@ -285,7 +328,7 @@ function semantics(ast){
          entry.type = entry.type.concat(`${param.type}, `)
         }
         else {
-          errors.push(`Duplicate param declaration: '${param.name} in ${entry.name}' `)
+          errors.push(`Duplicate param declaration: '${param.name}' at function declaration '${entry.name}' @ line ${entry.line} `)
         }
       });
       entry.type = entry.type.slice(0, -2);
@@ -364,12 +407,23 @@ function semantics(ast){
         // Compare entries one-by-one
         for (let j = 0; j < tables[i].entries.length; j++) {
           if (tables[i].entries[j].name === entry.name && tables[i].entries[j].kind === entry.kind) {
-            return true;
+            return tables[i].entries[j];
           }
         }
       }
     }
     return false;
+  }
+
+  function compareParamArray(arr1, arr2) {
+    if (arr1.length !== arr2.length)
+      return false;
+    for (let i = arr1.length; i--;) {
+      if (arr1[i].trim() !== arr2[i].trim())
+        return false;
+    }
+
+    return true;
   }
   function printAllTables(tables){
     tables.unshift(tables.pop());

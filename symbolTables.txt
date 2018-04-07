@@ -1,54 +1,50 @@
 ---SYMBOL TABLES--- 
 
 Table: Global
-Name              Kind      Type      Line  Link            
-----------------  --------  --------  ----  ----------------
-InheritedUtility  class     nil       1     InheritedUtility
-Utility           class     nil       6     Utility         
-Car               class     nil       13    Car             
-wew               function  float :   16    wew             
-program           function  nil             program         
+Name              Kind      Type  Line  Link            
+----------------  --------  ----  ----  ----------------
+InheritedUtility  class     nil   1     InheritedUtility
+Utility           class     nil   5     Utility         
+                                                        
+program           function  nil         program         
 
 
 Table: InheritedUtility
-Name     Kind      Type       Line  Link
--------  --------  ---------  ----  ----
-x        variable  int        2     nil 
-y        variable  int        3     nil 
-findMax  function  int : int  4     nil 
+Name     Kind      Type            Line  Link                      
+-------  --------  --------------  ----  --------------------------
+x        variable  int             2     nil                       
+findMax  function  int : int, int  3     findMax (InheritedUtility)
 
 
 Table: Utility
-Name              Kind      Type       Line  Link            
-----------------  --------  ---------  ----  ----------------
-InheritedUtility  class     parent     6     InheritedUtility
-x                 variable  int        7     nil             
-y                 variable  int        8     nil             
-z                 variable  float      9     nil             
-findMax           function  int : int  11    nil             
+Name              Kind      Type            Line  Link             
+----------------  --------  --------------  ----  -----------------
+InheritedUtility  class     parent          5     InheritedUtility 
+x                 variable  int             6     nil              
+y                 variable  int             7     nil              
+z                 variable  float           8     nil              
+findMax           function  int : int, int  9     findMax (Utility)
 
 
-Table: Car
-Name              Kind      Type    Line  Link            
-----------------  --------  ------  ----  ----------------
-InheritedUtility  class     parent  13    InheritedUtility
-y                 variable  int     14    nil             
+Table: findMax (InheritedUtility)
+Name  Kind       Type  Line  Link
+----  ---------  ----  ----  ----
+a     parameter  int         nil 
+b     parameter  int         nil 
+x     variable   int   12    nil 
 
 
-Table: wew
-Name  Kind      Type  Line  Link
-----  --------  ----  ----  ----
-x     variable  int   17    nil 
+Table: findMax (Utility)
+Name  Kind       Type  Line  Link
+----  ---------  ----  ----  ----
+a     parameter  int         nil 
+b     parameter  int         nil 
+y     variable   int   15    nil 
 
 
 Table: program
-Name          Kind      Type                 Line  Link
-------------  --------  -------------------  ----  ----
-sample        variable  int[100]             20    nil 
-idx           variable  int                  21    nil 
-maxValue      variable  int                  23    nil 
-minValue      variable  int                  24    nil 
-utility       variable  Utility              25    nil 
-arrayUtility  variable  Utility[2][3][6][7]  26    nil 
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+x     variable  int   18    nil 
 
 

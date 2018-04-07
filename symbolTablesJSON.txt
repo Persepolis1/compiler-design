@@ -14,22 +14,9 @@
         "kind": "class",
         "type": "nil",
         "link": "Utility",
-        "line": 6
+        "line": 5
       },
-      {
-        "name": "Car",
-        "kind": "class",
-        "type": "nil",
-        "link": "Car",
-        "line": 13
-      },
-      {
-        "name": "wew",
-        "kind": "function",
-        "type": "float : ",
-        "link": "wew",
-        "line": 16
-      },
+      [],
       {
         "name": "program",
         "kind": "function",
@@ -49,18 +36,11 @@
         "line": 2
       },
       {
-        "name": "y",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 3
-      },
-      {
         "name": "findMax",
         "kind": "function",
-        "type": "int : int",
-        "link": "nil",
-        "line": 4
+        "type": "int : int, int",
+        "link": "findMax (InheritedUtility)",
+        "line": 3
       }
     ]
   },
@@ -72,66 +52,83 @@
         "kind": "class",
         "type": "parent",
         "link": "InheritedUtility",
-        "line": 6
+        "line": 5
       },
       {
         "name": "x",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 6
+      },
+      {
+        "name": "y",
         "kind": "variable",
         "type": "int",
         "link": "nil",
         "line": 7
       },
       {
-        "name": "y",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 8
-      },
-      {
         "name": "z",
         "kind": "variable",
         "type": "float",
         "link": "nil",
-        "line": 9
+        "line": 8
       },
       {
         "name": "findMax",
         "kind": "function",
-        "type": "int : int",
-        "link": "nil",
-        "line": 11
+        "type": "int : int, int",
+        "link": "findMax (Utility)",
+        "line": 9
       }
     ]
   },
   {
-    "table": "Car",
+    "table": "findMax (InheritedUtility)",
     "entries": [
       {
-        "name": "InheritedUtility",
-        "kind": "class",
-        "type": "parent",
-        "link": "InheritedUtility",
-        "line": 13
+        "name": "a",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
       },
       {
-        "name": "y",
-        "kind": "variable",
+        "name": "b",
+        "kind": "parameter",
         "type": "int",
-        "link": "nil",
-        "line": 14
-      }
-    ]
-  },
-  {
-    "table": "wew",
-    "entries": [
+        "link": "nil"
+      },
       {
         "name": "x",
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 17
+        "line": 12
+      }
+    ]
+  },
+  {
+    "table": "findMax (Utility)",
+    "entries": [
+      {
+        "name": "a",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
+      },
+      {
+        "name": "b",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
+      },
+      {
+        "name": "y",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 15
       }
     ]
   },
@@ -139,46 +136,11 @@
     "table": "program",
     "entries": [
       {
-        "name": "sample",
-        "kind": "variable",
-        "type": "int[100]",
-        "link": "nil",
-        "line": 20
-      },
-      {
-        "name": "idx",
+        "name": "x",
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 21
-      },
-      {
-        "name": "maxValue",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 23
-      },
-      {
-        "name": "minValue",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 24
-      },
-      {
-        "name": "utility",
-        "kind": "variable",
-        "type": "Utility",
-        "link": "nil",
-        "line": 25
-      },
-      {
-        "name": "arrayUtility",
-        "kind": "variable",
-        "type": "Utility[2][3][6][7]",
-        "link": "nil",
-        "line": 26
+        "line": 18
       }
     ]
   }

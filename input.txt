@@ -1,27 +1,19 @@
 class InheritedUtility {
-  int x;
-  int y;
-  int findMax(int a);
-  };
+    int x;
+    int findMax(int a, int b);
+};
 class Utility : InheritedUtility {
-  int x;
-  int y;
-  float z;
-  float z;
-  int findMax(int a);
+    int x;
+    int y;
+    float z;
+    int findMax(int a, int b);
 };
-class Car : InheritedUtility {
-  int y;
+int InheritedUtility::findMax(int a, int b) {
+    int x;
 };
-float wew(){
-  int x;
+int Utility::findMax(int a, int b) {
+    int y;
 };
 program {
-  int sample[100];
-  int idx;
-  int idx;
-  int maxValue;
-  int minValue;
-  Utility utility;
-  Utility arrayUtility[2][3][6][7];
+    int x;
 };

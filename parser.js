@@ -119,7 +119,7 @@ function parse(outputFile = 'derivations.txt', tokens = []){
         else if(nodeName === 'noScoped'){
           const scopeSpecNode = semanticStack[semanticStack.length - 3];
           const scopeSpecId = semanticStack[semanticStack.length - 2];
-          scopeSpecNode.makeFamily(scopeSpecId);
+          scopeSpecNode.makeFamily([scopeSpecId]);
           semanticStack.splice(semanticStack.length - 2, 1);
 
         }

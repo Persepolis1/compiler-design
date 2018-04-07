@@ -37,7 +37,7 @@
                       "number": 7,
                       "leaf": {
                         "Token": "int",
-                        "position": 29,
+                        "position": 31,
                         "value": "int",
                         "line": 2
                       }
@@ -47,7 +47,7 @@
                       "number": 8,
                       "leaf": {
                         "Token": "id",
-                        "position": 31,
+                        "position": 33,
                         "value": "x",
                         "line": 2
                       }
@@ -59,7 +59,7 @@
                   ]
                 },
                 {
-                  "node": "varDecl",
+                  "node": "funcDecl",
                   "number": 13,
                   "children": [
                     {
@@ -67,7 +67,7 @@
                       "number": 11,
                       "leaf": {
                         "Token": "int",
-                        "position": 38,
+                        "position": 42,
                         "value": "int",
                         "line": 3
                       }
@@ -77,45 +77,45 @@
                       "number": 12,
                       "leaf": {
                         "Token": "id",
-                        "position": 40,
-                        "value": "y",
+                        "position": 50,
+                        "value": "findMax",
                         "line": 3
                       }
                     },
                     {
-                      "node": "dimList",
-                      "number": 14
-                    }
-                  ]
-                },
-                {
-                  "node": "funcDecl",
-                  "number": 17,
-                  "children": [
-                    {
-                      "node": "type",
-                      "number": 15,
-                      "leaf": {
-                        "Token": "int",
-                        "position": 47,
-                        "value": "int",
-                        "line": 4
-                      }
-                    },
-                    {
-                      "node": "id",
-                      "number": 16,
-                      "leaf": {
-                        "Token": "id",
-                        "position": 55,
-                        "value": "findMax",
-                        "line": 4
-                      }
-                    },
-                    {
                       "node": "fparamList",
-                      "number": 18,
+                      "number": 14,
                       "children": [
+                        {
+                          "node": "fparam",
+                          "number": 15,
+                          "children": [
+                            {
+                              "node": "type",
+                              "number": 16,
+                              "leaf": {
+                                "Token": "int",
+                                "position": 54,
+                                "value": "int",
+                                "line": 3
+                              }
+                            },
+                            {
+                              "node": "id",
+                              "number": 17,
+                              "leaf": {
+                                "Token": "id",
+                                "position": 56,
+                                "value": "a",
+                                "line": 3
+                              }
+                            },
+                            {
+                              "node": "dimList",
+                              "number": 18
+                            }
+                          ]
+                        },
                         {
                           "node": "fparam",
                           "number": 19,
@@ -125,9 +125,9 @@
                               "number": 20,
                               "leaf": {
                                 "Token": "int",
-                                "position": 59,
+                                "position": 61,
                                 "value": "int",
-                                "line": 4
+                                "line": 3
                               }
                             },
                             {
@@ -135,9 +135,9 @@
                               "number": 21,
                               "leaf": {
                                 "Token": "id",
-                                "position": 61,
-                                "value": "a",
-                                "line": 4
+                                "position": 63,
+                                "value": "b",
+                                "line": 3
                               }
                             },
                             {
@@ -164,18 +164,11 @@
                 "line": 2
               },
               {
-                "name": "y",
-                "kind": "variable",
-                "type": "int",
-                "link": "nil",
-                "line": 3
-              },
-              {
                 "name": "findMax",
                 "kind": "function",
-                "type": "int : int",
-                "link": "nil",
-                "line": 4
+                "type": "int : int, int",
+                "link": "findMax (InheritedUtility)",
+                "line": 3
               }
             ]
           }
@@ -191,7 +184,7 @@
                 "Token": "id",
                 "position": 82,
                 "value": "Utility",
-                "line": 6
+                "line": 5
               }
             },
             {
@@ -205,7 +198,7 @@
                     "Token": "id",
                     "position": 101,
                     "value": "InheritedUtility",
-                    "line": 6
+                    "line": 5
                   }
                 }
               ]
@@ -223,9 +216,9 @@
                       "number": 28,
                       "leaf": {
                         "Token": "int",
-                        "position": 109,
+                        "position": 111,
                         "value": "int",
-                        "line": 7
+                        "line": 6
                       }
                     },
                     {
@@ -233,9 +226,9 @@
                       "number": 29,
                       "leaf": {
                         "Token": "id",
-                        "position": 111,
+                        "position": 113,
                         "value": "x",
-                        "line": 7
+                        "line": 6
                       }
                     },
                     {
@@ -253,9 +246,9 @@
                       "number": 32,
                       "leaf": {
                         "Token": "int",
-                        "position": 118,
+                        "position": 122,
                         "value": "int",
-                        "line": 8
+                        "line": 7
                       }
                     },
                     {
@@ -263,9 +256,9 @@
                       "number": 33,
                       "leaf": {
                         "Token": "id",
-                        "position": 120,
+                        "position": 124,
                         "value": "y",
-                        "line": 8
+                        "line": 7
                       }
                     },
                     {
@@ -283,9 +276,9 @@
                       "number": 36,
                       "leaf": {
                         "Token": "float",
-                        "position": 129,
+                        "position": 135,
                         "value": "float",
-                        "line": 9
+                        "line": 8
                       }
                     },
                     {
@@ -293,9 +286,9 @@
                       "number": 37,
                       "leaf": {
                         "Token": "id",
-                        "position": 131,
+                        "position": 137,
                         "value": "z",
-                        "line": 9
+                        "line": 8
                       }
                     },
                     {
@@ -305,17 +298,17 @@
                   ]
                 },
                 {
-                  "node": "varDecl",
+                  "node": "funcDecl",
                   "number": 42,
                   "children": [
                     {
                       "node": "type",
                       "number": 40,
                       "leaf": {
-                        "Token": "float",
-                        "position": 140,
-                        "value": "float",
-                        "line": 10
+                        "Token": "int",
+                        "position": 146,
+                        "value": "int",
+                        "line": 9
                       }
                     },
                     {
@@ -323,45 +316,45 @@
                       "number": 41,
                       "leaf": {
                         "Token": "id",
-                        "position": 142,
-                        "value": "z",
-                        "line": 10
-                      }
-                    },
-                    {
-                      "node": "dimList",
-                      "number": 43
-                    }
-                  ]
-                },
-                {
-                  "node": "funcDecl",
-                  "number": 46,
-                  "children": [
-                    {
-                      "node": "type",
-                      "number": 44,
-                      "leaf": {
-                        "Token": "int",
-                        "position": 149,
-                        "value": "int",
-                        "line": 11
-                      }
-                    },
-                    {
-                      "node": "id",
-                      "number": 45,
-                      "leaf": {
-                        "Token": "id",
-                        "position": 157,
+                        "position": 154,
                         "value": "findMax",
-                        "line": 11
+                        "line": 9
                       }
                     },
                     {
                       "node": "fparamList",
-                      "number": 47,
+                      "number": 43,
                       "children": [
+                        {
+                          "node": "fparam",
+                          "number": 44,
+                          "children": [
+                            {
+                              "node": "type",
+                              "number": 45,
+                              "leaf": {
+                                "Token": "int",
+                                "position": 158,
+                                "value": "int",
+                                "line": 9
+                              }
+                            },
+                            {
+                              "node": "id",
+                              "number": 46,
+                              "leaf": {
+                                "Token": "id",
+                                "position": 160,
+                                "value": "a",
+                                "line": 9
+                              }
+                            },
+                            {
+                              "node": "dimList",
+                              "number": 47
+                            }
+                          ]
+                        },
                         {
                           "node": "fparam",
                           "number": 48,
@@ -371,9 +364,9 @@
                               "number": 49,
                               "leaf": {
                                 "Token": "int",
-                                "position": 161,
+                                "position": 165,
                                 "value": "int",
-                                "line": 11
+                                "line": 9
                               }
                             },
                             {
@@ -381,9 +374,9 @@
                               "number": 50,
                               "leaf": {
                                 "Token": "id",
-                                "position": 163,
-                                "value": "a",
-                                "line": 11
+                                "position": 167,
+                                "value": "b",
+                                "line": 9
                               }
                             },
                             {
@@ -407,122 +400,35 @@
                 "kind": "class",
                 "type": "parent",
                 "link": "InheritedUtility",
-                "line": 6
+                "line": 5
               },
               {
                 "name": "x",
                 "kind": "variable",
                 "type": "int",
                 "link": "nil",
-                "line": 7
+                "line": 6
               },
               {
                 "name": "y",
                 "kind": "variable",
                 "type": "int",
                 "link": "nil",
-                "line": 8
+                "line": 7
               },
               {
                 "name": "z",
                 "kind": "variable",
                 "type": "float",
                 "link": "nil",
-                "line": 9
+                "line": 8
               },
               {
                 "name": "findMax",
                 "kind": "function",
-                "type": "int : int",
-                "link": "nil",
-                "line": 11
-              }
-            ]
-          }
-        },
-        {
-          "node": "classDecl",
-          "number": 52,
-          "children": [
-            {
-              "node": "id",
-              "number": 53,
-              "leaf": {
-                "Token": "id",
-                "position": 178,
-                "value": "Car",
-                "line": 13
-              }
-            },
-            {
-              "node": "inherList",
-              "number": 54,
-              "children": [
-                {
-                  "node": "id",
-                  "number": 55,
-                  "leaf": {
-                    "Token": "id",
-                    "position": 197,
-                    "value": "InheritedUtility",
-                    "line": 13
-                  }
-                }
-              ]
-            },
-            {
-              "node": "membList",
-              "number": 56,
-              "children": [
-                {
-                  "node": "varDecl",
-                  "number": 59,
-                  "children": [
-                    {
-                      "node": "type",
-                      "number": 57,
-                      "leaf": {
-                        "Token": "int",
-                        "position": 205,
-                        "value": "int",
-                        "line": 14
-                      }
-                    },
-                    {
-                      "node": "id",
-                      "number": 58,
-                      "leaf": {
-                        "Token": "id",
-                        "position": 207,
-                        "value": "y",
-                        "line": 14
-                      }
-                    },
-                    {
-                      "node": "dimList",
-                      "number": 60
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          "symtab": {
-            "table": "Car",
-            "entries": [
-              {
-                "name": "InheritedUtility",
-                "kind": "class",
-                "type": "parent",
-                "link": "InheritedUtility",
-                "line": 13
-              },
-              {
-                "name": "y",
-                "kind": "variable",
-                "type": "int",
-                "link": "nil",
-                "line": 14
+                "type": "int : int, int",
+                "link": "findMax (Utility)",
+                "line": 9
               }
             ]
           }
@@ -543,53 +449,120 @@
             "kind": "class",
             "type": "nil",
             "link": "Utility",
-            "line": 6
-          },
-          {
-            "name": "Car",
-            "kind": "class",
-            "type": "nil",
-            "link": "Car",
-            "line": 13
+            "line": 5
           }
         ]
       }
     },
     {
       "node": "funcDefList",
-      "number": 61,
+      "number": 52,
       "children": [
         {
           "node": "funcDef",
-          "number": 62,
+          "number": 53,
           "children": [
             {
               "node": "type",
-              "number": 63,
+              "number": 54,
               "leaf": {
-                "Token": "float",
-                "position": 217,
-                "value": "float",
-                "line": 16
+                "Token": "int",
+                "position": 176,
+                "value": "int",
+                "line": 11
               }
             },
             {
               "node": "scopeSpec",
-              "number": 64
+              "number": 55,
+              "children": [
+                {
+                  "node": "id",
+                  "number": 56,
+                  "leaf": {
+                    "Token": "id",
+                    "position": 193,
+                    "value": "InheritedUtility",
+                    "line": 11
+                  }
+                }
+              ]
             },
             {
               "node": "id",
-              "number": 65,
+              "number": 57,
               "leaf": {
                 "Token": "id",
-                "position": 221,
-                "value": "wew",
-                "line": 16
+                "position": 202,
+                "value": "findMax",
+                "line": 11
               }
             },
             {
               "node": "fparamList",
-              "number": 66
+              "number": 58,
+              "children": [
+                {
+                  "node": "fparam",
+                  "number": 59,
+                  "children": [
+                    {
+                      "node": "type",
+                      "number": 60,
+                      "leaf": {
+                        "Token": "int",
+                        "position": 206,
+                        "value": "int",
+                        "line": 11
+                      }
+                    },
+                    {
+                      "node": "id",
+                      "number": 61,
+                      "leaf": {
+                        "Token": "id",
+                        "position": 208,
+                        "value": "a",
+                        "line": 11
+                      }
+                    },
+                    {
+                      "node": "dimList",
+                      "number": 62
+                    }
+                  ]
+                },
+                {
+                  "node": "fparam",
+                  "number": 63,
+                  "children": [
+                    {
+                      "node": "type",
+                      "number": 64,
+                      "leaf": {
+                        "Token": "int",
+                        "position": 213,
+                        "value": "int",
+                        "line": 11
+                      }
+                    },
+                    {
+                      "node": "id",
+                      "number": 65,
+                      "leaf": {
+                        "Token": "id",
+                        "position": 215,
+                        "value": "b",
+                        "line": 11
+                      }
+                    },
+                    {
+                      "node": "dimList",
+                      "number": 66
+                    }
+                  ]
+                }
+              ]
             },
             {
               "node": "statBlock",
@@ -604,9 +577,9 @@
                       "number": 69,
                       "leaf": {
                         "Token": "int",
-                        "position": 230,
+                        "position": 226,
                         "value": "int",
-                        "line": 17
+                        "line": 12
                       }
                     },
                     {
@@ -614,9 +587,9 @@
                       "number": 70,
                       "leaf": {
                         "Token": "id",
-                        "position": 232,
+                        "position": 228,
                         "value": "x",
-                        "line": 17
+                        "line": 12
                       }
                     },
                     {
@@ -629,14 +602,194 @@
             }
           ],
           "symtab": {
-            "table": "wew",
+            "table": "findMax (InheritedUtility)",
             "entries": [
+              {
+                "name": "a",
+                "kind": "parameter",
+                "type": "int",
+                "link": "nil"
+              },
+              {
+                "name": "b",
+                "kind": "parameter",
+                "type": "int",
+                "link": "nil"
+              },
               {
                 "name": "x",
                 "kind": "variable",
                 "type": "int",
                 "link": "nil",
-                "line": 17
+                "line": 12
+              }
+            ]
+          }
+        },
+        {
+          "node": "funcDef",
+          "number": 72,
+          "children": [
+            {
+              "node": "type",
+              "number": 73,
+              "leaf": {
+                "Token": "int",
+                "position": 236,
+                "value": "int",
+                "line": 14
+              }
+            },
+            {
+              "node": "scopeSpec",
+              "number": 74,
+              "children": [
+                {
+                  "node": "id",
+                  "number": 75,
+                  "leaf": {
+                    "Token": "id",
+                    "position": 244,
+                    "value": "Utility",
+                    "line": 14
+                  }
+                }
+              ]
+            },
+            {
+              "node": "id",
+              "number": 76,
+              "leaf": {
+                "Token": "id",
+                "position": 253,
+                "value": "findMax",
+                "line": 14
+              }
+            },
+            {
+              "node": "fparamList",
+              "number": 77,
+              "children": [
+                {
+                  "node": "fparam",
+                  "number": 78,
+                  "children": [
+                    {
+                      "node": "type",
+                      "number": 79,
+                      "leaf": {
+                        "Token": "int",
+                        "position": 257,
+                        "value": "int",
+                        "line": 14
+                      }
+                    },
+                    {
+                      "node": "id",
+                      "number": 80,
+                      "leaf": {
+                        "Token": "id",
+                        "position": 259,
+                        "value": "a",
+                        "line": 14
+                      }
+                    },
+                    {
+                      "node": "dimList",
+                      "number": 81
+                    }
+                  ]
+                },
+                {
+                  "node": "fparam",
+                  "number": 82,
+                  "children": [
+                    {
+                      "node": "type",
+                      "number": 83,
+                      "leaf": {
+                        "Token": "int",
+                        "position": 264,
+                        "value": "int",
+                        "line": 14
+                      }
+                    },
+                    {
+                      "node": "id",
+                      "number": 84,
+                      "leaf": {
+                        "Token": "id",
+                        "position": 266,
+                        "value": "b",
+                        "line": 14
+                      }
+                    },
+                    {
+                      "node": "dimList",
+                      "number": 85
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "statBlock",
+              "number": 86,
+              "children": [
+                {
+                  "node": "varDecl",
+                  "number": 87,
+                  "children": [
+                    {
+                      "node": "type",
+                      "number": 88,
+                      "leaf": {
+                        "Token": "int",
+                        "position": 277,
+                        "value": "int",
+                        "line": 15
+                      }
+                    },
+                    {
+                      "node": "id",
+                      "number": 89,
+                      "leaf": {
+                        "Token": "id",
+                        "position": 279,
+                        "value": "y",
+                        "line": 15
+                      }
+                    },
+                    {
+                      "node": "dimList",
+                      "number": 90
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "symtab": {
+            "table": "findMax (Utility)",
+            "entries": [
+              {
+                "name": "a",
+                "kind": "parameter",
+                "type": "int",
+                "link": "nil"
+              },
+              {
+                "name": "b",
+                "kind": "parameter",
+                "type": "int",
+                "link": "nil"
+              },
+              {
+                "name": "y",
+                "kind": "variable",
+                "type": "int",
+                "link": "nil",
+                "line": 15
               }
             ]
           }
@@ -644,282 +797,40 @@
       ],
       "symtab": {
         "table": "funcDefList",
-        "entries": [
-          {
-            "name": "wew",
-            "kind": "function",
-            "type": "float : ",
-            "link": "wew",
-            "line": 16
-          }
-        ]
+        "entries": []
       }
     },
     {
       "node": "statBlock",
-      "number": 72,
+      "number": 91,
       "children": [
         {
           "node": "varDecl",
-          "number": 73,
+          "number": 92,
           "children": [
             {
               "node": "type",
-              "number": 74,
+              "number": 93,
               "leaf": {
                 "Token": "int",
-                "position": 252,
+                "position": 301,
                 "value": "int",
-                "line": 20
+                "line": 18
               }
             },
             {
               "node": "id",
-              "number": 75,
+              "number": 94,
               "leaf": {
                 "Token": "id",
-                "position": 259,
-                "value": "sample",
-                "line": 20
+                "position": 303,
+                "value": "x",
+                "line": 18
               }
             },
             {
               "node": "dimList",
-              "number": 76,
-              "children": [
-                {
-                  "node": "num",
-                  "number": 77,
-                  "leaf": {
-                    "Token": "intNum",
-                    "position": 263,
-                    "value": "100",
-                    "line": 20
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "node": "varDecl",
-          "number": 78,
-          "children": [
-            {
-              "node": "type",
-              "number": 79,
-              "leaf": {
-                "Token": "int",
-                "position": 271,
-                "value": "int",
-                "line": 21
-              }
-            },
-            {
-              "node": "id",
-              "number": 80,
-              "leaf": {
-                "Token": "id",
-                "position": 275,
-                "value": "idx",
-                "line": 21
-              }
-            },
-            {
-              "node": "dimList",
-              "number": 81
-            }
-          ]
-        },
-        {
-          "node": "varDecl",
-          "number": 82,
-          "children": [
-            {
-              "node": "type",
-              "number": 83,
-              "leaf": {
-                "Token": "int",
-                "position": 282,
-                "value": "int",
-                "line": 22
-              }
-            },
-            {
-              "node": "id",
-              "number": 84,
-              "leaf": {
-                "Token": "id",
-                "position": 286,
-                "value": "idx",
-                "line": 22
-              }
-            },
-            {
-              "node": "dimList",
-              "number": 85
-            }
-          ]
-        },
-        {
-          "node": "varDecl",
-          "number": 86,
-          "children": [
-            {
-              "node": "type",
-              "number": 87,
-              "leaf": {
-                "Token": "int",
-                "position": 293,
-                "value": "int",
-                "line": 23
-              }
-            },
-            {
-              "node": "id",
-              "number": 88,
-              "leaf": {
-                "Token": "id",
-                "position": 302,
-                "value": "maxValue",
-                "line": 23
-              }
-            },
-            {
-              "node": "dimList",
-              "number": 89
-            }
-          ]
-        },
-        {
-          "node": "varDecl",
-          "number": 90,
-          "children": [
-            {
-              "node": "type",
-              "number": 91,
-              "leaf": {
-                "Token": "int",
-                "position": 309,
-                "value": "int",
-                "line": 24
-              }
-            },
-            {
-              "node": "id",
-              "number": 92,
-              "leaf": {
-                "Token": "id",
-                "position": 318,
-                "value": "minValue",
-                "line": 24
-              }
-            },
-            {
-              "node": "dimList",
-              "number": 93
-            }
-          ]
-        },
-        {
-          "node": "varDecl",
-          "number": 94,
-          "children": [
-            {
-              "node": "type",
-              "number": 95,
-              "leaf": {
-                "Token": "id",
-                "position": 329,
-                "value": "Utility",
-                "line": 25
-              }
-            },
-            {
-              "node": "id",
-              "number": 96,
-              "leaf": {
-                "Token": "id",
-                "position": 337,
-                "value": "utility",
-                "line": 25
-              }
-            },
-            {
-              "node": "dimList",
-              "number": 97
-            }
-          ]
-        },
-        {
-          "node": "varDecl",
-          "number": 98,
-          "children": [
-            {
-              "node": "type",
-              "number": 99,
-              "leaf": {
-                "Token": "id",
-                "position": 348,
-                "value": "Utility",
-                "line": 26
-              }
-            },
-            {
-              "node": "id",
-              "number": 100,
-              "leaf": {
-                "Token": "id",
-                "position": 361,
-                "value": "arrayUtility",
-                "line": 26
-              }
-            },
-            {
-              "node": "dimList",
-              "number": 101,
-              "children": [
-                {
-                  "node": "num",
-                  "number": 102,
-                  "leaf": {
-                    "Token": "intNum",
-                    "position": 363,
-                    "value": "2",
-                    "line": 26
-                  }
-                },
-                {
-                  "node": "num",
-                  "number": 103,
-                  "leaf": {
-                    "Token": "intNum",
-                    "position": 366,
-                    "value": "3",
-                    "line": 26
-                  }
-                },
-                {
-                  "node": "num",
-                  "number": 104,
-                  "leaf": {
-                    "Token": "intNum",
-                    "position": 369,
-                    "value": "6",
-                    "line": 26
-                  }
-                },
-                {
-                  "node": "num",
-                  "number": 105,
-                  "leaf": {
-                    "Token": "intNum",
-                    "position": 372,
-                    "value": "7",
-                    "line": 26
-                  }
-                }
-              ]
+              "number": 95
             }
           ]
         }
@@ -928,46 +839,11 @@
         "table": "program",
         "entries": [
           {
-            "name": "sample",
-            "kind": "variable",
-            "type": "int[100]",
-            "link": "nil",
-            "line": 20
-          },
-          {
-            "name": "idx",
+            "name": "x",
             "kind": "variable",
             "type": "int",
             "link": "nil",
-            "line": 21
-          },
-          {
-            "name": "maxValue",
-            "kind": "variable",
-            "type": "int",
-            "link": "nil",
-            "line": 23
-          },
-          {
-            "name": "minValue",
-            "kind": "variable",
-            "type": "int",
-            "link": "nil",
-            "line": 24
-          },
-          {
-            "name": "utility",
-            "kind": "variable",
-            "type": "Utility",
-            "link": "nil",
-            "line": 25
-          },
-          {
-            "name": "arrayUtility",
-            "kind": "variable",
-            "type": "Utility[2][3][6][7]",
-            "link": "nil",
-            "line": 26
+            "line": 18
           }
         ]
       }
@@ -988,22 +864,9 @@
         "kind": "class",
         "type": "nil",
         "link": "Utility",
-        "line": 6
+        "line": 5
       },
-      {
-        "name": "Car",
-        "kind": "class",
-        "type": "nil",
-        "link": "Car",
-        "line": 13
-      },
-      {
-        "name": "wew",
-        "kind": "function",
-        "type": "float : ",
-        "link": "wew",
-        "line": 16
-      },
+      [],
       {
         "name": "program",
         "kind": "function",

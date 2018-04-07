@@ -1,6 +1,4 @@
 ---Semantic Warnings--- 
 
-variable 'x' in class 'Utility' shadows the same member in its parent 'InheritedUtility' @ line 7 
-variable 'y' in class 'Utility' shadows the same member in its parent 'InheritedUtility' @ line 8 
-function 'findMax' in class 'Utility' shadows the same member in its parent 'InheritedUtility' @ line 11 
-variable 'y' in class 'Car' shadows the same member in its parent 'InheritedUtility' @ line 14 
+variable 'x' in class 'Utility' shadows the same member in its parent 'InheritedUtility' @ line 6 
+function 'findMax' in class 'Utility' shadows the same member in its parent 'InheritedUtility' @ line 9 
