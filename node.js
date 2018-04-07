@@ -1,21 +1,20 @@
+let nodeNumber = 1;
 class Node {
-  constructor(node = null, parent = null){
+  constructor(node = null) {
     this.node = node;
-    this.parent = parent;
+    this.number = nodeNumber++;
   }
 
-  getParent(){
-    return this.parent;
-  }
   setLeaf(leaf){
     this.leaf = leaf;
   }
+
   setHasToken(token){
     this.hasToken = token;
   }
+
   makeFamily(children){
-    if(this.children)
-    {
+    if(this.children) {
       this.children = this.children.concat(children);
     }
     else {
@@ -25,4 +24,4 @@ class Node {
 }
 module.exports = {
   Node,
-}
+};

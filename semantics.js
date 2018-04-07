@@ -27,6 +27,7 @@ function semantics(ast){
   const errors = [];
   const warnings = [];
   const rootNode = [...ast][0];
+  graphAST(rootNode);
   buildTables(rootNode);
   printAllTables(tables);
   printErrorsOrWarnings(errors, 'Errors');
@@ -235,7 +236,7 @@ function semantics(ast){
           symtab.entries.push(entry);
         }
         else {
-          errors.push(`Duplicate variable declaration: '${entry.type} ${entry.name}' in function '${symtab.table}' `)
+          errors.push(`Duplicate variable declaration: '${entry.type} ${entry.name}' in function '${symtab.table}' @ line ${entry.line} `)
         }
       })
     }
@@ -394,7 +395,7 @@ function semantics(ast){
     if (errors.length > 0) {
       fs.writeFileSync(`${type}.txt`, `---Semantic ${type}--- \n\n`);
       errors.forEach((error) =>{
-        console.error(`Semantic ${type}: ${error}`);
+        console.error(`Semantic ${type.slice(0, -1)}: ${error}`);
         fs.appendFileSync(`${type}.txt`, `${error} \n`);
       });
     }
@@ -408,6 +409,26 @@ function semantics(ast){
     })
   }
 
+  function graphAST(node) {
+    if (node.node === 'prog') {
+      fs.writeFileSync("astGraph.txt", "graph AST { \n");
+      fs.appendFileSync("astGraph.txt", `\t${node.number} [label="${node.node}"];\n`);
+    }
+    if (node.children) {
+      node.children.forEach((child) => {
+        fs.appendFileSync("astGraph.txt", `\t${child.number} [label="${child.node}"${!child.children && !child.leaf ? ', style=filled, fillcolor="#FFCCCB "' : ''}];\n`);
+        fs.appendFileSync("astGraph.txt", `\t${node.number} -- ${child.number};\n`);
+        graphAST(child);
+      });
+    }
+    if (node.leaf) {
+      fs.appendFileSync("astGraph.txt", `\t${node.leaf.position * -1} [label="${node.leaf.value}", style="filled,dotted", fillcolor=lightblue];\n`);
+      fs.appendFileSync("astGraph.txt", `\t${node.number} -- ${node.leaf.position * -1} [style=dashed, color=black];\n`);
+    }
+    if (node.node === 'prog') {
+      fs.appendFileSync("astGraph.txt", "}");
+    }
+  }
 }
 
 module.exports = semantics;

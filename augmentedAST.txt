@@ -1,18 +1,18 @@
 {
   "node": "prog",
-  "parent": null,
+  "number": 1,
   "children": [
     {
       "node": "classList",
-      "parent": null,
+      "number": 2,
       "children": [
         {
           "node": "classDecl",
-          "parent": null,
+          "number": 3,
           "children": [
             {
               "node": "id",
-              "parent": null,
+              "number": 4,
               "leaf": {
                 "Token": "id",
                 "position": 21,
@@ -22,19 +22,19 @@
             },
             {
               "node": "inherList",
-              "parent": null
+              "number": 5
             },
             {
               "node": "membList",
-              "parent": null,
+              "number": 6,
               "children": [
                 {
                   "node": "varDecl",
-                  "parent": null,
+                  "number": 9,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 7,
                       "leaf": {
                         "Token": "int",
                         "position": 29,
@@ -44,7 +44,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 8,
                       "leaf": {
                         "Token": "id",
                         "position": 31,
@@ -54,17 +54,17 @@
                     },
                     {
                       "node": "dimList",
-                      "parent": null
+                      "number": 10
                     }
                   ]
                 },
                 {
                   "node": "varDecl",
-                  "parent": null,
+                  "number": 13,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 11,
                       "leaf": {
                         "Token": "int",
                         "position": 38,
@@ -74,7 +74,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 12,
                       "leaf": {
                         "Token": "id",
                         "position": 40,
@@ -84,17 +84,17 @@
                     },
                     {
                       "node": "dimList",
-                      "parent": null
+                      "number": 14
                     }
                   ]
                 },
                 {
                   "node": "funcDecl",
-                  "parent": null,
+                  "number": 17,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 15,
                       "leaf": {
                         "Token": "int",
                         "position": 47,
@@ -104,7 +104,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 16,
                       "leaf": {
                         "Token": "id",
                         "position": 55,
@@ -114,15 +114,15 @@
                     },
                     {
                       "node": "fparamList",
-                      "parent": null,
+                      "number": 18,
                       "children": [
                         {
                           "node": "fparam",
-                          "parent": null,
+                          "number": 19,
                           "children": [
                             {
                               "node": "type",
-                              "parent": null,
+                              "number": 20,
                               "leaf": {
                                 "Token": "int",
                                 "position": 59,
@@ -132,7 +132,7 @@
                             },
                             {
                               "node": "id",
-                              "parent": null,
+                              "number": 21,
                               "leaf": {
                                 "Token": "id",
                                 "position": 61,
@@ -142,7 +142,7 @@
                             },
                             {
                               "node": "dimList",
-                              "parent": null
+                              "number": 22
                             }
                           ]
                         }
@@ -182,11 +182,11 @@
         },
         {
           "node": "classDecl",
-          "parent": null,
+          "number": 23,
           "children": [
             {
               "node": "id",
-              "parent": null,
+              "number": 24,
               "leaf": {
                 "Token": "id",
                 "position": 82,
@@ -196,11 +196,11 @@
             },
             {
               "node": "inherList",
-              "parent": null,
+              "number": 25,
               "children": [
                 {
                   "node": "id",
-                  "parent": null,
+                  "number": 26,
                   "leaf": {
                     "Token": "id",
                     "position": 101,
@@ -212,15 +212,15 @@
             },
             {
               "node": "membList",
-              "parent": null,
+              "number": 27,
               "children": [
                 {
                   "node": "varDecl",
-                  "parent": null,
+                  "number": 30,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 28,
                       "leaf": {
                         "Token": "int",
                         "position": 109,
@@ -230,7 +230,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 29,
                       "leaf": {
                         "Token": "id",
                         "position": 111,
@@ -240,17 +240,17 @@
                     },
                     {
                       "node": "dimList",
-                      "parent": null
+                      "number": 31
                     }
                   ]
                 },
                 {
                   "node": "varDecl",
-                  "parent": null,
+                  "number": 34,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 32,
                       "leaf": {
                         "Token": "int",
                         "position": 118,
@@ -260,7 +260,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 33,
                       "leaf": {
                         "Token": "id",
                         "position": 120,
@@ -270,17 +270,17 @@
                     },
                     {
                       "node": "dimList",
-                      "parent": null
+                      "number": 35
                     }
                   ]
                 },
                 {
                   "node": "varDecl",
-                  "parent": null,
+                  "number": 38,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 36,
                       "leaf": {
                         "Token": "float",
                         "position": 129,
@@ -290,7 +290,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 37,
                       "leaf": {
                         "Token": "id",
                         "position": 131,
@@ -300,17 +300,17 @@
                     },
                     {
                       "node": "dimList",
-                      "parent": null
+                      "number": 39
                     }
                   ]
                 },
                 {
                   "node": "varDecl",
-                  "parent": null,
+                  "number": 42,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 40,
                       "leaf": {
                         "Token": "float",
                         "position": 140,
@@ -320,7 +320,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 41,
                       "leaf": {
                         "Token": "id",
                         "position": 142,
@@ -330,17 +330,17 @@
                     },
                     {
                       "node": "dimList",
-                      "parent": null
+                      "number": 43
                     }
                   ]
                 },
                 {
                   "node": "funcDecl",
-                  "parent": null,
+                  "number": 46,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 44,
                       "leaf": {
                         "Token": "int",
                         "position": 149,
@@ -350,7 +350,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 45,
                       "leaf": {
                         "Token": "id",
                         "position": 157,
@@ -360,15 +360,15 @@
                     },
                     {
                       "node": "fparamList",
-                      "parent": null,
+                      "number": 47,
                       "children": [
                         {
                           "node": "fparam",
-                          "parent": null,
+                          "number": 48,
                           "children": [
                             {
                               "node": "type",
-                              "parent": null,
+                              "number": 49,
                               "leaf": {
                                 "Token": "int",
                                 "position": 161,
@@ -378,7 +378,7 @@
                             },
                             {
                               "node": "id",
-                              "parent": null,
+                              "number": 50,
                               "leaf": {
                                 "Token": "id",
                                 "position": 163,
@@ -388,7 +388,7 @@
                             },
                             {
                               "node": "dimList",
-                              "parent": null
+                              "number": 51
                             }
                           ]
                         }
@@ -442,11 +442,11 @@
         },
         {
           "node": "classDecl",
-          "parent": null,
+          "number": 52,
           "children": [
             {
               "node": "id",
-              "parent": null,
+              "number": 53,
               "leaf": {
                 "Token": "id",
                 "position": 178,
@@ -456,11 +456,11 @@
             },
             {
               "node": "inherList",
-              "parent": null,
+              "number": 54,
               "children": [
                 {
                   "node": "id",
-                  "parent": null,
+                  "number": 55,
                   "leaf": {
                     "Token": "id",
                     "position": 197,
@@ -472,15 +472,15 @@
             },
             {
               "node": "membList",
-              "parent": null,
+              "number": 56,
               "children": [
                 {
                   "node": "varDecl",
-                  "parent": null,
+                  "number": 59,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 57,
                       "leaf": {
                         "Token": "int",
                         "position": 205,
@@ -490,7 +490,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 58,
                       "leaf": {
                         "Token": "id",
                         "position": 207,
@@ -500,7 +500,7 @@
                     },
                     {
                       "node": "dimList",
-                      "parent": null
+                      "number": 60
                     }
                   ]
                 }
@@ -557,15 +557,15 @@
     },
     {
       "node": "funcDefList",
-      "parent": null,
+      "number": 61,
       "children": [
         {
           "node": "funcDef",
-          "parent": null,
+          "number": 62,
           "children": [
             {
               "node": "type",
-              "parent": null,
+              "number": 63,
               "leaf": {
                 "Token": "float",
                 "position": 217,
@@ -575,11 +575,11 @@
             },
             {
               "node": "scopeSpec",
-              "parent": null
+              "number": 64
             },
             {
               "node": "id",
-              "parent": null,
+              "number": 65,
               "leaf": {
                 "Token": "id",
                 "position": 221,
@@ -589,19 +589,19 @@
             },
             {
               "node": "fparamList",
-              "parent": null
+              "number": 66
             },
             {
               "node": "statBlock",
-              "parent": null,
+              "number": 67,
               "children": [
                 {
                   "node": "varDecl",
-                  "parent": null,
+                  "number": 68,
                   "children": [
                     {
                       "node": "type",
-                      "parent": null,
+                      "number": 69,
                       "leaf": {
                         "Token": "int",
                         "position": 230,
@@ -611,7 +611,7 @@
                     },
                     {
                       "node": "id",
-                      "parent": null,
+                      "number": 70,
                       "leaf": {
                         "Token": "id",
                         "position": 232,
@@ -621,7 +621,7 @@
                     },
                     {
                       "node": "dimList",
-                      "parent": null
+                      "number": 71
                     }
                   ]
                 }
@@ -657,15 +657,15 @@
     },
     {
       "node": "statBlock",
-      "parent": null,
+      "number": 72,
       "children": [
         {
           "node": "varDecl",
-          "parent": null,
+          "number": 73,
           "children": [
             {
               "node": "type",
-              "parent": null,
+              "number": 74,
               "leaf": {
                 "Token": "int",
                 "position": 252,
@@ -675,7 +675,7 @@
             },
             {
               "node": "id",
-              "parent": null,
+              "number": 75,
               "leaf": {
                 "Token": "id",
                 "position": 259,
@@ -685,11 +685,11 @@
             },
             {
               "node": "dimList",
-              "parent": null,
+              "number": 76,
               "children": [
                 {
                   "node": "num",
-                  "parent": null,
+                  "number": 77,
                   "leaf": {
                     "Token": "intNum",
                     "position": 263,
@@ -703,11 +703,11 @@
         },
         {
           "node": "varDecl",
-          "parent": null,
+          "number": 78,
           "children": [
             {
               "node": "type",
-              "parent": null,
+              "number": 79,
               "leaf": {
                 "Token": "int",
                 "position": 271,
@@ -717,7 +717,7 @@
             },
             {
               "node": "id",
-              "parent": null,
+              "number": 80,
               "leaf": {
                 "Token": "id",
                 "position": 275,
@@ -727,17 +727,17 @@
             },
             {
               "node": "dimList",
-              "parent": null
+              "number": 81
             }
           ]
         },
         {
           "node": "varDecl",
-          "parent": null,
+          "number": 82,
           "children": [
             {
               "node": "type",
-              "parent": null,
+              "number": 83,
               "leaf": {
                 "Token": "int",
                 "position": 282,
@@ -747,7 +747,7 @@
             },
             {
               "node": "id",
-              "parent": null,
+              "number": 84,
               "leaf": {
                 "Token": "id",
                 "position": 286,
@@ -757,17 +757,17 @@
             },
             {
               "node": "dimList",
-              "parent": null
+              "number": 85
             }
           ]
         },
         {
           "node": "varDecl",
-          "parent": null,
+          "number": 86,
           "children": [
             {
               "node": "type",
-              "parent": null,
+              "number": 87,
               "leaf": {
                 "Token": "int",
                 "position": 293,
@@ -777,7 +777,7 @@
             },
             {
               "node": "id",
-              "parent": null,
+              "number": 88,
               "leaf": {
                 "Token": "id",
                 "position": 302,
@@ -787,17 +787,17 @@
             },
             {
               "node": "dimList",
-              "parent": null
+              "number": 89
             }
           ]
         },
         {
           "node": "varDecl",
-          "parent": null,
+          "number": 90,
           "children": [
             {
               "node": "type",
-              "parent": null,
+              "number": 91,
               "leaf": {
                 "Token": "int",
                 "position": 309,
@@ -807,7 +807,7 @@
             },
             {
               "node": "id",
-              "parent": null,
+              "number": 92,
               "leaf": {
                 "Token": "id",
                 "position": 318,
@@ -817,17 +817,17 @@
             },
             {
               "node": "dimList",
-              "parent": null
+              "number": 93
             }
           ]
         },
         {
           "node": "varDecl",
-          "parent": null,
+          "number": 94,
           "children": [
             {
               "node": "type",
-              "parent": null,
+              "number": 95,
               "leaf": {
                 "Token": "id",
                 "position": 329,
@@ -837,7 +837,7 @@
             },
             {
               "node": "id",
-              "parent": null,
+              "number": 96,
               "leaf": {
                 "Token": "id",
                 "position": 337,
@@ -847,17 +847,17 @@
             },
             {
               "node": "dimList",
-              "parent": null
+              "number": 97
             }
           ]
         },
         {
           "node": "varDecl",
-          "parent": null,
+          "number": 98,
           "children": [
             {
               "node": "type",
-              "parent": null,
+              "number": 99,
               "leaf": {
                 "Token": "id",
                 "position": 348,
@@ -867,7 +867,7 @@
             },
             {
               "node": "id",
-              "parent": null,
+              "number": 100,
               "leaf": {
                 "Token": "id",
                 "position": 361,
@@ -877,11 +877,11 @@
             },
             {
               "node": "dimList",
-              "parent": null,
+              "number": 101,
               "children": [
                 {
                   "node": "num",
-                  "parent": null,
+                  "number": 102,
                   "leaf": {
                     "Token": "intNum",
                     "position": 363,
@@ -891,7 +891,7 @@
                 },
                 {
                   "node": "num",
-                  "parent": null,
+                  "number": 103,
                   "leaf": {
                     "Token": "intNum",
                     "position": 366,
@@ -901,7 +901,7 @@
                 },
                 {
                   "node": "num",
-                  "parent": null,
+                  "number": 104,
                   "leaf": {
                     "Token": "intNum",
                     "position": 369,
@@ -911,7 +911,7 @@
                 },
                 {
                   "node": "num",
-                  "parent": null,
+                  "number": 105,
                   "leaf": {
                     "Token": "intNum",
                     "position": 372,
