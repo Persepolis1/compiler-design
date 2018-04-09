@@ -101,84 +101,159 @@ USED RULE :
 Sentencial Form:
  program { int id ; id = intNum arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
 USED RULE :
- arithExprTail      -> EPSILON 
+ arithExprTail      -> addOp term arithExprTail 
 
 Sentencial Form:
- program { int id ; id = intNum exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ program { int id ; id = intNum addOp term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
 USED RULE :
- exprTail           -> EPSILON 
+ addOp             -> + 
 
 Sentencial Form:
- program { int id ; id = intNum ; statementIdThree statement } @4,1 ; 
-USED RULE :
- statementIdThree   -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = intNum ; statement } @4,1 ; 
-USED RULE :
- statement          -> put ( expr ) ; statementTail 
-
-Sentencial Form:
- program { int id ; id = intNum ; put ( expr ) @2,1 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- program { int id ; id = intNum ; put ( arithExpr exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- program { int id ; id = intNum ; put ( term arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ program { int id ; id = intNum + term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
 USED RULE :
  term               -> factor termTail 
 
 Sentencial Form:
- program { int id ; id = intNum ; put ( factor termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ program { int id ; id = intNum + factor termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
 USED RULE :
- factor             -> id idnest 
+ factor             -> intNum 
 
 Sentencial Form:
- program { int id ; id = intNum ; put ( id idnest termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- idnest             -> indice idnestTail 
-
-Sentencial Form:
- program { int id ; id = intNum ; put ( id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- indice             -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = intNum ; put ( id idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- program { int id ; id = intNum ; put ( id termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ program { int id ; id = intNum + intNum termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
 USED RULE :
  termTail           -> EPSILON 
 
 Sentencial Form:
- program { int id ; id = intNum ; put ( id arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ program { int id ; id = intNum + intNum arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ arithExprTail      -> addOp term arithExprTail 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum addOp term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ addOp             -> - 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - factor termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ factor             -> intNum 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ arithExprTail      -> addOp term arithExprTail 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum addOp term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ addOp             -> + 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + factor termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ factor             -> intNum 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
 USED RULE :
  arithExprTail      -> EPSILON 
 
 Sentencial Form:
- program { int id ; id = intNum ; put ( id exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ program { int id ; id = intNum + intNum - intNum + intNum exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
 USED RULE :
  exprTail           -> EPSILON 
 
 Sentencial Form:
- program { int id ; id = intNum ; put ( id ) ; statementTail } @4,1 ; 
+ program { int id ; id = intNum + intNum - intNum + intNum ; statementIdThree statement } @4,1 ; 
+USED RULE :
+ statementIdThree   -> EPSILON 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; statement } @4,1 ; 
+USED RULE :
+ statement          -> put ( expr ) ; statementTail 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( expr ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ expr               -> arithExpr exprTail 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( arithExpr exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ arithExpr          -> term arithExprTail 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( term arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( factor termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ factor             -> id idnest 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id idnest termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ idnest             -> indice idnestTail 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ indice             -> EPSILON 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ idnestTail         -> EPSILON 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ arithExprTail      -> EPSILON 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ exprTail           -> EPSILON 
+
+Sentencial Form:
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id ) ; statementTail } @4,1 ; 
 USED RULE :
  statementTail      -> statement 
 
 Sentencial Form:
- program { int id ; id = intNum ; put ( id ) ; statement } @4,1 ; 
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id ) ; statement } @4,1 ; 
 USED RULE :
  statement          -> EPSILON 
 
 Successfully parsed! 
- program { int id ; id = intNum ; put ( id ) ; } ; 
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id ) ; } ; 
 Token Stream : 
- program { int id ; id = intNum ; put ( id ) ; } ; $
+ program { int id ; id = intNum + intNum - intNum + intNum ; put ( id ) ; } ; $

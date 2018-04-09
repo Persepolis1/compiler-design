@@ -1,0 +1,8 @@
+program {
+    int x;
+    int y;
+    x = 5 + 5;
+    put(x);
+    y = 15 + 17;
+    put(y);
+};

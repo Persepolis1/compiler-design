@@ -76,42 +76,108 @@
                 ]
               },
               {
-                "node": "num",
-                "number": 14,
-                "leaf": {
-                  "Token": "intNum",
-                  "position": 30,
-                  "value": "69",
+                "node": "addOp",
+                "number": 19,
+                "hasToken": {
+                  "Token": "+",
+                  "position": 43,
+                  "value": "+",
                   "line": 3
-                }
+                },
+                "children": [
+                  {
+                    "node": "addOp",
+                    "number": 17,
+                    "hasToken": {
+                      "Token": "-",
+                      "position": 38,
+                      "value": "-",
+                      "line": 3
+                    },
+                    "children": [
+                      {
+                        "node": "addOp",
+                        "number": 15,
+                        "hasToken": {
+                          "Token": "+",
+                          "position": 33,
+                          "value": "+",
+                          "line": 3
+                        },
+                        "children": [
+                          {
+                            "node": "num",
+                            "number": 14,
+                            "leaf": {
+                              "Token": "intNum",
+                              "position": 31,
+                              "value": "100",
+                              "line": 3
+                            }
+                          },
+                          {
+                            "node": "num",
+                            "number": 16,
+                            "leaf": {
+                              "Token": "intNum",
+                              "position": 36,
+                              "value": "25",
+                              "line": 3
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "node": "num",
+                        "number": 18,
+                        "leaf": {
+                          "Token": "intNum",
+                          "position": 41,
+                          "value": "60",
+                          "line": 3
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "node": "num",
+                    "number": 20,
+                    "leaf": {
+                      "Token": "intNum",
+                      "position": 46,
+                      "value": "15",
+                      "line": 3
+                    }
+                  }
+                ]
               }
             ]
           },
           {
             "node": "putStat",
-            "number": 15,
+            "number": 21,
             "children": [
               {
                 "node": "var",
-                "number": 16,
+                "number": 22,
                 "children": [
                   {
                     "node": "dataMember",
-                    "number": 17,
+                    "number": 23,
                     "children": [
                       {
                         "node": "id",
-                        "number": 18,
+                        "number": 24,
                         "leaf": {
                           "Token": "id",
-                          "position": 41,
+                          "position": 57,
                           "value": "x",
                           "line": 4
                         }
                       },
                       {
                         "node": "indexList",
-                        "number": 19
+                        "number": 25
                       }
                     ]
                   }

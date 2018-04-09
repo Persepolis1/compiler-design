@@ -254,6 +254,9 @@ function semantics(ast){
     const bucket = [];
     if (node.children[4].children) {
       node.children[4].children.forEach((child) => {
+        if (!ENTRY_CREATOR_MAP[child.node]) {
+          return;
+        }
         const entry = ENTRY_CREATOR_MAP[child.node](child);
         if (!bucket.includes(entry.name)) {
           bucket.push(entry.name);

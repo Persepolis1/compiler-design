@@ -75,9 +75,11 @@ if (!unitTest) {
   lr.on('end', function () {
     tokenStream.push('$');
     tokensFull.push({Token: '$', value: '$'});
-     const result = parse();
-    const phase3 = semantics(result.ast);
-    moon(phase3.tables, phase3.rootNode);
+    const result = parse();
+    if (result.ast) {
+      const phase3 = semantics(result.ast);
+      moon(phase3.tables, phase3.rootNode);
+    }
 
     // All lines are read, file is closed now.
   });

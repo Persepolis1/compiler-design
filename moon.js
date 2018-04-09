@@ -1,7 +1,9 @@
 const jsonFile = require('jsonfile');
 const Table = require('easy-table');
 const fs = require('fs');
+const exec = require("child_process").exec;
 const output = 'output.m';
+const moonsrcOutput = 'moonsrc/output.m';
 
 function moon(tables, ast) {
   const offSetTables = [];
@@ -16,6 +18,7 @@ function moon(tables, ast) {
     'assignStat': generateAssignStatCode,
     'num': generateNumCode,
     'putStat': generatePutStatCode,
+    'addOp': generateAddOpCode,
   };
   setOffsets(ast);
   generateCode(ast);
@@ -33,6 +36,7 @@ function moon(tables, ast) {
       generateCode(node.children[2]);
     }
     printMoonCode(moonCode, moonData);
+    executeMoonCode();
   }
 
   function generateProgramCode(node) {
@@ -83,11 +87,47 @@ function moon(tables, ast) {
     const LHSOffset = getOffSet(node.children[0].children[0].children[0].leaf.value);
     moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}(r2)`);
     moonCode.push(`\t\t sw\t -8(r14), ${localregister1}`);
-    moonCode.push(`\t\t addi\t ${localregister2},${localregister1},buf`);
+    moonCode.push(`\t\t addi\t ${localregister2},r0,buf`);
     moonCode.push(`\t\t sw\t -12(r14), ${localregister2}`);
     moonCode.push('\t\t jl\t r15, intstr');
     moonCode.push('\t\t sw\t -8(r14), r13');
     moonCode.push('\t\t jl\t r15, putstr');
+    moonCode.push('\t\t addi\t r2, r0, topaddr  % Set stack pointer');
+    registerPool.push(localregister2);
+    registerPool.push(localregister1);
+  }
+
+  function generateAddOpCode(node) {
+    const localregister1 = registerPool.pop();
+    const localregister2 = registerPool.pop();
+    const localregister3 = registerPool.pop();
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+    const LHSOffset = node.children[0].offSet;
+    const RHSOffset = node.children[1].offSet;
+    const operator = node.hasToken.value;
+    let opCode;
+    switch (operator) {
+      case '+':
+        opCode = 'add';
+        break;
+      case '-':
+        opCode = 'sub';
+        break;
+      case 'or':
+        opCode = 'or';
+        break;
+    }
+    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
+    tableStack[tableStack.length - 1].size += 4;
+    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}(r2)`);
+    moonCode.push(`\t\t lw\t ${localregister2}, ${RHSOffset}(r2)`);
+    moonCode.push(`\t\t ${opCode}\t ${localregister3},${localregister1},${localregister2}`);
+    moonCode.push(`\t\t sw\t ${node.offSet}(r2), ${localregister3}`);
+    registerPool.push(localregister3);
     registerPool.push(localregister2);
     registerPool.push(localregister1);
   }
@@ -154,7 +194,22 @@ function moon(tables, ast) {
     });
     data.forEach((line) => {
       fs.appendFileSync(output, `${line}\n`);
-    })
+    });
+    fs.writeFileSync(moonsrcOutput, fs.readFileSync(output));
+  }
+
+  function executeMoonCode() {
+    const dir = exec("cd moonsrc && moon lib output && cd ..", function (err, stdout, stderr) {
+      if (err) {
+        // assume no error
+      }
+      console.log(stdout);
+      fs.writeFileSync('output_executed.txt', stdout);
+    });
+
+    dir.on('exit', function (code) {
+      // exit code is code
+    });
   }
 }
 
