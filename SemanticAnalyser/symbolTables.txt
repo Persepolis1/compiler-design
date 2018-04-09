@@ -1,0 +1,14 @@
+---SYMBOL TABLES--- 
+
+Table: Global
+Name     Kind      Type  Line  Link   
+-------  --------  ----  ----  -------
+program  function  nil         program
+
+
+Table: program
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+x     variable  int   2     nil 
+
+

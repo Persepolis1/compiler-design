@@ -1,0 +1,147 @@
+{
+  "node": "prog",
+  "number": 1,
+  "children": [
+    {
+      "node": "classList",
+      "number": 2
+    },
+    {
+      "node": "funcDefList",
+      "number": 3
+    },
+    {
+      "node": "statBlock",
+      "number": 4,
+      "children": [
+        {
+          "node": "varDecl",
+          "number": 5,
+          "children": [
+            {
+              "node": "type",
+              "number": 6,
+              "leaf": {
+                "Token": "int",
+                "position": 16,
+                "value": "int",
+                "line": 2
+              }
+            },
+            {
+              "node": "id",
+              "number": 7,
+              "leaf": {
+                "Token": "id",
+                "position": 18,
+                "value": "x",
+                "line": 2
+              }
+            },
+            {
+              "node": "dimList",
+              "number": 8
+            }
+          ]
+        },
+        {
+          "node": "assignStat",
+          "number": 13,
+          "children": [
+            {
+              "node": "var",
+              "number": 9,
+              "children": [
+                {
+                  "node": "dataMember",
+                  "number": 10,
+                  "children": [
+                    {
+                      "node": "id",
+                      "number": 11,
+                      "leaf": {
+                        "Token": "id",
+                        "position": 25,
+                        "value": "x",
+                        "line": 3
+                      }
+                    },
+                    {
+                      "node": "indexList",
+                      "number": 12
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "num",
+              "number": 14,
+              "leaf": {
+                "Token": "intNum",
+                "position": 30,
+                "value": "69",
+                "line": 3
+              }
+            }
+          ]
+        },
+        {
+          "node": "putStat",
+          "number": 15,
+          "children": [
+            {
+              "node": "var",
+              "number": 16,
+              "children": [
+                {
+                  "node": "dataMember",
+                  "number": 17,
+                  "children": [
+                    {
+                      "node": "id",
+                      "number": 18,
+                      "leaf": {
+                        "Token": "id",
+                        "position": 41,
+                        "value": "x",
+                        "line": 4
+                      }
+                    },
+                    {
+                      "node": "indexList",
+                      "number": 19
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "symtab": {
+        "table": "program",
+        "entries": [
+          {
+            "name": "x",
+            "kind": "variable",
+            "type": "int",
+            "link": "nil",
+            "line": 2
+          }
+        ]
+      }
+    }
+  ],
+  "symtab": {
+    "table": "Global",
+    "entries": [
+      {
+        "name": "program",
+        "kind": "function",
+        "type": "nil",
+        "link": "program"
+      }
+    ]
+  }
+}

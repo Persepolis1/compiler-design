@@ -1,0 +1,58 @@
+class InheritedUtility {
+    int x;
+    int findMax(int a, int b);
+};
+class Utility : InheritedUtility {
+    int x;
+    int y;
+    float z;
+    int findMax(int a, int b);
+};
+int InheritedUtility::findMax(int a, int b) {
+    int x;
+    for (int z = 1; z < 10; z = z + 1) {
+        for (int j = 1; j < 10; j = j + 1) {
+            put(y);
+            x = x + 1;
+        };
+    };
+    for (int z = 1; z < 10; z = z + 1) {
+        put(y);
+        x = x + 1;
+    };
+};
+int Utility::findMax(int a, int b) {
+    int y;
+    for (int z = 1; z < 10; z = z + 1) {
+        put(y);
+        x = x + 1;
+    };
+};
+int findMin(int a){
+    for (int z = 1; z < 10; z = z + 1) {
+        put(y);
+        x = x + 1;
+    };
+};
+int findMax(int a, int b) {
+    int z;
+    for (int z = 1; z < 10; z = z + 1) {
+        put(y);
+        x = x + 1;
+    };
+};
+program {
+    int x;
+    float x;
+    x = findMax(5,2);
+    for (int z = 1; z < 11; z = z + 1) {
+        put(y);
+        x = x + 1;
+    };
+    if (x<5) then {
+        put(x);
+    }
+    else {
+        put(y);
+    };
+};

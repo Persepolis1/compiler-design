@@ -5,7 +5,8 @@ const { RULES } = require('./constants/rules');
 const { NON_TERMINALS } = require('./constants/nonTerminals');
 const {Node} = require('./node');
 const getAllTokens = require('./lexer/lexer');
-const semantics = require('./semantics');
+const semantics = require('./SemanticAnalyser/semantics');
+const moon = require('./moon');
 const fs = require('fs');
 const stack = [];
 const semanticStack = [];
@@ -75,7 +76,9 @@ if (!unitTest) {
     tokenStream.push('$');
     tokensFull.push({Token: '$', value: '$'});
      const result = parse();
-     semantics(result.ast);
+    const phase3 = semantics(result.ast);
+    moon(phase3.tables, phase3.rootNode);
+
     // All lines are read, file is closed now.
   });
 }

@@ -1,3 +1,0 @@
----Semantic Errors--- 
-
-Duplicate variable declaration: 'float x' in 'program' @ line 46  

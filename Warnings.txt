@@ -1,4 +1,0 @@
----Semantic Warnings--- 
-
-variable 'x' in class 'Utility' shadows the same member in its parent 'InheritedUtility' @ line 6 
-function 'findMax' in class 'Utility' shadows the same member in its parent 'InheritedUtility' @ line 9 

@@ -34,12 +34,13 @@ function semantics(ast){
   let loopCounter = 1;
   let ifThen = 1;
   let ifElse = 1;
-  //graphAST(rootNode);
+  graphAST(rootNode);
   buildTables(rootNode);
   printAllTables(tables);
   printErrorsOrWarnings(errors, 'Errors');
   printErrorsOrWarnings(warnings, 'Warnings');
   printAugmentedAst(rootNode);
+  return {tables, rootNode};
   function buildTables(node) {
     try {
       if (TABLE_CREATOR_MAP[node.node]) {
@@ -501,7 +502,7 @@ function semantics(ast){
   }
   function printAllTables(tables){
     tables.unshift(tables.pop());
-    fs.writeFileSync('symbolTables.txt', '---SYMBOL TABLES--- \n\n');
+    fs.writeFileSync('SemanticAnalyser/symbolTables.txt', '---SYMBOL TABLES--- \n\n');
     tables.forEach((table) => {
       const t = new Table;
       table.entries.forEach((entry) => {
@@ -512,53 +513,53 @@ function semantics(ast){
         t.cell('Link', entry.link);
         t.newRow();
       });
-      fs.appendFileSync('symbolTables.txt', `Table: ${table.table}\n`);
-      fs.appendFileSync('symbolTables.txt', `${t.toString()}\n\n`);
+      fs.appendFileSync('SemanticAnalyser/symbolTables.txt', `Table: ${table.table}\n`);
+      fs.appendFileSync('SemanticAnalyser/symbolTables.txt', `${t.toString()}\n\n`);
     });
-    jsonFile.writeFileSync('symbolTablesJSON.txt', tables, {spaces: 2}, function (err) {
+    jsonFile.writeFileSync('SemanticAnalyser/symbolTablesJSON.txt', tables, {spaces: 2}, function (err) {
     })
   }
 
   function printErrorsOrWarnings(errors, type) {
     if (errors.length > 0) {
-      fs.writeFileSync(`${type}.txt`, `---Semantic ${type}--- \n\n`);
+      fs.writeFileSync(`SemanticAnalyser/${type}.txt`, `---Semantic ${type}--- \n\n`);
       errors.forEach((error) =>{
         console.error(`Semantic ${type.slice(0, -1)}: ${error}`);
-        fs.appendFileSync(`${type}.txt`, `${error} \n`);
+        fs.appendFileSync(`SemanticAnalyser/${type}.txt`, `${error} \n`);
       });
     }
     else {
-      fs.writeFileSync(`${type}.txt`, `No Semantic ${type}`);
+      fs.writeFileSync(`SemanticAnalyser/${type}.txt`, `No Semantic ${type}`);
     }
   }
 
   function printAugmentedAst(rootNode) {
-    jsonFile.writeFileSync('augmentedAST.txt', rootNode, {spaces: 2}, function (err) {
+    jsonFile.writeFileSync('SemanticAnalyser/augmentedAST.txt', rootNode, {spaces: 2}, function (err) {
     })
   }
 
   function graphAST(node) {
     if (node.node === 'prog') {
-      fs.writeFileSync("astGraph.txt", "graph AST { \n");
-      fs.appendFileSync("astGraph.txt", `\t${node.number} [label="${node.node}"];\n`);
+      fs.writeFileSync("SemanticAnalyser/astGraph.txt", "graph AST { \n");
+      fs.appendFileSync("SemanticAnalyser/astGraph.txt", `\t${node.number} [label="${node.node}"];\n`);
     }
     if (node.children) {
       node.children.forEach((child) => {
-        fs.appendFileSync("astGraph.txt", `\t${child.number} [label="${child.node}"${!child.children && !child.leaf ? ', style=filled, fillcolor="#FFCCCB "' : ''}];\n`);
-        fs.appendFileSync("astGraph.txt", `\t${node.number} -- ${child.number};\n`);
+        fs.appendFileSync("SemanticAnalyser/astGraph.txt", `\t${child.number} [label="${child.node}"${!child.children && !child.leaf ? ', style=filled, fillcolor="#FFCCCB "' : ''}];\n`);
+        fs.appendFileSync("SemanticAnalyser/astGraph.txt", `\t${node.number} -- ${child.number};\n`);
         graphAST(child);
       });
     }
     if (node.leaf) {
-      fs.appendFileSync("astGraph.txt", `\t${node.leaf.position * -1} [label="${node.leaf.value}", style="filled,dotted", fillcolor=lightblue];\n`);
-      fs.appendFileSync("astGraph.txt", `\t${node.number} -- ${node.leaf.position * -1} [style=dashed, color=black];\n`);
+      fs.appendFileSync("SemanticAnalyser/astGraph.txt", `\t${node.leaf.position * -1} [label="${node.leaf.value}", style="filled,dotted", fillcolor=lightblue];\n`);
+      fs.appendFileSync("SemanticAnalyser/astGraph.txt", `\t${node.number} -- ${node.leaf.position * -1} [style=dashed, color=black];\n`);
     }
     if (node.hasToken) {
-      fs.appendFileSync("astGraph.txt", `\t${node.hasToken.position * -1} [label="${node.hasToken.value}", style="filled,dotted", fillcolor="#b6fcb6"];\n`);
-      fs.appendFileSync("astGraph.txt", `\t${node.number} -- ${node.hasToken.position * -1} [style=dashed, color=black];\n`);
+      fs.appendFileSync("SemanticAnalyser/astGraph.txt", `\t${node.hasToken.position * -1} [label="${node.hasToken.value}", style="filled,dotted", fillcolor="#b6fcb6"];\n`);
+      fs.appendFileSync("SemanticAnalyser/astGraph.txt", `\t${node.number} -- ${node.hasToken.position * -1} [style=dashed, color=black];\n`);
     }
     if (node.node === 'prog') {
-      fs.appendFileSync("astGraph.txt", "}");
+      fs.appendFileSync("SemanticAnalyser/astGraph.txt", "}");
     }
   }
 }

@@ -1,0 +1,25 @@
+[
+  {
+    "table": "Global",
+    "entries": [
+      {
+        "name": "program",
+        "kind": "function",
+        "type": "nil",
+        "link": "program"
+      }
+    ]
+  },
+  {
+    "table": "program",
+    "entries": [
+      {
+        "name": "x",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 2
+      }
+    ]
+  }
+]
