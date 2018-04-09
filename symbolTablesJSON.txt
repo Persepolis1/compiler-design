@@ -16,7 +16,20 @@
         "link": "Utility",
         "line": 5
       },
-      [],
+      {
+        "name": "findMin",
+        "kind": "function",
+        "type": "int : int",
+        "link": "findMin",
+        "line": 31
+      },
+      {
+        "name": "findMax",
+        "kind": "function",
+        "type": "int : int, int",
+        "link": "findMax",
+        "line": 37
+      },
       {
         "name": "program",
         "kind": "function",
@@ -85,6 +98,49 @@
     ]
   },
   {
+    "table": "forLoop2",
+    "entries": [
+      {
+        "name": "j",
+        "kind": "variable",
+        "type": "int",
+        "line": 14,
+        "link": "nil"
+      }
+    ]
+  },
+  {
+    "table": "forLoop1",
+    "entries": [
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "int",
+        "line": 13,
+        "link": "nil"
+      },
+      {
+        "name": "forLoop2",
+        "kind": "loop",
+        "type": "nil",
+        "line": 14,
+        "link": "forLoop2"
+      }
+    ]
+  },
+  {
+    "table": "forLoop3",
+    "entries": [
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "int",
+        "line": 19,
+        "link": "nil"
+      }
+    ]
+  },
+  {
     "table": "findMax (InheritedUtility)",
     "entries": [
       {
@@ -105,6 +161,32 @@
         "type": "int",
         "link": "nil",
         "line": 12
+      },
+      {
+        "name": "forLoop1",
+        "kind": "loop",
+        "type": "nil",
+        "line": 13,
+        "link": "forLoop1"
+      },
+      {
+        "name": "forLoop3",
+        "kind": "loop",
+        "type": "nil",
+        "line": 19,
+        "link": "forLoop3"
+      }
+    ]
+  },
+  {
+    "table": "forLoop4",
+    "entries": [
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "int",
+        "line": 26,
+        "link": "nil"
       }
     ]
   },
@@ -128,7 +210,99 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 15
+        "line": 25
+      },
+      {
+        "name": "forLoop4",
+        "kind": "loop",
+        "type": "nil",
+        "line": 26,
+        "link": "forLoop4"
+      }
+    ]
+  },
+  {
+    "table": "forLoop5",
+    "entries": [
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "int",
+        "line": 32,
+        "link": "nil"
+      }
+    ]
+  },
+  {
+    "table": "findMin",
+    "entries": [
+      {
+        "name": "a",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
+      },
+      {
+        "name": "forLoop5",
+        "kind": "loop",
+        "type": "nil",
+        "line": 32,
+        "link": "forLoop5"
+      }
+    ]
+  },
+  {
+    "table": "forLoop6",
+    "entries": [
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "int",
+        "line": 39,
+        "link": "nil"
+      }
+    ]
+  },
+  {
+    "table": "findMax",
+    "entries": [
+      {
+        "name": "a",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
+      },
+      {
+        "name": "b",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
+      },
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 38
+      },
+      {
+        "name": "forLoop6",
+        "kind": "loop",
+        "type": "nil",
+        "line": 39,
+        "link": "forLoop6"
+      }
+    ]
+  },
+  {
+    "table": "forLoop7",
+    "entries": [
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "int",
+        "line": 48,
+        "link": "nil"
       }
     ]
   },
@@ -140,7 +314,28 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 18
+        "line": 45
+      },
+      {
+        "name": "forLoop7",
+        "kind": "loop",
+        "type": "nil",
+        "line": 48,
+        "link": "forLoop7"
+      },
+      {
+        "name": "ifThen1",
+        "kind": "ifStat",
+        "type": "nil",
+        "line": "",
+        "link": "ifThen1"
+      },
+      {
+        "name": "ifElse1",
+        "kind": "ifStat",
+        "type": "nil",
+        "line": "",
+        "link": "ifElse1"
       }
     ]
   }

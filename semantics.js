@@ -12,6 +12,8 @@ function semantics(ast){
     'funcDef': createFuncDefTable,
     'classDecl': createClassDeclTable,
     'statBlock': createStatBlockTable,
+    'forStat': createForStatTable,
+    'ifStat': createIfStatTable,
   };
   const ENTRY_CREATOR_MAP = {
     'classList': createClassListEntries,
@@ -22,11 +24,16 @@ function semantics(ast){
     'funcDecl': createFuncDeclEntries,
     'fparam': createFParamEntries,
     'statBlock': createStatBlockEntry,
+    'forStat': createForStatEntries,
+    'ifStat': createIfStatEntries,
   };
   const tables = [];
   const errors = [];
   const warnings = [];
   const rootNode = [...ast][0];
+  let loopCounter = 1;
+  let ifThen = 1;
+  let ifElse = 1;
   //graphAST(rootNode);
   buildTables(rootNode);
   printAllTables(tables);
@@ -380,7 +387,13 @@ function semantics(ast){
         return;
       }
       const entry = ENTRY_CREATOR_MAP[child.node](child);
-      if (!bucket.includes(entry.name)) {
+      // if statements
+      if (entry.length > 0) {
+        entry.forEach((entries) => {
+          symtab.entries.push(entries);
+        })
+      }
+      else if (!bucket.includes(entry.name)) {
         bucket.push(entry.name);
         symtab.entries.push(entry);
       }
@@ -389,6 +402,67 @@ function semantics(ast){
       }
     });
     return symtab;
+  }
+
+  function createForStatEntries(node) {
+    const entry = {
+      name: `forLoop${loopCounter}`,
+      kind: 'loop',
+      type: 'nil',
+      line: node.children[0].leaf.line,
+      link: `forLoop${loopCounter}`,
+    };
+    buildTables(node);
+    tables.push(node.symtab);
+    return entry;
+  }
+
+  function createForStatTable(node) {
+    const symtab = {
+      table: `forLoop${loopCounter++}`,
+      entries: [],
+    };
+    const firstEntry = {
+      name: node.children[1].leaf.value,
+      kind: 'variable',
+      type: node.children[0].leaf.value,
+      line: node.children[0].leaf.line,
+      link: 'nil',
+    };
+    symtab.entries.push(firstEntry);
+    if (node.children[5].children) {
+      node.children[5].children.forEach((child) => {
+        if (ENTRY_CREATOR_MAP[child.node]) {
+          symtab.entries.push(ENTRY_CREATOR_MAP[child.node](child));
+        }
+      })
+    }
+    return symtab;
+  }
+
+  function createIfStatEntries(node) {
+    const entry_then = {
+      name: `ifThen${ifThen}`,
+      kind: 'ifStat',
+      type: 'nil',
+      line: '',
+      link: `ifThen${ifThen}`,
+    };
+    const entry_else = {
+      name: `ifElse${ifElse}`,
+      kind: 'ifStat',
+      type: 'nil',
+      line: '',
+      link: `ifElse${ifElse}`,
+    };
+    const entries = [];
+    entries.push(entry_then);
+    entries.push(entry_else);
+    return entries;
+  }
+
+  function createIfStatTable(node) {
+    // TODO
   }
 
   function doesTableExist(name) {
@@ -478,6 +552,10 @@ function semantics(ast){
     if (node.leaf) {
       fs.appendFileSync("astGraph.txt", `\t${node.leaf.position * -1} [label="${node.leaf.value}", style="filled,dotted", fillcolor=lightblue];\n`);
       fs.appendFileSync("astGraph.txt", `\t${node.number} -- ${node.leaf.position * -1} [style=dashed, color=black];\n`);
+    }
+    if (node.hasToken) {
+      fs.appendFileSync("astGraph.txt", `\t${node.hasToken.position * -1} [label="${node.hasToken.value}", style="filled,dotted", fillcolor="#b6fcb6"];\n`);
+      fs.appendFileSync("astGraph.txt", `\t${node.number} -- ${node.hasToken.position * -1} [style=dashed, color=black];\n`);
     }
     if (node.node === 'prog') {
       fs.appendFileSync("astGraph.txt", "}");

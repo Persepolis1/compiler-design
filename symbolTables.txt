@@ -1,12 +1,13 @@
 ---SYMBOL TABLES--- 
 
 Table: Global
-Name              Kind      Type  Line  Link            
-----------------  --------  ----  ----  ----------------
-InheritedUtility  class     nil   1     InheritedUtility
-Utility           class     nil   5     Utility         
-                                                        
-program           function  nil         program         
+Name              Kind      Type            Line  Link            
+----------------  --------  --------------  ----  ----------------
+InheritedUtility  class     nil             1     InheritedUtility
+Utility           class     nil             5     Utility         
+findMin           function  int : int       31    findMin         
+findMax           function  int : int, int  37    findMax         
+program           function  nil                   program         
 
 
 Table: InheritedUtility
@@ -26,25 +27,90 @@ z                 variable  float           8     nil
 findMax           function  int : int, int  9     findMax (Utility)
 
 
+Table: forLoop2
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+j     variable  int   14    nil 
+
+
+Table: forLoop1
+Name      Kind      Type  Line  Link    
+--------  --------  ----  ----  --------
+z         variable  int   13    nil     
+forLoop2  loop      nil   14    forLoop2
+
+
+Table: forLoop3
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+z     variable  int   19    nil 
+
+
 Table: findMax (InheritedUtility)
-Name  Kind       Type  Line  Link
-----  ---------  ----  ----  ----
-a     parameter  int         nil 
-b     parameter  int         nil 
-x     variable   int   12    nil 
+Name      Kind       Type  Line  Link    
+--------  ---------  ----  ----  --------
+a         parameter  int         nil     
+b         parameter  int         nil     
+x         variable   int   12    nil     
+forLoop1  loop       nil   13    forLoop1
+forLoop3  loop       nil   19    forLoop3
+
+
+Table: forLoop4
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+z     variable  int   26    nil 
 
 
 Table: findMax (Utility)
-Name  Kind       Type  Line  Link
-----  ---------  ----  ----  ----
-a     parameter  int         nil 
-b     parameter  int         nil 
-y     variable   int   15    nil 
+Name      Kind       Type  Line  Link    
+--------  ---------  ----  ----  --------
+a         parameter  int         nil     
+b         parameter  int         nil     
+y         variable   int   25    nil     
+forLoop4  loop       nil   26    forLoop4
+
+
+Table: forLoop5
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+z     variable  int   32    nil 
+
+
+Table: findMin
+Name      Kind       Type  Line  Link    
+--------  ---------  ----  ----  --------
+a         parameter  int         nil     
+forLoop5  loop       nil   32    forLoop5
+
+
+Table: forLoop6
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+z     variable  int   39    nil 
+
+
+Table: findMax
+Name      Kind       Type  Line  Link    
+--------  ---------  ----  ----  --------
+a         parameter  int         nil     
+b         parameter  int         nil     
+z         variable   int   38    nil     
+forLoop6  loop       nil   39    forLoop6
+
+
+Table: forLoop7
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+z     variable  int   48    nil 
 
 
 Table: program
-Name  Kind      Type  Line  Link
-----  --------  ----  ----  ----
-x     variable  int   18    nil 
+Name      Kind      Type  Line  Link    
+--------  --------  ----  ----  --------
+x         variable  int   45    nil     
+forLoop7  loop      nil   48    forLoop7
+ifThen1   ifStat    nil         ifThen1 
+ifElse1   ifStat    nil         ifElse1 
 
 
