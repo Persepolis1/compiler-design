@@ -21,7 +21,7 @@ entry % Program start
 		 addi	 r1, r0, topaddr  % Set frame pointer
 		 addi	 r2, r0, topaddr  % Set stack pointer
 		 addi	 r14, r0, topaddr  % Set func stack pointer
-		 jl	 r15, giveNumber 
+		 jl	 r15, giveNumber
 		 sw	 -12(r2), r13
 		 addi	 r3, r0, 2
 		 sw	 -16(r2),  r3

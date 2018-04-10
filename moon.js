@@ -22,6 +22,11 @@ function moon(tables, ast) {
     'multOp': generateMultOpCode,
     'var': generateVarCode,
     'dataMember': generateDataMemberCode,
+    'funcDefList': generateFuncDefListCode,
+    'funcDef': generateFuncDefCode,
+    'statBlock': generateStatBlockCode,
+    'returnStat': generateReturnStatCode,
+    'fCall': generateFcallCode,
   };
   setOffsets(ast);
   generateCode(ast);
@@ -35,6 +40,7 @@ function moon(tables, ast) {
 
   function generateProgCode(node) {
     if (node.children) {
+      generateCode(node.children[1]);
       node.children[2].node = 'programStatBlock';
       generateCode(node.children[2]);
     }
@@ -191,6 +197,51 @@ function moon(tables, ast) {
       })
     }
     node.offSet = getOffSet(node.children[0].leaf.value);
+  }
+
+  function generateFuncDefListCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+  }
+
+  function generateFuncDefCode(node) {
+    tableStack.push(node.symtab);
+    moonCode.push(`${node.children[2].leaf.value}\t\t addi\t r2, r0, topaddr`);
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+    moonCode.push('\t\t jr r15');
+    tableStack.pop();
+  }
+
+  function generateStatBlockCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+  }
+
+  function generateReturnStatCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+    const childOffset = node.children[0].offSet;
+    moonCode.push(`\t\t lw\t r13, ${childOffset}(r2)`);
+  }
+
+  function generateFcallCode(node) {
+    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
+    tableStack[tableStack.length - 1].size += 4;
+    moonCode.push(`\t\t jl\t r15, ${node.children[0].leaf.value} `);
+    moonCode.push(`\t\t sw\t ${node.offSet}(r2), r13`);
   }
 
   function setOffsets(node) {

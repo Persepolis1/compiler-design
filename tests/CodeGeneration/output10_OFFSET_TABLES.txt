@@ -1,31 +1,31 @@
----SYMBOL TABLES with offsets--- 
+---SYMBOL TABLES with offsets---
 
 Table: Global
 Scope Size: 0
-Name        Kind      Type    Line  Size  Offset  Link      
+Name        Kind      Type    Line  Size  Offset  Link
 ----------  --------  ------  ----  ----  ------  ----------
 giveNumber  function  int :   1                   giveNumber
-program     function  nil                         program   
+program     function  nil                         program
 
 
 Table: program
 Scope Size: 20
 Name  Kind      Type  Line  Size  Offset  Link
 ----  --------  ----  ----  ----  ------  ----
-x     variable  int   7     4     -4      nil 
-y     variable  int   8     4     -8      nil 
+x     variable  int   7     4     -4      nil
+y     variable  int   8     4     -8      nil
 
 
 Table: giveNumber
 Scope Size: 24
 Name  Kind      Type  Line  Size  Offset  Link
 ----  --------  ----  ----  ----  ------  ----
-x     variable  int   2     4     -4      nil 
+x     variable  int   2     4     -4      nil
 
 
 Table: funcDefList
 Scope Size: 0
-Name        Kind      Type    Line  Size  Offset  Link      
+Name        Kind      Type    Line  Size  Offset  Link
 ----------  --------  ------  ----  ----  ------  ----------
 giveNumber  function  int :   1                   giveNumber
 
