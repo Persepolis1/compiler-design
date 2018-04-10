@@ -1,0 +1,50 @@
+---SYMBOL TABLES with offsets---
+
+Table: Global
+Scope Size: 0
+Name        Kind      Type                                                                                                 Line  Size  Offset  Link
+----------  --------  ---------------------------------------------------------------------------------------------------  ----  ----  ------  ----------
+giveNumber  function  int : int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int  1                   giveNumber
+program     function  nil                                                                                                                      program
+
+
+Table: program
+Scope Size: 92
+Name  Kind      Type  Line  Size  Offset  Link
+----  --------  ----  ----  ----  ------  ----
+x     variable  int   7     4     -4      nil
+
+
+Table: giveNumber
+Scope Size: 152
+Name  Kind       Type  Line  Size  Offset  Link
+----  ---------  ----  ----  ----  ------  ----
+a     parameter  int         4     -4      nil
+b     parameter  int         4     -8      nil
+c     parameter  int         4     -12     nil
+d     parameter  int         4     -16     nil
+e     parameter  int         4     -20     nil
+f     parameter  int         4     -24     nil
+g     parameter  int         4     -28     nil
+h     parameter  int         4     -32     nil
+i     parameter  int         4     -36     nil
+j     parameter  int         4     -40     nil
+k     parameter  int         4     -44     nil
+l     parameter  int         4     -48     nil
+m     parameter  int         4     -52     nil
+n     parameter  int         4     -56     nil
+o     parameter  int         4     -60     nil
+p     parameter  int         4     -64     nil
+q     parameter  int         4     -68     nil
+r     parameter  int         4     -72     nil
+s     parameter  int         4     -76     nil
+x     variable   int   2     4     -80     nil
+
+
+Table: funcDefList
+Scope Size: 0
+Name        Kind      Type                                                                                                 Line  Size  Offset  Link
+----------  --------  ---------------------------------------------------------------------------------------------------  ----  ----  ------  ----------
+giveNumber  function  int : int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int, int  1                   giveNumber
+
+

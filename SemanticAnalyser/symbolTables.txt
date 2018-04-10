@@ -1,22 +1,16 @@
 ---SYMBOL TABLES--- 
 
 Table: Global
-Name        Kind      Type    Line  Link      
-----------  --------  ------  ----  ----------
-giveNumber  function  int :   1     giveNumber
-program     function  nil           program   
-
-
-Table: giveNumber
-Name  Kind      Type  Line  Link
-----  --------  ----  ----  ----
-x     variable  int   2     nil 
+Name     Kind      Type  Line  Link   
+-------  --------  ----  ----  -------
+program  function  nil         program
 
 
 Table: program
-Name  Kind      Type  Line  Link
-----  --------  ----  ----  ----
-x     variable  int   7     nil 
-y     variable  int   8     nil 
+Name     Kind      Type  Line  Link   
+-------  --------  ----  ----  -------
+x        variable  int   2     nil    
+ifThen1  ifStat    nil         ifThen1
+ifElse1  ifStat    nil         ifElse1
 
 

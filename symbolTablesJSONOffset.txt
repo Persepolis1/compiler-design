@@ -3,13 +3,6 @@
     "table": "Global",
     "entries": [
       {
-        "name": "giveNumber",
-        "kind": "function",
-        "type": "int : ",
-        "link": "giveNumber",
-        "line": 1
-      },
-      {
         "name": "program",
         "kind": "function",
         "type": "nil",
@@ -26,48 +19,25 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 7,
+        "line": 2,
         "size": 4,
         "offSet": -4
       },
       {
-        "name": "y",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 8,
-        "size": 4,
-        "offSet": -8
-      }
-    ],
-    "size": 20
-  },
-  {
-    "table": "giveNumber",
-    "entries": [
+        "name": "ifThen1",
+        "kind": "ifStat",
+        "type": "nil",
+        "line": "",
+        "link": "ifThen1"
+      },
       {
-        "name": "x",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 2,
-        "size": 4,
-        "offSet": -4
+        "name": "ifElse1",
+        "kind": "ifStat",
+        "type": "nil",
+        "line": "",
+        "link": "ifElse1"
       }
     ],
-    "size": 24
-  },
-  {
-    "table": "funcDefList",
-    "entries": [
-      {
-        "name": "giveNumber",
-        "kind": "function",
-        "type": "int : ",
-        "link": "giveNumber",
-        "line": 1
-      }
-    ],
-    "size": 0
+    "size": 8
   }
 ]

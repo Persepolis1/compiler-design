@@ -27,6 +27,9 @@ function moon(tables, ast) {
     'statBlock': generateStatBlockCode,
     'returnStat': generateReturnStatCode,
     'fCall': generateFcallCode,
+    'fparamList': generateFparamListCode,
+    'fparam': generateFparamCode,
+    'aParams': generateAparamsCode,
   };
   setOffsets(ast);
   generateCode(ast);
@@ -238,22 +241,60 @@ function moon(tables, ast) {
   }
 
   function generateFcallCode(node) {
+    if (node.children[1].children) {
+      generateCode(node.children[1]);
+    }
     node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
     tableStack[tableStack.length - 1].size += 4;
     moonCode.push(`\t\t jl\t r15, ${node.children[0].leaf.value} `);
     moonCode.push(`\t\t sw\t ${node.offSet}(r2), r13`);
   }
 
+  function generateFparamListCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+  }
+
+  function generateFparamCode(node) {
+    const localregister1 = registerPool.pop();
+    moonCode.push(`\t\t lw\t ${localregister1}, ${getOffSet(node.children[1].leaf.value)}(r14)`);
+    moonCode.push(`\t\t sw\t  ${getOffSet(node.children[1].leaf.value)}(r2), ${localregister1} `);
+    registerPool.push(localregister1);
+  }
+
+  function generateAparamsCode(node) {
+    let paramOffSet = -4;
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+        const localregister1 = registerPool.pop();
+        moonCode.push(`\t\t lw\t ${localregister1}, ${child.offSet}(r2)`);
+        moonCode.push(`\t\t sw\t ${paramOffSet}(r14), ${localregister1}`);
+        paramOffSet -= 4;
+        registerPool.push(localregister1);
+      });
+    }
+  }
+
   function setOffsets(node) {
     if (node.symtab) {
       node.symtab.size = 0;
+      //let paramsSize = 0;
       if (node.symtab.entries) {
         node.symtab.entries.forEach((entry) => {
-          if (entry.type === 'int' || entry.type === 'float') {
+          if ((entry.type === 'int' || entry.type === 'float')) {
             entry.size = 4;
             entry.offSet = (entry.size + node.symtab.size) * -1;
             node.symtab.size += entry.size;
           }
+          // if (entry.kind === 'parameter') {
+          //   entry.size = 4;
+          //   entry.offSet = (entry.size + paramsSize) * -1;
+          //   paramsSize += entry.size;
+          // }
         })
       }
       offSetTables.unshift(node.symtab);

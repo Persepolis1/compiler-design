@@ -3,29 +3,10 @@
     "table": "Global",
     "entries": [
       {
-        "name": "giveNumber",
-        "kind": "function",
-        "type": "int : ",
-        "link": "giveNumber",
-        "line": 1
-      },
-      {
         "name": "program",
         "kind": "function",
         "type": "nil",
         "link": "program"
-      }
-    ]
-  },
-  {
-    "table": "giveNumber",
-    "entries": [
-      {
-        "name": "x",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 2
       }
     ]
   },
@@ -37,14 +18,21 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 7
+        "line": 2
       },
       {
-        "name": "y",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 8
+        "name": "ifThen1",
+        "kind": "ifStat",
+        "type": "nil",
+        "line": "",
+        "link": "ifThen1"
+      },
+      {
+        "name": "ifElse1",
+        "kind": "ifStat",
+        "type": "nil",
+        "line": "",
+        "link": "ifElse1"
       }
     ]
   }

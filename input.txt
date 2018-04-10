@@ -1,11 +1,9 @@
-int giveNumber(){
-    int x;
-    x = 4 + 3 * 2;
-    return (x);
-};
 program {
     int x;
-    int y;
-    x = giveNumber() * 2;
+    x = 1;
+    if (x == 1) then
+        x = 2;
+    else
+        x = 3;;
     put(x);
 };
