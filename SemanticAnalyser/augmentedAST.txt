@@ -79,8 +79,8 @@
               "number": 14,
               "leaf": {
                 "Token": "intNum",
-                "position": 29,
-                "value": "1",
+                "position": 30,
+                "value": "15",
                 "line": 3
               }
             }
@@ -131,8 +131,8 @@
                   "number": 21,
                   "leaf": {
                     "Token": "intNum",
-                    "position": 45,
-                    "value": "1",
+                    "position": 46,
+                    "value": "20",
                     "line": 4
                   }
                 }
@@ -159,7 +159,7 @@
                               "number": 25,
                               "leaf": {
                                 "Token": "id",
-                                "position": 61,
+                                "position": 62,
                                 "value": "x",
                                 "line": 5
                               }
@@ -177,7 +177,7 @@
                       "number": 28,
                       "leaf": {
                         "Token": "intNum",
-                        "position": 65,
+                        "position": 66,
                         "value": "2",
                         "line": 5
                       }
@@ -207,7 +207,7 @@
                               "number": 32,
                               "leaf": {
                                 "Token": "id",
-                                "position": 85,
+                                "position": 86,
                                 "value": "x",
                                 "line": 7
                               }
@@ -225,7 +225,7 @@
                       "number": 35,
                       "leaf": {
                         "Token": "intNum",
-                        "position": 89,
+                        "position": 90,
                         "value": "3",
                         "line": 7
                       }
@@ -253,7 +253,7 @@
                       "number": 39,
                       "leaf": {
                         "Token": "id",
-                        "position": 101,
+                        "position": 102,
                         "value": "x",
                         "line": 8
                       }

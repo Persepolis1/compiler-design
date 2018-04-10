@@ -8,7 +8,7 @@ program  function  nil                       program
 
 
 Table: program
-Scope Size: 8
+Scope Size: 24
 Name     Kind      Type  Line  Size  Offset  Link   
 -------  --------  ----  ----  ----  ------  -------
 x        variable  int   2     4     -4      nil    

@@ -34,7 +34,7 @@ function semantics(ast){
   let loopCounter = 1;
   let ifThen = 1;
   let ifElse = 1;
-  //graphAST(rootNode);
+  graphAST(rootNode);
   buildTables(rootNode);
   printAllTables(tables);
   printErrorsOrWarnings(errors, 'Errors');
