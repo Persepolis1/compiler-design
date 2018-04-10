@@ -45,30 +45,308 @@
           ]
         },
         {
-          "node": "assignStat",
+          "node": "varDecl",
+          "number": 9,
+          "children": [
+            {
+              "node": "type",
+              "number": 10,
+              "leaf": {
+                "Token": "int",
+                "position": 27,
+                "value": "int",
+                "line": 3
+              }
+            },
+            {
+              "node": "id",
+              "number": 11,
+              "leaf": {
+                "Token": "id",
+                "position": 29,
+                "value": "y",
+                "line": 3
+              }
+            },
+            {
+              "node": "dimList",
+              "number": 12
+            }
+          ]
+        },
+        {
+          "node": "varDecl",
           "number": 13,
           "children": [
             {
+              "node": "type",
+              "number": 14,
+              "leaf": {
+                "Token": "int",
+                "position": 38,
+                "value": "int",
+                "line": 4
+              }
+            },
+            {
+              "node": "id",
+              "number": 15,
+              "leaf": {
+                "Token": "id",
+                "position": 40,
+                "value": "z",
+                "line": 4
+              }
+            },
+            {
+              "node": "dimList",
+              "number": 16
+            }
+          ]
+        },
+        {
+          "node": "assignStat",
+          "number": 21,
+          "children": [
+            {
               "node": "var",
-              "number": 9,
+              "number": 17,
               "children": [
                 {
                   "node": "dataMember",
-                  "number": 10,
+                  "number": 18,
                   "children": [
                     {
                       "node": "id",
-                      "number": 11,
+                      "number": 19,
                       "leaf": {
                         "Token": "id",
-                        "position": 25,
+                        "position": 47,
                         "value": "x",
-                        "line": 3
+                        "line": 5
                       }
                     },
                     {
                       "node": "indexList",
-                      "number": 12
+                      "number": 20
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "multOp",
+              "number": 37,
+              "hasToken": {
+                "Token": "*",
+                "position": 89,
+                "value": "*",
+                "line": 5
+              },
+              "children": [
+                {
+                  "node": "addOp",
+                  "number": 23,
+                  "hasToken": {
+                    "Token": "+",
+                    "position": 54,
+                    "value": "+",
+                    "line": 5
+                  },
+                  "children": [
+                    {
+                      "node": "num",
+                      "number": 22,
+                      "leaf": {
+                        "Token": "intNum",
+                        "position": 52,
+                        "value": "1",
+                        "line": 5
+                      }
+                    },
+                    {
+                      "node": "multOp",
+                      "number": 35,
+                      "hasToken": {
+                        "Token": "*",
+                        "position": 82,
+                        "value": "*",
+                        "line": 5
+                      },
+                      "children": [
+                        {
+                          "node": "addOp",
+                          "number": 31,
+                          "hasToken": {
+                            "Token": "-",
+                            "position": 72,
+                            "value": "-",
+                            "line": 5
+                          },
+                          "children": [
+                            {
+                              "node": "addOp",
+                              "number": 27,
+                              "hasToken": {
+                                "Token": "+",
+                                "position": 64,
+                                "value": "+",
+                                "line": 5
+                              },
+                              "children": [
+                                {
+                                  "node": "multOp",
+                                  "number": 25,
+                                  "hasToken": {
+                                    "Token": "*",
+                                    "position": 60,
+                                    "value": "*",
+                                    "line": 5
+                                  },
+                                  "children": [
+                                    {
+                                      "node": "num",
+                                      "number": 24,
+                                      "leaf": {
+                                        "Token": "intNum",
+                                        "position": 58,
+                                        "value": "5",
+                                        "line": 5
+                                      }
+                                    },
+                                    {
+                                      "node": "num",
+                                      "number": 26,
+                                      "leaf": {
+                                        "Token": "intNum",
+                                        "position": 62,
+                                        "value": "2",
+                                        "line": 5
+                                      }
+                                    }
+                                  ]
+                                },
+                                {
+                                  "node": "multOp",
+                                  "number": 29,
+                                  "hasToken": {
+                                    "Token": "*",
+                                    "position": 68,
+                                    "value": "*",
+                                    "line": 5
+                                  },
+                                  "children": [
+                                    {
+                                      "node": "num",
+                                      "number": 28,
+                                      "leaf": {
+                                        "Token": "intNum",
+                                        "position": 66,
+                                        "value": "3",
+                                        "line": 5
+                                      }
+                                    },
+                                    {
+                                      "node": "num",
+                                      "number": 30,
+                                      "leaf": {
+                                        "Token": "intNum",
+                                        "position": 70,
+                                        "value": "6",
+                                        "line": 5
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "node": "multOp",
+                              "number": 33,
+                              "hasToken": {
+                                "Token": "/",
+                                "position": 77,
+                                "value": "/",
+                                "line": 5
+                              },
+                              "children": [
+                                {
+                                  "node": "num",
+                                  "number": 32,
+                                  "leaf": {
+                                    "Token": "intNum",
+                                    "position": 75,
+                                    "value": "10",
+                                    "line": 5
+                                  }
+                                },
+                                {
+                                  "node": "num",
+                                  "number": 34,
+                                  "leaf": {
+                                    "Token": "intNum",
+                                    "position": 79,
+                                    "value": "5",
+                                    "line": 5
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "node": "num",
+                          "number": 36,
+                          "leaf": {
+                            "Token": "intNum",
+                            "position": 85,
+                            "value": "10",
+                            "line": 5
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "node": "num",
+                  "number": 38,
+                  "leaf": {
+                    "Token": "intNum",
+                    "position": 92,
+                    "value": "10",
+                    "line": 5
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "node": "assignStat",
+          "number": 43,
+          "children": [
+            {
+              "node": "var",
+              "number": 39,
+              "children": [
+                {
+                  "node": "dataMember",
+                  "number": 40,
+                  "children": [
+                    {
+                      "node": "id",
+                      "number": 41,
+                      "leaf": {
+                        "Token": "id",
+                        "position": 99,
+                        "value": "y",
+                        "line": 6
+                      }
+                    },
+                    {
+                      "node": "indexList",
+                      "number": 42
                     }
                   ]
                 }
@@ -76,76 +354,402 @@
             },
             {
               "node": "addOp",
-              "number": 19,
+              "number": 66,
               "hasToken": {
                 "Token": "+",
-                "position": 43,
+                "position": 146,
                 "value": "+",
-                "line": 3
+                "line": 6
               },
               "children": [
                 {
                   "node": "addOp",
-                  "number": 17,
+                  "number": 64,
                   "hasToken": {
                     "Token": "-",
-                    "position": 38,
+                    "position": 142,
                     "value": "-",
-                    "line": 3
+                    "line": 6
                   },
                   "children": [
                     {
                       "node": "addOp",
-                      "number": 15,
+                      "number": 62,
                       "hasToken": {
                         "Token": "+",
-                        "position": 33,
+                        "position": 138,
                         "value": "+",
-                        "line": 3
+                        "line": 6
                       },
                       "children": [
                         {
-                          "node": "num",
-                          "number": 14,
-                          "leaf": {
-                            "Token": "intNum",
-                            "position": 31,
-                            "value": "100",
-                            "line": 3
-                          }
+                          "node": "addOp",
+                          "number": 60,
+                          "hasToken": {
+                            "Token": "+",
+                            "position": 134,
+                            "value": "+",
+                            "line": 6
+                          },
+                          "children": [
+                            {
+                              "node": "addOp",
+                              "number": 56,
+                              "hasToken": {
+                                "Token": "+",
+                                "position": 126,
+                                "value": "+",
+                                "line": 6
+                              },
+                              "children": [
+                                {
+                                  "node": "addOp",
+                                  "number": 50,
+                                  "hasToken": {
+                                    "Token": "-",
+                                    "position": 110,
+                                    "value": "-",
+                                    "line": 6
+                                  },
+                                  "children": [
+                                    {
+                                      "node": "addOp",
+                                      "number": 45,
+                                      "hasToken": {
+                                        "Token": "+",
+                                        "position": 106,
+                                        "value": "+",
+                                        "line": 6
+                                      },
+                                      "children": [
+                                        {
+                                          "node": "num",
+                                          "number": 44,
+                                          "leaf": {
+                                            "Token": "intNum",
+                                            "position": 104,
+                                            "value": "50",
+                                            "line": 6
+                                          }
+                                        },
+                                        {
+                                          "node": "var",
+                                          "number": 46,
+                                          "children": [
+                                            {
+                                              "node": "dataMember",
+                                              "number": 47,
+                                              "children": [
+                                                {
+                                                  "node": "id",
+                                                  "number": 48,
+                                                  "leaf": {
+                                                    "Token": "id",
+                                                    "position": 108,
+                                                    "value": "x",
+                                                    "line": 6
+                                                  }
+                                                },
+                                                {
+                                                  "node": "indexList",
+                                                  "number": 49
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "node": "multOp",
+                                      "number": 52,
+                                      "hasToken": {
+                                        "Token": "*",
+                                        "position": 114,
+                                        "value": "*",
+                                        "line": 6
+                                      },
+                                      "children": [
+                                        {
+                                          "node": "num",
+                                          "number": 51,
+                                          "leaf": {
+                                            "Token": "intNum",
+                                            "position": 112,
+                                            "value": "2",
+                                            "line": 6
+                                          }
+                                        },
+                                        {
+                                          "node": "multOp",
+                                          "number": 54,
+                                          "hasToken": {
+                                            "Token": "/",
+                                            "position": 121,
+                                            "value": "/",
+                                            "line": 6
+                                          },
+                                          "children": [
+                                            {
+                                              "node": "num",
+                                              "number": 53,
+                                              "leaf": {
+                                                "Token": "intNum",
+                                                "position": 119,
+                                                "value": "100",
+                                                "line": 6
+                                              }
+                                            },
+                                            {
+                                              "node": "num",
+                                              "number": 55,
+                                              "leaf": {
+                                                "Token": "intNum",
+                                                "position": 123,
+                                                "value": "2",
+                                                "line": 6
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "node": "multOp",
+                                  "number": 58,
+                                  "hasToken": {
+                                    "Token": "*",
+                                    "position": 130,
+                                    "value": "*",
+                                    "line": 6
+                                  },
+                                  "children": [
+                                    {
+                                      "node": "num",
+                                      "number": 57,
+                                      "leaf": {
+                                        "Token": "intNum",
+                                        "position": 128,
+                                        "value": "7",
+                                        "line": 6
+                                      }
+                                    },
+                                    {
+                                      "node": "num",
+                                      "number": 59,
+                                      "leaf": {
+                                        "Token": "intNum",
+                                        "position": 132,
+                                        "value": "5",
+                                        "line": 6
+                                      }
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "node": "num",
+                              "number": 61,
+                              "leaf": {
+                                "Token": "intNum",
+                                "position": 136,
+                                "value": "3",
+                                "line": 6
+                              }
+                            }
+                          ]
                         },
                         {
                           "node": "num",
-                          "number": 16,
+                          "number": 63,
                           "leaf": {
                             "Token": "intNum",
-                            "position": 36,
-                            "value": "25",
-                            "line": 3
+                            "position": 140,
+                            "value": "5",
+                            "line": 6
                           }
                         }
                       ]
                     },
                     {
                       "node": "num",
-                      "number": 18,
+                      "number": 65,
                       "leaf": {
                         "Token": "intNum",
-                        "position": 41,
-                        "value": "60",
-                        "line": 3
+                        "position": 144,
+                        "value": "1",
+                        "line": 6
                       }
                     }
                   ]
                 },
                 {
+                  "node": "var",
+                  "number": 67,
+                  "children": [
+                    {
+                      "node": "dataMember",
+                      "number": 68,
+                      "children": [
+                        {
+                          "node": "id",
+                          "number": 69,
+                          "leaf": {
+                            "Token": "id",
+                            "position": 148,
+                            "value": "x",
+                            "line": 6
+                          }
+                        },
+                        {
+                          "node": "indexList",
+                          "number": 70
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "node": "assignStat",
+          "number": 75,
+          "children": [
+            {
+              "node": "var",
+              "number": 71,
+              "children": [
+                {
+                  "node": "dataMember",
+                  "number": 72,
+                  "children": [
+                    {
+                      "node": "id",
+                      "number": 73,
+                      "leaf": {
+                        "Token": "id",
+                        "position": 155,
+                        "value": "z",
+                        "line": 7
+                      }
+                    },
+                    {
+                      "node": "indexList",
+                      "number": 74
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "node": "addOp",
+              "number": 87,
+              "hasToken": {
+                "Token": "-",
+                "position": 172,
+                "value": "-",
+                "line": 7
+              },
+              "children": [
+                {
+                  "node": "multOp",
+                  "number": 82,
+                  "hasToken": {
+                    "Token": "*",
+                    "position": 168,
+                    "value": "*",
+                    "line": 7
+                  },
+                  "children": [
+                    {
+                      "node": "multOp",
+                      "number": 77,
+                      "hasToken": {
+                        "Token": "*",
+                        "position": 163,
+                        "value": "*",
+                        "line": 7
+                      },
+                      "children": [
+                        {
+                          "node": "num",
+                          "number": 76,
+                          "leaf": {
+                            "Token": "intNum",
+                            "position": 161,
+                            "value": "10",
+                            "line": 7
+                          }
+                        },
+                        {
+                          "node": "var",
+                          "number": 78,
+                          "children": [
+                            {
+                              "node": "dataMember",
+                              "number": 79,
+                              "children": [
+                                {
+                                  "node": "id",
+                                  "number": 80,
+                                  "leaf": {
+                                    "Token": "id",
+                                    "position": 165,
+                                    "value": "y",
+                                    "line": 7
+                                  }
+                                },
+                                {
+                                  "node": "indexList",
+                                  "number": 81
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "node": "var",
+                      "number": 83,
+                      "children": [
+                        {
+                          "node": "dataMember",
+                          "number": 84,
+                          "children": [
+                            {
+                              "node": "id",
+                              "number": 85,
+                              "leaf": {
+                                "Token": "id",
+                                "position": 170,
+                                "value": "x",
+                                "line": 7
+                              }
+                            },
+                            {
+                              "node": "indexList",
+                              "number": 86
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
                   "node": "num",
-                  "number": 20,
+                  "number": 88,
                   "leaf": {
                     "Token": "intNum",
-                    "position": 46,
-                    "value": "15",
-                    "line": 3
+                    "position": 175,
+                    "value": "50",
+                    "line": 7
                   }
                 }
               ]
@@ -154,29 +758,29 @@
         },
         {
           "node": "putStat",
-          "number": 21,
+          "number": 89,
           "children": [
             {
               "node": "var",
-              "number": 22,
+              "number": 90,
               "children": [
                 {
                   "node": "dataMember",
-                  "number": 23,
+                  "number": 91,
                   "children": [
                     {
                       "node": "id",
-                      "number": 24,
+                      "number": 92,
                       "leaf": {
                         "Token": "id",
-                        "position": 57,
-                        "value": "x",
-                        "line": 4
+                        "position": 186,
+                        "value": "z",
+                        "line": 8
                       }
                     },
                     {
                       "node": "indexList",
-                      "number": 25
+                      "number": 93
                     }
                   ]
                 }
@@ -194,6 +798,20 @@
             "type": "int",
             "link": "nil",
             "line": 2
+          },
+          {
+            "name": "y",
+            "kind": "variable",
+            "type": "int",
+            "link": "nil",
+            "line": 3
+          },
+          {
+            "name": "z",
+            "kind": "variable",
+            "type": "int",
+            "link": "nil",
+            "line": 4
           }
         ]
       }

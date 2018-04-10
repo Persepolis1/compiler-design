@@ -19,6 +19,9 @@ function moon(tables, ast) {
     'num': generateNumCode,
     'putStat': generatePutStatCode,
     'addOp': generateAddOpCode,
+    'multOp': generateMultOpCode,
+    'var': generateVarCode,
+    'dataMember': generateDataMemberCode,
   };
   setOffsets(ast);
   generateCode(ast);
@@ -63,7 +66,7 @@ function moon(tables, ast) {
     // allocate local registers
     const localregister1 = registerPool.pop();
     moonCode.push(`\t\t lw\t ${localregister1}, ${node.children[1].offSet}(r2)`);
-    const LHSOffset = getOffSet(node.children[0].children[0].children[0].leaf.value);
+    const LHSOffset = node.children[0].offSet;
     moonCode.push(`\t\t sw\t ${LHSOffset}(r2),  ${localregister1}`);
     //deallocate all registers
     registerPool.push(localregister1);
@@ -82,9 +85,14 @@ function moon(tables, ast) {
   }
 
   function generatePutStatCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
     const localregister1 = registerPool.pop();
     const localregister2 = registerPool.pop();
-    const LHSOffset = getOffSet(node.children[0].children[0].children[0].leaf.value);
+    const LHSOffset = node.children[0].offSet;
     moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}(r2)`);
     moonCode.push(`\t\t sw\t -8(r14), ${localregister1}`);
     moonCode.push(`\t\t addi\t ${localregister2},r0,buf`);
@@ -98,14 +106,14 @@ function moon(tables, ast) {
   }
 
   function generateAddOpCode(node) {
-    const localregister1 = registerPool.pop();
-    const localregister2 = registerPool.pop();
-    const localregister3 = registerPool.pop();
     if (node.children) {
       node.children.forEach((child) => {
         generateCode(child);
       })
     }
+    const localregister1 = registerPool.pop();
+    const localregister2 = registerPool.pop();
+    const localregister3 = registerPool.pop();
     const LHSOffset = node.children[0].offSet;
     const RHSOffset = node.children[1].offSet;
     const operator = node.hasToken.value;
@@ -130,6 +138,59 @@ function moon(tables, ast) {
     registerPool.push(localregister3);
     registerPool.push(localregister2);
     registerPool.push(localregister1);
+  }
+
+  function generateMultOpCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+    const localregister1 = registerPool.pop();
+    const localregister2 = registerPool.pop();
+    const localregister3 = registerPool.pop();
+    const LHSOffset = node.children[0].offSet;
+    const RHSOffset = node.children[1].offSet;
+    const operator = node.hasToken.value;
+    let opCode;
+    switch (operator) {
+      case '*':
+        opCode = 'mul';
+        break;
+      case '/':
+        opCode = 'div';
+        break;
+      case 'and':
+        opCode = 'and';
+        break;
+    }
+    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
+    tableStack[tableStack.length - 1].size += 4;
+    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}(r2)`);
+    moonCode.push(`\t\t lw\t ${localregister2}, ${RHSOffset}(r2)`);
+    moonCode.push(`\t\t ${opCode}\t ${localregister3},${localregister1},${localregister2}`);
+    moonCode.push(`\t\t sw\t ${node.offSet}(r2), ${localregister3}`);
+    registerPool.push(localregister3);
+    registerPool.push(localregister2);
+    registerPool.push(localregister1);
+  }
+
+  function generateVarCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+    node.offSet = node.children[0].offSet;
+  }
+
+  function generateDataMemberCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+    node.offSet = getOffSet(node.children[0].leaf.value);
   }
 
   function setOffsets(node) {

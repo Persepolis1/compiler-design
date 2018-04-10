@@ -19,6 +19,20 @@
         "type": "int",
         "link": "nil",
         "line": 2
+      },
+      {
+        "name": "y",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 3
+      },
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 4
       }
     ]
   }

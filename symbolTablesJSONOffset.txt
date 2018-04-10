@@ -22,8 +22,26 @@
         "line": 2,
         "size": 4,
         "offSet": -4
+      },
+      {
+        "name": "y",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 3,
+        "size": 4,
+        "offSet": -8
+      },
+      {
+        "name": "z",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 4,
+        "size": 4,
+        "offSet": -12
       }
     ],
-    "size": 32
+    "size": 176
   }
 ]

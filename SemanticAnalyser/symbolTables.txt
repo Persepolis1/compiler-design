@@ -10,5 +10,7 @@ Table: program
 Name  Kind      Type  Line  Link
 ----  --------  ----  ----  ----
 x     variable  int   2     nil 
+y     variable  int   3     nil 
+z     variable  int   4     nil 
 
 
