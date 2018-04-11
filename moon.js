@@ -12,6 +12,7 @@ function moon(tables, ast) {
   const moonCode = [];
   const moonData = [];
   const tableStack = [];
+  let ifCounter = 1;
   const codeGenVisitors = {
     'prog': generateProgCode,
     'programStatBlock': generateProgramCode,
@@ -282,12 +283,30 @@ function moon(tables, ast) {
   }
 
   function generateIfStatCode(node) {
-    if (node.children) {
-      node.children.forEach((child) => {
-        generateCode(child);
-      })
+    // generate code for the conditional first
+    if (node.children[0].children) {
+      generateCode(node.children[0]);
     }
+    const localregister1 = registerPool.pop();
+    const elseStatement = `else_${ifCounter}`;
+    const endIf = `endif_${ifCounter++}`;
+    const boolOffset = node.children[0].offSet;
+    // Check the conditional
+    moonCode.push(`\t\t lw\t ${localregister1}, ${boolOffset}(r2)`);
+    moonCode.push(`\t\t bz\t ${localregister1}, ${elseStatement}`);
+    registerPool.push(localregister1);
+    //generate code for the first then branch
+    if (node.children[1].children) {
+      generateCode(node.children[1]);
+    }
+    moonCode.push(`\t\t j\t ${endIf}`);
 
+    //  else branch
+    moonCode.push(`\t\t ${elseStatement} nop`);
+    if (node.children[2].children) {
+      generateCode(node.children[2]);
+    }
+    moonCode.push(`\t\t ${endIf} nop`);
   }
 
   function generateRelOpCode(node) {

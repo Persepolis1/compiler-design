@@ -38,6 +38,6 @@
         "link": "ifElse1"
       }
     ],
-    "size": 24
+    "size": 44
   }
 ]
