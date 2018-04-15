@@ -1,0 +1,25 @@
+---SYMBOL TABLES with offsets---
+
+Table: Global
+Scope Size: 0
+Name       Kind      Type       Line  Size  Offset  Link
+---------  --------  ---------  ----  ----  ------  ---------
+factorial  function  int : int  1                   factorial
+program    function  nil                            program
+
+
+Table: program
+Scope Size: 20
+Name  Kind      Type  Line  Size  Offset  Link
+----  --------  ----  ----  ----  ------  ----
+x     variable  int   11    4     -4      nil
+
+
+Table: factorial
+Scope Size: 36
+Name  Kind       Type  Line  Size  Offset  Link
+----  ---------  ----  ----  ----  ------  ----
+num   parameter  int         4     -8      nil
+
+
+

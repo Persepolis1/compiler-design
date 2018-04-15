@@ -1,7 +1,7 @@
 factorial		 % Function Definition
 		 sw	 -40(r14), r15	 % Save Link
 		 lw	 r3, -8(r14)
-		 sw	  -8(r14), r3 
+		 sw	  -8(r14), r3
 		 addi	 r3, r0, 0
 		 sw	 -12(r14),  r3
 		 lw	 r3, -8(r14)
@@ -26,7 +26,7 @@ factorial		 % Function Definition
 		 lw	 r3, -28(r14)
 		 sw	 -48(r14), r3
 		 subi	 r14, r14, 40	 % Adjust SP
-		 jl	 r15, factorial 
+		 jl	 r15, factorial
 		 addi	 r14, r14, 40	 % Adjust SP
 		 sw	 -32(r14), r13
 		 lw	 r3, -8(r14)
@@ -49,11 +49,11 @@ number		 % Function Definition
 addNumbers		 % Function Definition
 		 sw	 -32(r14), r15	 % Save Link
 		 lw	 r3, -8(r14)
-		 sw	  -8(r14), r3 
+		 sw	  -8(r14), r3
 		 lw	 r3, -12(r14)
-		 sw	  -12(r14), r3 
+		 sw	  -12(r14), r3
 		 lw	 r3, -16(r14)
-		 sw	  -16(r14), r3 
+		 sw	  -16(r14), r3
 		 lw	 r3, -8(r14)
 		 lw	 r4, -12(r14)
 		 add	 r5,r3,r4
@@ -74,7 +74,7 @@ entry % Program start
 		 lw	 r3, -8(r14)
 		 sw	 -56(r14), r3
 		 subi	 r14, r14, 48	 % Adjust SP
-		 jl	 r15, factorial 
+		 jl	 r15, factorial
 		 addi	 r14, r14, 48	 % Adjust SP
 		 sw	 -12(r14), r13
 		 addi	 r3, r0, 300
@@ -84,7 +84,7 @@ entry % Program start
 		 sub	 r5,r3,r4
 		 sw	 -20(r14), r5
 		 subi	 r14, r14, 48	 % Adjust SP
-		 jl	 r15, number 
+		 jl	 r15, number
 		 addi	 r14, r14, 48	 % Adjust SP
 		 sw	 -24(r14), r13
 		 lw	 r3, -20(r14)
@@ -104,7 +104,7 @@ entry % Program start
 		 lw	 r3, -40(r14)
 		 sw	 -64(r14), r3
 		 subi	 r14, r14, 48	 % Adjust SP
-		 jl	 r15, addNumbers 
+		 jl	 r15, addNumbers
 		 addi	 r14, r14, 48	 % Adjust SP
 		 sw	 -44(r14), r13
 		 lw	 r3, -28(r14)

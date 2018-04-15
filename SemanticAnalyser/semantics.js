@@ -95,6 +95,12 @@ function semantics(ast){
       })
     }
     tables.push(symtab);
+    if (node.children[0].symtab) {
+      delete node.children[0].symtab;
+    }
+    if (node.children[1].symtab) {
+      delete node.children[1].symtab;
+    }
     return symtab;
   }
 

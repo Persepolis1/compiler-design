@@ -1,16 +1,39 @@
 ---SYMBOL TABLES--- 
 
 Table: Global
-Name     Kind      Type  Line  Link   
--------  --------  ----  ----  -------
-program  function  nil         program
+Name        Kind      Type                 Line  Link      
+----------  --------  -------------------  ----  ----------
+factorial   function  int : int            1     factorial 
+number      function  int :                10    number    
+addNumbers  function  int : int, int, int  16    addNumbers
+program     function  nil                        program   
+
+
+Table: factorial
+Name  Kind       Type  Line  Link
+----  ---------  ----  ----  ----
+num   parameter  int         nil 
+                                 
+
+
+Table: number
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+x     variable  int   11    nil 
+
+
+Table: addNumbers
+Name  Kind       Type  Line  Link
+----  ---------  ----  ----  ----
+a     parameter  int         nil 
+b     parameter  int         nil 
+c     parameter  int         nil 
+x     variable   int   17    nil 
 
 
 Table: program
-Name     Kind      Type  Line  Link   
--------  --------  ----  ----  -------
-x        variable  int   2     nil    
-ifThen1  ifStat    nil         ifThen1
-ifElse1  ifStat    nil         ifElse1
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+x     variable  int   23    nil 
 
 

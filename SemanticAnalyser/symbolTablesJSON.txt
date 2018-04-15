@@ -3,10 +3,100 @@
     "table": "Global",
     "entries": [
       {
+        "name": "factorial",
+        "kind": "function",
+        "type": "int : int",
+        "link": "factorial",
+        "line": 1
+      },
+      {
+        "name": "number",
+        "kind": "function",
+        "type": "int : ",
+        "link": "number",
+        "line": 10
+      },
+      {
+        "name": "addNumbers",
+        "kind": "function",
+        "type": "int : int, int, int",
+        "link": "addNumbers",
+        "line": 16
+      },
+      {
         "name": "program",
         "kind": "function",
         "type": "nil",
         "link": "program"
+      }
+    ]
+  },
+  {
+    "table": "factorial",
+    "entries": [
+      {
+        "name": "num",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
+      },
+      [
+        {
+          "name": "ifThen1",
+          "kind": "ifStat",
+          "type": "nil",
+          "line": "",
+          "link": "ifThen1"
+        },
+        {
+          "name": "ifElse1",
+          "kind": "ifStat",
+          "type": "nil",
+          "line": "",
+          "link": "ifElse1"
+        }
+      ]
+    ]
+  },
+  {
+    "table": "number",
+    "entries": [
+      {
+        "name": "x",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 11
+      }
+    ]
+  },
+  {
+    "table": "addNumbers",
+    "entries": [
+      {
+        "name": "a",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
+      },
+      {
+        "name": "b",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
+      },
+      {
+        "name": "c",
+        "kind": "parameter",
+        "type": "int",
+        "link": "nil"
+      },
+      {
+        "name": "x",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 17
       }
     ]
   },
@@ -18,21 +108,7 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 2
-      },
-      {
-        "name": "ifThen1",
-        "kind": "ifStat",
-        "type": "nil",
-        "line": "",
-        "link": "ifThen1"
-      },
-      {
-        "name": "ifElse1",
-        "kind": "ifStat",
-        "type": "nil",
-        "line": "",
-        "link": "ifElse1"
+        "line": 23
       }
     ]
   }

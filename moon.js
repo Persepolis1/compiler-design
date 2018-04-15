@@ -8,11 +8,13 @@ const moonsrcOutput = 'moonsrc/output.m';
 function moon(tables, ast) {
   const offSetTables = [];
   let registerPool = ['r3', 'r4', 'r5', 'r6', 'r7', 'r8', 'r9', 'r10', 'r11', 'r12'];
+  const stackRegister = '(r14)';
   registerPool = registerPool.reverse();
   const moonCode = [];
   const moonData = [];
   const tableStack = [];
   let ifCounter = 1;
+  let tempVarCounter = 1;
   const codeGenVisitors = {
     'prog': generateProgCode,
     'programStatBlock': generateProgramCode,
@@ -34,7 +36,16 @@ function moon(tables, ast) {
     'ifStat': generateIfStatCode,
     'relOp': generateRelOpCode,
   };
+  const tempVarVisitors = {
+    'num': setNumVar,
+    'addOp': setAddOpVar,
+    'multOp': setMultOpVar,
+    'relOp': setRelOpVar,
+    'fCall': setFcallVar,
+    'funcDef': setFuncDefVar,
+  };
   setOffsets(ast);
+  setTempVars(ast);
   generateCode(ast);
   printAllTables(offSetTables);
 
@@ -56,9 +67,7 @@ function moon(tables, ast) {
 
   function generateProgramCode(node) {
     moonCode.push('entry % Program start');
-    moonCode.push('\t\t addi\t r1, r0, topaddr  % Set frame pointer');
-    moonCode.push('\t\t addi\t r2, r0, topaddr  % Set stack pointer');
-    moonCode.push('\t\t addi\t r14, r0, topaddr  % Set func stack pointer');
+    moonCode.push('\t\t addi\t r14, r0, topaddr  % Set stack pointer');
     if (node.children) {
       tableStack.push(node.symtab);
       node.children.forEach((child) => {
@@ -77,21 +86,19 @@ function moon(tables, ast) {
     }
     // allocate local registers
     const localregister1 = registerPool.pop();
-    moonCode.push(`\t\t lw\t ${localregister1}, ${node.children[1].offSet}(r2)`);
+    moonCode.push(`\t\t lw\t ${localregister1}, ${node.children[1].offSet}${stackRegister}`);
     const LHSOffset = node.children[0].offSet;
-    moonCode.push(`\t\t sw\t ${LHSOffset}(r2),  ${localregister1}`);
+    moonCode.push(`\t\t sw\t ${LHSOffset}${stackRegister},  ${localregister1}`);
     //deallocate all registers
     registerPool.push(localregister1);
   }
 
   function generateNumCode(node) {
     const localregister1 = registerPool.pop();
-    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
-    tableStack[tableStack.length - 1].size += 4;
     // create a value corresponding to the literal value
     moonCode.push(`\t\t addi\t ${localregister1}, r0, ${node.leaf.value}`);
     // assign this value to a temporary variable (assumed to have been previously created by the symbol table generator)
-    moonCode.push(`\t\t sw\t ${node.offSet}(r2),  ${localregister1}`);
+    moonCode.push(`\t\t sw\t ${node.offSet}${stackRegister},  ${localregister1}`);
     // deallocate the register for the current node
     registerPool.push(localregister1);
   }
@@ -105,14 +112,13 @@ function moon(tables, ast) {
     const localregister1 = registerPool.pop();
     const localregister2 = registerPool.pop();
     const LHSOffset = node.children[0].offSet;
-    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}(r2)`);
+    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}${stackRegister}`);
     moonCode.push(`\t\t sw\t -8(r14), ${localregister1}`);
     moonCode.push(`\t\t addi\t ${localregister2},r0,buf`);
     moonCode.push(`\t\t sw\t -12(r14), ${localregister2}`);
     moonCode.push('\t\t jl\t r15, intstr');
     moonCode.push('\t\t sw\t -8(r14), r13');
     moonCode.push('\t\t jl\t r15, putstr');
-    moonCode.push('\t\t addi\t r2, r0, topaddr  % Set stack pointer');
     registerPool.push(localregister2);
     registerPool.push(localregister1);
   }
@@ -141,12 +147,10 @@ function moon(tables, ast) {
         opCode = 'or';
         break;
     }
-    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
-    tableStack[tableStack.length - 1].size += 4;
-    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}(r2)`);
-    moonCode.push(`\t\t lw\t ${localregister2}, ${RHSOffset}(r2)`);
+    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}${stackRegister}`);
+    moonCode.push(`\t\t lw\t ${localregister2}, ${RHSOffset}${stackRegister}`);
     moonCode.push(`\t\t ${opCode}\t ${localregister3},${localregister1},${localregister2}`);
-    moonCode.push(`\t\t sw\t ${node.offSet}(r2), ${localregister3}`);
+    moonCode.push(`\t\t sw\t ${node.offSet}${stackRegister}, ${localregister3}`);
     registerPool.push(localregister3);
     registerPool.push(localregister2);
     registerPool.push(localregister1);
@@ -176,12 +180,10 @@ function moon(tables, ast) {
         opCode = 'and';
         break;
     }
-    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
-    tableStack[tableStack.length - 1].size += 4;
-    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}(r2)`);
-    moonCode.push(`\t\t lw\t ${localregister2}, ${RHSOffset}(r2)`);
+    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}${stackRegister}`);
+    moonCode.push(`\t\t lw\t ${localregister2}, ${RHSOffset}${stackRegister}`);
     moonCode.push(`\t\t ${opCode}\t ${localregister3},${localregister1},${localregister2}`);
-    moonCode.push(`\t\t sw\t ${node.offSet}(r2), ${localregister3}`);
+    moonCode.push(`\t\t sw\t ${node.offSet}${stackRegister}, ${localregister3}`);
     registerPool.push(localregister3);
     registerPool.push(localregister2);
     registerPool.push(localregister1);
@@ -215,13 +217,13 @@ function moon(tables, ast) {
 
   function generateFuncDefCode(node) {
     tableStack.push(node.symtab);
-    moonCode.push(`${node.children[2].leaf.value}\t\t addi\t r2, r0, topaddr`);
+    moonCode.push(`${node.children[2].leaf.value}\t\t % Function Definition`);
+    moonCode.push(`\t\t sw\t ${node.offSet}${stackRegister}, r15\t % Save Link`);
     if (node.children) {
       node.children.forEach((child) => {
         generateCode(child);
       })
     }
-    moonCode.push('\t\t jr r15');
     tableStack.pop();
   }
 
@@ -240,17 +242,21 @@ function moon(tables, ast) {
       })
     }
     const childOffset = node.children[0].offSet;
-    moonCode.push(`\t\t lw\t r13, ${childOffset}(r2)`);
+    const scopeSize = tableStack[tableStack.length - 1].size * -1;
+    moonCode.push(`\t\t lw\t r13, ${childOffset}${stackRegister}`);
+    moonCode.push(`\t\t lw\t r15, ${scopeSize}${stackRegister}\t % Restore Link`);
+    moonCode.push('\t\t jr r15');
   }
 
   function generateFcallCode(node) {
     if (node.children[1].children) {
       generateCode(node.children[1]);
     }
-    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
-    tableStack[tableStack.length - 1].size += 4;
+    const scopeSize = tableStack[tableStack.length - 1].size;
+    moonCode.push(`\t\t subi\t r14, r14, ${scopeSize}\t % Adjust SP`);
     moonCode.push(`\t\t jl\t r15, ${node.children[0].leaf.value} `);
-    moonCode.push(`\t\t sw\t ${node.offSet}(r2), r13`);
+    moonCode.push(`\t\t addi\t r14, r14, ${scopeSize}\t % Adjust SP`);
+    moonCode.push(`\t\t sw\t ${node.offSet}${stackRegister}, r13`);
   }
 
   function generateFparamListCode(node) {
@@ -264,19 +270,21 @@ function moon(tables, ast) {
   function generateFparamCode(node) {
     const localregister1 = registerPool.pop();
     moonCode.push(`\t\t lw\t ${localregister1}, ${getOffSet(node.children[1].leaf.value)}(r14)`);
-    moonCode.push(`\t\t sw\t  ${getOffSet(node.children[1].leaf.value)}(r2), ${localregister1} `);
+    moonCode.push(`\t\t sw\t  ${getOffSet(node.children[1].leaf.value)}${stackRegister}, ${localregister1} `);
     registerPool.push(localregister1);
   }
 
   function generateAparamsCode(node) {
-    let paramOffSet = -4;
+    // first param is -8, second -12, and so on
+    const scopeSize = tableStack[tableStack.length - 1].size * -1;
+    let paramOffset = -8;
     if (node.children) {
       node.children.forEach((child) => {
         generateCode(child);
         const localregister1 = registerPool.pop();
-        moonCode.push(`\t\t lw\t ${localregister1}, ${child.offSet}(r2)`);
-        moonCode.push(`\t\t sw\t ${paramOffSet}(r14), ${localregister1}`);
-        paramOffSet -= 4;
+        moonCode.push(`\t\t lw\t ${localregister1}, ${child.offSet}${stackRegister}`);
+        moonCode.push(`\t\t sw\t ${scopeSize + paramOffset}${stackRegister}, ${localregister1}`);
+        paramOffset -= 4;
         registerPool.push(localregister1);
       });
     }
@@ -292,7 +300,7 @@ function moon(tables, ast) {
     const endIf = `endif_${ifCounter++}`;
     const boolOffset = node.children[0].offSet;
     // Check the conditional
-    moonCode.push(`\t\t lw\t ${localregister1}, ${boolOffset}(r2)`);
+    moonCode.push(`\t\t lw\t ${localregister1}, ${boolOffset}${stackRegister}`);
     moonCode.push(`\t\t bz\t ${localregister1}, ${elseStatement}`);
     registerPool.push(localregister1);
     //generate code for the first then branch
@@ -342,12 +350,10 @@ function moon(tables, ast) {
         opCode = 'cne';
         break;
     }
-    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
-    tableStack[tableStack.length - 1].size += 4;
-    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}(r2)`);
-    moonCode.push(`\t\t lw\t ${localregister2}, ${RHSOffset}(r2)`);
+    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}${stackRegister}`);
+    moonCode.push(`\t\t lw\t ${localregister2}, ${RHSOffset}${stackRegister}`);
     moonCode.push(`\t\t ${opCode}\t ${localregister3},${localregister1},${localregister2}`);
-    moonCode.push(`\t\t sw\t ${node.offSet}(r2), ${localregister3}`);
+    moonCode.push(`\t\t sw\t ${node.offSet}${stackRegister}, ${localregister3}`);
     registerPool.push(localregister3);
     registerPool.push(localregister2);
     registerPool.push(localregister1);
@@ -357,19 +363,23 @@ function moon(tables, ast) {
   function setOffsets(node) {
     if (node.symtab) {
       node.symtab.size = 0;
-      //let paramsSize = 0;
+      let paramsSize = 0;
       if (node.symtab.entries) {
         node.symtab.entries.forEach((entry) => {
-          if ((entry.type === 'int' || entry.type === 'float')) {
+          if (entry.kind === 'parameter') {
+            entry.size = 4;
+            entry.offSet = (entry.size + 4 + paramsSize) * -1;
+            paramsSize += entry.size;
+            if (node.symtab.size === 0) {
+              node.symtab.size = 4;
+            }
+            node.symtab.size += entry.size;
+          }
+          else if ((entry.type === 'int' || entry.type === 'float')) {
             entry.size = 4;
             entry.offSet = (entry.size + node.symtab.size) * -1;
             node.symtab.size += entry.size;
           }
-          // if (entry.kind === 'parameter') {
-          //   entry.size = 4;
-          //   entry.offSet = (entry.size + paramsSize) * -1;
-          //   paramsSize += entry.size;
-          // }
         })
       }
       offSetTables.unshift(node.symtab);
@@ -381,6 +391,71 @@ function moon(tables, ast) {
     }
   }
 
+  function setTempVars(node) {
+    if (node.symtab && (node.node !== 'classList' || node.node !== 'funcDefList')) {
+      tableStack.push(node.symtab);
+    }
+    if (node.children) {
+      node.children.forEach((child) => {
+        setTempVars(child);
+      })
+    }
+    if (tempVarVisitors[node.node]) {
+      tempVarVisitors[node.node](node);
+    }
+    if (node.symtab && (node.node !== 'classList' || node.node !== 'funcDefList')) {
+      node.symtab = tableStack.pop();
+    }
+  }
+
+  function setNumVar(node) {
+    insertTempVar(node);
+  }
+
+  function setAddOpVar(node) {
+    insertTempVar(node);
+  }
+
+  function setMultOpVar(node) {
+    insertTempVar(node);
+  }
+
+  function setRelOpVar(node) {
+    insertTempVar(node);
+  }
+
+  function setFcallVar(node) {
+    insertTempVar(node);
+  }
+
+  function setFuncDefVar(node) {
+    // return value
+    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
+    tableStack[tableStack.length - 1].size += 4;
+    const entry = {
+      name: `returnAddr`,
+      type: 'address',
+      kind: 'return',
+      link: 'nil',
+      size: 4,
+      offSet: `${node.offSet}`
+    };
+    tableStack[tableStack.length - 1].entries.push(entry);
+  }
+
+  function insertTempVar(node) {
+    node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
+    tableStack[tableStack.length - 1].size += 4;
+    const entry = {
+      name: `tempVar${tempVarCounter++}`,
+      type: 'int',
+      kind: 'tempvar',
+      link: 'nil',
+      size: 4,
+      offSet: `${node.offSet}`
+    };
+    tableStack[tableStack.length - 1].entries.push(entry);
+  }
   function getOffSet(name) {
     for (let i = tableStack.length - 1; i >= 0; i--) {
       if (tableStack[i].entries) {
