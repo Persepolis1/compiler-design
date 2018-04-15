@@ -11,21 +11,27 @@ program     function  nil                                      program
 
 
 Table: program
-Scope Size: 48
+Scope Size: 72
 Name       Kind      Type  Line  Size  Offset  Link
 ---------  --------  ----  ----  ----  ------  ----
 x          variable  int   23    4     -4      nil 
-tempVar11  tempvar   int         4     -8      nil 
-tempVar12  tempvar   int         4     -12     nil 
-tempVar13  tempvar   int         4     -16     nil 
-tempVar14  tempvar   int         4     -20     nil 
-tempVar15  tempvar   int         4     -24     nil 
-tempVar16  tempvar   int         4     -28     nil 
-tempVar17  tempvar   int         4     -32     nil 
-tempVar18  tempvar   int         4     -36     nil 
-tempVar19  tempvar   int         4     -40     nil 
-tempVar20  tempvar   int         4     -44     nil 
-tempVar21  tempvar   int         4     -48     nil 
+y          variable  int   24    4     -8      nil 
+z          variable  int   25    4     -12     nil 
+tempVar11  tempvar   int         4     -16     nil 
+tempVar12  tempvar   int         4     -20     nil 
+tempVar13  tempvar   int         4     -24     nil 
+tempVar14  tempvar   int         4     -28     nil 
+tempVar15  tempvar   int         4     -32     nil 
+tempVar16  tempvar   int         4     -36     nil 
+tempVar17  tempvar   int         4     -40     nil 
+tempVar18  tempvar   int         4     -44     nil 
+tempVar19  tempvar   int         4     -48     nil 
+tempVar20  tempvar   int         4     -52     nil 
+tempVar21  tempvar   int         4     -56     nil 
+tempVar22  tempvar   int         4     -60     nil 
+tempVar23  tempvar   int         4     -64     nil 
+tempVar24  tempvar   int         4     -68     nil 
+tempVar25  tempvar   int         4     -72     nil 
 
 
 Table: addNumbers

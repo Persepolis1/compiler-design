@@ -70,55 +70,117 @@ addNumbers		 % Function Definition
 entry % Program start
 		 addi	 r14, r0, topaddr  % Set stack pointer
 		 addi	 r3, r0, 6
-		 sw	 -8(r14),  r3
-		 lw	 r3, -8(r14)
-		 sw	 -56(r14), r3
-		 subi	 r14, r14, 48	 % Adjust SP
-		 jl	 r15, factorial 
-		 addi	 r14, r14, 48	 % Adjust SP
-		 sw	 -12(r14), r13
-		 addi	 r3, r0, 300
 		 sw	 -16(r14),  r3
-		 lw	 r3, -12(r14)
-		 lw	 r4, -16(r14)
-		 sub	 r5,r3,r4
-		 sw	 -20(r14), r5
-		 subi	 r14, r14, 48	 % Adjust SP
-		 jl	 r15, number 
-		 addi	 r14, r14, 48	 % Adjust SP
-		 sw	 -24(r14), r13
+		 lw	 r3, -16(r14)
+		 sw	 -80(r14), r3
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, factorial 
+		 addi	 r14, r14, 72	 % Adjust SP
+		 sw	 -20(r14), r13
+		 addi	 r3, r0, 300
+		 sw	 -24(r14),  r3
 		 lw	 r3, -20(r14)
 		 lw	 r4, -24(r14)
-		 add	 r5,r3,r4
+		 sub	 r5,r3,r4
 		 sw	 -28(r14), r5
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, number 
+		 addi	 r14, r14, 72	 % Adjust SP
+		 sw	 -32(r14), r13
+		 lw	 r3, -28(r14)
+		 lw	 r4, -32(r14)
+		 add	 r5,r3,r4
+		 sw	 -36(r14), r5
 		 addi	 r3, r0, 1
-		 sw	 -32(r14),  r3
-		 lw	 r3, -32(r14)
-		 sw	 -56(r14), r3
-		 addi	 r3, r0, 2
-		 sw	 -36(r14),  r3
-		 lw	 r3, -36(r14)
-		 sw	 -60(r14), r3
-		 addi	 r3, r0, 3
 		 sw	 -40(r14),  r3
 		 lw	 r3, -40(r14)
-		 sw	 -64(r14), r3
-		 subi	 r14, r14, 48	 % Adjust SP
-		 jl	 r15, addNumbers 
-		 addi	 r14, r14, 48	 % Adjust SP
-		 sw	 -44(r14), r13
-		 lw	 r3, -28(r14)
-		 lw	 r4, -44(r14)
-		 add	 r5,r3,r4
-		 sw	 -48(r14), r5
+		 sw	 -80(r14), r3
+		 addi	 r3, r0, 2
+		 sw	 -44(r14),  r3
+		 lw	 r3, -44(r14)
+		 sw	 -84(r14), r3
+		 addi	 r3, r0, 3
+		 sw	 -48(r14),  r3
 		 lw	 r3, -48(r14)
+		 sw	 -88(r14), r3
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, addNumbers 
+		 addi	 r14, r14, 72	 % Adjust SP
+		 sw	 -52(r14), r13
+		 lw	 r3, -36(r14)
+		 lw	 r4, -52(r14)
+		 add	 r5,r3,r4
+		 sw	 -56(r14), r5
+		 lw	 r3, -56(r14)
 		 sw	 -4(r14),  r3
+		 addi	 r3, r0, 5
+		 sw	 -60(r14),  r3
+		 lw	 r3, -60(r14)
+		 sw	 -80(r14), r3
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, factorial 
+		 addi	 r14, r14, 72	 % Adjust SP
+		 sw	 -64(r14), r13
+		 lw	 r3, -64(r14)
+		 sw	 -8(r14),  r3
+		 addi	 r3, r0, 4
+		 sw	 -68(r14),  r3
+		 lw	 r3, -68(r14)
+		 sw	 -80(r14), r3
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, factorial 
+		 addi	 r14, r14, 72	 % Adjust SP
+		 sw	 -72(r14), r13
+		 lw	 r3, -72(r14)
+		 sw	 -12(r14),  r3
 		 lw	 r3, -4(r14)
-		 sw	 -8(r14), r3
+		 sw	 -80(r14), r3
 		 addi	 r4,r0,buf
-		 sw	 -12(r14), r4
+		 sw	 -84(r14), r4
+		 subi	 r14, r14, 72	 % Adjust SP
 		 jl	 r15, intstr
-		 sw	 -8(r14), r13
+		 addi	 r14, r14, 72	 % Adjust SP
+		 sw	 -80(r14), r13
+		 subi	 r14, r14, 72	 % Adjust SP
 		 jl	 r15, putstr
+		 addi	 r14, r14, 72	 % Adjust SP
+		 addi	 r5, r0, m2	 % CR
+		 sw	 -80(r14), r5
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, putstr
+		 addi	 r14, r14, 72	 % Adjust SP
+		 lw	 r3, -8(r14)
+		 sw	 -80(r14), r3
+		 addi	 r4,r0,buf
+		 sw	 -84(r14), r4
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, intstr
+		 addi	 r14, r14, 72	 % Adjust SP
+		 sw	 -80(r14), r13
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, putstr
+		 addi	 r14, r14, 72	 % Adjust SP
+		 addi	 r5, r0, m2	 % CR
+		 sw	 -80(r14), r5
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, putstr
+		 addi	 r14, r14, 72	 % Adjust SP
+		 lw	 r3, -12(r14)
+		 sw	 -80(r14), r3
+		 addi	 r4,r0,buf
+		 sw	 -84(r14), r4
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, intstr
+		 addi	 r14, r14, 72	 % Adjust SP
+		 sw	 -80(r14), r13
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, putstr
+		 addi	 r14, r14, 72	 % Adjust SP
+		 addi	 r5, r0, m2	 % CR
+		 sw	 -80(r14), r5
+		 subi	 r14, r14, 72	 % Adjust SP
+		 jl	 r15, putstr
+		 addi	 r14, r14, 72	 % Adjust SP
 		 hlt
 buf	res	20
+m2	db	 13,10,0

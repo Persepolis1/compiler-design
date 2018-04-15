@@ -21,6 +21,12 @@ int addNumbers(int a, int b, int c){
 
 program {
   int x;
+  int y;
+  int z;
   x = factorial(6) - 300 + number() + addNumbers(1,2,3);
+  y = factorial(5);
+  z = factorial(4);
   put(x);
+  put(y);
+  put(z);
 };

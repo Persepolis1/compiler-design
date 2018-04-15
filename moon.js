@@ -76,6 +76,7 @@ function moon(tables, ast) {
     }
     moonCode.push('\t\t hlt');
     moonData.push('buf\tres\t20');
+    moonData.push('m2\tdb\t 13,10,0');
   }
 
   function generateAssignStatCode(node) {
@@ -111,14 +112,28 @@ function moon(tables, ast) {
     }
     const localregister1 = registerPool.pop();
     const localregister2 = registerPool.pop();
+    const localregister3 = registerPool.pop();
     const LHSOffset = node.children[0].offSet;
+    const scopeSize = tableStack[tableStack.length - 1].size * -1;
     moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}${stackRegister}`);
-    moonCode.push(`\t\t sw\t -8(r14), ${localregister1}`);
+    moonCode.push(`\t\t sw\t ${scopeSize - 8}${stackRegister}, ${localregister1}`);
     moonCode.push(`\t\t addi\t ${localregister2},r0,buf`);
-    moonCode.push(`\t\t sw\t -12(r14), ${localregister2}`);
+    moonCode.push(`\t\t sw\t ${scopeSize - 12}${stackRegister}, ${localregister2}`);
+    moonCode.push(`\t\t subi\t r14, r14, ${scopeSize * -1}\t % Adjust SP`);
     moonCode.push('\t\t jl\t r15, intstr');
-    moonCode.push('\t\t sw\t -8(r14), r13');
+    moonCode.push(`\t\t addi\t r14, r14, ${scopeSize * -1}\t % Adjust SP`);
+    moonCode.push(`\t\t sw\t ${scopeSize - 8}${stackRegister}, r13`);
+    moonCode.push(`\t\t subi\t r14, r14, ${scopeSize * -1}\t % Adjust SP`);
     moonCode.push('\t\t jl\t r15, putstr');
+    moonCode.push(`\t\t addi\t r14, r14, ${scopeSize * -1}\t % Adjust SP`);
+    // new line
+    moonCode.push(`\t\t addi\t ${localregister3}, r0, m2\t % CR`);
+    moonCode.push(`\t\t sw\t ${scopeSize - 8}${stackRegister}, ${localregister3}`);
+    moonCode.push(`\t\t subi\t r14, r14, ${scopeSize * -1}\t % Adjust SP`);
+    moonCode.push('\t\t jl\t r15, putstr');
+    moonCode.push(`\t\t addi\t r14, r14, ${scopeSize * -1}\t % Adjust SP`);
+
+    registerPool.push(localregister3);
     registerPool.push(localregister2);
     registerPool.push(localregister1);
   }
