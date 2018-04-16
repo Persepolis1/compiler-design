@@ -6,27 +6,21 @@ int factorial(int num){
        return (num * factorial(num-1));
    };
 };
-
 int number(){
     int x;
     x = 5;
     return (x);
 };
-
 int addNumbers(int a, int b, int c){
     int x;
     x = a + b + c;
     return (x);
 };
-
 program {
   int x;
   int y;
-  int z;
   x = factorial(6) - 300 + number() + addNumbers(1,2,3);
-  y = factorial(5);
-  z = factorial(4);
   put(x);
+  y = x * (1 + (10/5) * 3);
   put(y);
-  put(z);
 };

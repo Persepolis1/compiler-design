@@ -14,14 +14,14 @@
         "kind": "function",
         "type": "int : ",
         "link": "number",
-        "line": 10
+        "line": 9
       },
       {
         "name": "addNumbers",
         "kind": "function",
         "type": "int : int, int, int",
         "link": "addNumbers",
-        "line": 16
+        "line": 14
       },
       {
         "name": "program",
@@ -40,7 +40,7 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 23,
+        "line": 20,
         "size": 4,
         "offSet": -4
       },
@@ -49,18 +49,9 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 24,
+        "line": 21,
         "size": 4,
         "offSet": -8
-      },
-      {
-        "name": "z",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 25,
-        "size": 4,
-        "offSet": -12
       },
       {
         "name": "tempVar11",
@@ -68,7 +59,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-16"
+        "offSet": "-12"
       },
       {
         "name": "tempVar12",
@@ -76,7 +67,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-20"
+        "offSet": "-16"
       },
       {
         "name": "tempVar13",
@@ -84,7 +75,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-24"
+        "offSet": "-20"
       },
       {
         "name": "tempVar14",
@@ -92,7 +83,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-28"
+        "offSet": "-24"
       },
       {
         "name": "tempVar15",
@@ -100,7 +91,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-32"
+        "offSet": "-28"
       },
       {
         "name": "tempVar16",
@@ -108,7 +99,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-36"
+        "offSet": "-32"
       },
       {
         "name": "tempVar17",
@@ -116,7 +107,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-40"
+        "offSet": "-36"
       },
       {
         "name": "tempVar18",
@@ -124,7 +115,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-44"
+        "offSet": "-40"
       },
       {
         "name": "tempVar19",
@@ -132,7 +123,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-48"
+        "offSet": "-44"
       },
       {
         "name": "tempVar20",
@@ -140,7 +131,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-52"
+        "offSet": "-48"
       },
       {
         "name": "tempVar21",
@@ -148,7 +139,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-56"
+        "offSet": "-52"
       },
       {
         "name": "tempVar22",
@@ -156,7 +147,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-60"
+        "offSet": "-56"
       },
       {
         "name": "tempVar23",
@@ -164,7 +155,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-64"
+        "offSet": "-60"
       },
       {
         "name": "tempVar24",
@@ -172,7 +163,7 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
-        "offSet": "-68"
+        "offSet": "-64"
       },
       {
         "name": "tempVar25",
@@ -180,10 +171,42 @@
         "kind": "tempvar",
         "link": "nil",
         "size": 4,
+        "offSet": "-68"
+      },
+      {
+        "name": "tempVar26",
+        "type": "int",
+        "kind": "tempvar",
+        "link": "nil",
+        "size": 4,
         "offSet": "-72"
+      },
+      {
+        "name": "tempVar27",
+        "type": "int",
+        "kind": "tempvar",
+        "link": "nil",
+        "size": 4,
+        "offSet": "-76"
+      },
+      {
+        "name": "tempVar28",
+        "type": "int",
+        "kind": "tempvar",
+        "link": "nil",
+        "size": 4,
+        "offSet": "-80"
+      },
+      {
+        "name": "tempVar29",
+        "type": "int",
+        "kind": "tempvar",
+        "link": "nil",
+        "size": 4,
+        "offSet": "-84"
       }
     ],
-    "size": 72
+    "size": 84
   },
   {
     "table": "addNumbers",
@@ -217,7 +240,7 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 17,
+        "line": 15,
         "size": 4,
         "offSet": -20
       },
@@ -256,7 +279,7 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 11,
+        "line": 10,
         "size": 4,
         "offSet": -4
       },

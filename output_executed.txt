@@ -1,7 +1,6 @@
 Loading lib.m.
 Loading output.m.
 431
-120
-24
+3017
 
-12318 cycles.
+6879 cycles.

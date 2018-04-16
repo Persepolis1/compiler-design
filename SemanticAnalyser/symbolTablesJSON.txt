@@ -14,14 +14,14 @@
         "kind": "function",
         "type": "int : ",
         "link": "number",
-        "line": 10
+        "line": 9
       },
       {
         "name": "addNumbers",
         "kind": "function",
         "type": "int : int, int, int",
         "link": "addNumbers",
-        "line": 16
+        "line": 14
       },
       {
         "name": "program",
@@ -66,7 +66,7 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 11
+        "line": 10
       }
     ]
   },
@@ -96,7 +96,7 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 17
+        "line": 15
       }
     ]
   },
@@ -108,21 +108,14 @@
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 23
+        "line": 20
       },
       {
         "name": "y",
         "kind": "variable",
         "type": "int",
         "link": "nil",
-        "line": 24
-      },
-      {
-        "name": "z",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 25
+        "line": 21
       }
     ]
   }
