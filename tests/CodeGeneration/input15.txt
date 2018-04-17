@@ -7,7 +7,7 @@ int factorial(int num){
    };
 };
 
-int number(){
+int addFive(){
     int x;
     x = 5;
     return (x);
@@ -15,7 +15,7 @@ int number(){
 
 int addNumbers(int a, int b, int c){
     int x;
-    x = a + b + c;
+    x = a + b + c + addFive();
     return (x);
 };
 

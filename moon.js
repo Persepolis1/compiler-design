@@ -35,6 +35,9 @@ function moon(tables, ast) {
     'aParams': generateAparamsCode,
     'ifStat': generateIfStatCode,
     'relOp': generateRelOpCode,
+    'sign': generateSignCode,
+    'not': generateNotCode,
+    'forStat': generateForCode,
   };
   const tempVarVisitors = {
     'num': setNumVar,
@@ -43,9 +46,14 @@ function moon(tables, ast) {
     'relOp': setRelOpVar,
     'fCall': setFcallVar,
     'funcDef': setFuncDefVar,
+    'sign': setSignVar,
+    'not': setNotVar,
   };
   setOffsets(ast);
   setTempVars(ast);
+  setClassOffsets();
+  setLoopOffsets();
+  //setForLoopOffsets();
   generateCode(ast);
   printAllTables(offSetTables);
 
@@ -210,7 +218,15 @@ function moon(tables, ast) {
         generateCode(child);
       })
     }
-    node.offSet = node.children[0].offSet;
+    if (node.children.length === 1) {
+      node.offSet = node.children[0].offSet;
+    }
+    else if (node.children.length > 1) {
+      tableStack.pop();
+      // parent scope
+      const parentSize = tableStack[tableStack.length - 1].size;
+      node.offSet = (parentSize + node.children[0].offSet) * -1 + node.children[1].offSet;
+    }
   }
 
   function generateDataMemberCode(node) {
@@ -219,7 +235,15 @@ function moon(tables, ast) {
         generateCode(child);
       })
     }
-    node.offSet = getOffSet(node.children[0].leaf.value);
+    let offSet = getOffSet(node.children[0].leaf.value);
+    if (offSet >= 0) {
+      const tableName = getType(node.children[0].leaf.value);
+      tableStack.push(findTable(tableName));
+      node.offSet = offSet * -1;
+    }
+    else
+      node.offSet = offSet;
+
   }
 
   function generateFuncDefListCode(node) {
@@ -374,6 +398,69 @@ function moon(tables, ast) {
     registerPool.push(localregister1);
   }
 
+  function generateSignCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+    const localregister1 = registerPool.pop();
+    const localregister2 = registerPool.pop();
+    const LHSOffset = node.children[0].offSet;
+    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}${stackRegister}`);
+    moonCode.push(`\t\t muli\t ${localregister2},${localregister1},-1`);
+    moonCode.push(`\t\t sw\t ${node.offSet}${stackRegister}, ${localregister2}`);
+    registerPool.push(localregister2);
+    registerPool.push(localregister1);
+  }
+
+  function generateNotCode(node) {
+    if (node.children) {
+      node.children.forEach((child) => {
+        generateCode(child);
+      })
+    }
+    const localregister1 = registerPool.pop();
+    const localregister2 = registerPool.pop();
+    const LHSOffset = node.children[0].offSet;
+    moonCode.push(`\t\t lw\t ${localregister1}, ${LHSOffset}${stackRegister}`);
+    moonCode.push(`\t\t not\t ${localregister2},${localregister1}`);
+    moonCode.push(`\t\t sw\t ${node.offSet}${stackRegister}, ${localregister2}`);
+    registerPool.push(localregister2);
+    registerPool.push(localregister1);
+  }
+
+  function generateForCode(node) {
+    //set the first value
+    tableStack.push(node.symtab);
+    const initialIdOffset = getOffSet(node.children[1].leaf.value);
+    generateCode(node.children[2]);
+    const initialValueOffset = node.children[2].offSet;
+    const localregister1 = registerPool.pop();
+    moonCode.push(`\t\t lw\t ${localregister1}, ${initialValueOffset}${stackRegister}`);
+    moonCode.push(`\t\t sw\t ${initialIdOffset}${stackRegister},  ${localregister1}`);
+    registerPool.push(localregister1);
+
+    moonCode.push(`${node.symtab.table}`);
+    // relOP
+    if (node.children[3].children) {
+      generateCode(node.children[3]);
+    }
+    const localregister2 = registerPool.pop();
+    moonCode.push(`\t\t lw\t ${localregister2}, ${node.children[3].offSet}${stackRegister}`);
+    moonCode.push(`\t\t bz\t ${localregister2}, exit${node.symtab.table}`);
+    registerPool.push(localregister2);
+
+    if (node.children[5].children) {
+      generateCode(node.children[5]);
+    }
+    if (node.children[4].children) {
+      generateCode(node.children[4]);
+    }
+    moonCode.push(`\t\t j\t ${node.symtab.table}`);
+    moonCode.push(`exit${node.symtab.table}`);
+    tableStack.pop();
+  }
 
   function setOffsets(node) {
     if (node.symtab) {
@@ -458,6 +545,14 @@ function moon(tables, ast) {
     tableStack[tableStack.length - 1].entries.push(entry);
   }
 
+  function setSignVar(node) {
+    insertTempVar(node);
+  }
+
+  function setNotVar(node) {
+    insertTempVar(node);
+  }
+
   function insertTempVar(node) {
     node.offSet = (tableStack[tableStack.length - 1].size + 4) * -1;
     tableStack[tableStack.length - 1].size += 4;
@@ -476,12 +571,113 @@ function moon(tables, ast) {
       if (tableStack[i].entries) {
         for (let j = 0; j < tableStack[i].entries.length; j++) {
           if (tableStack[i].entries[j].name === name) {
+            if (tableStack[i].entries[j].type !== 'int') {
+              return tableStack[i].entries[j].size;
+            }
             return tableStack[i].entries[j].offSet;
           }
         }
       }
     }
   }
+
+  function setClassOffsets() {
+    offSetTables.forEach((table) => {
+      if (table.table === 'Global') {
+        return;
+      }
+      classEntries(table);
+    })
+  }
+
+  function classEntries(table) {
+    table.entries.forEach((entry) => {
+      if (entry.kind === 'variable' && !entry.size) {
+        entry.size = getSize(entry.type);
+        entry.offSet = (table.size + entry.size) * -1;
+        table.size += entry.size;
+      }
+    })
+  }
+
+  function getSize(tableName) {
+    // Find the table
+    let table;
+    let size = 0;
+    for (let i = 0; i < offSetTables.length; i++) {
+      if (offSetTables[i].table === tableName) {
+        table = offSetTables[i];
+        table.entries.forEach((entry) => {
+          if (entry.size) {
+            size += entry.size;
+          }
+          else if (entry.kind === 'variable') {
+            entry.size = getSize(entry.type);
+            entry.offSet = (table.size + entry.size) * -1;
+            table.size += entry.size;
+            size += entry.size;
+          }
+        });
+        return size;
+      }
+    }
+  }
+
+  function findTable(tableName) {
+    for (let i = 0; i < offSetTables.length; i++) {
+      if (offSetTables[i].table === tableName) {
+        return offSetTables[i];
+      }
+    }
+  }
+
+  function getType(name) {
+    for (let i = tableStack.length - 1; i >= 0; i--) {
+      if (tableStack[i].entries) {
+        for (let j = 0; j < tableStack[i].entries.length; j++) {
+          if (tableStack[i].entries[j].name === name) {
+            return tableStack[i].entries[j].type;
+          }
+        }
+      }
+    }
+  }
+
+  function setLoopOffsets() {
+    offSetTables.forEach((table) => {
+      if (table.table === 'Global') {
+        return;
+      }
+      table.entries.forEach((entry) => {
+        if (entry.kind === 'loop') {
+          entry.size = findTable(entry.name).size;
+          entry.offSet = (table.size + entry.size) * -1;
+          table.size += entry.size;
+        }
+      })
+    })
+  }
+
+  // function setForLoopOffsets(){
+  //   offSetTables.forEach((table)=>{
+  //     if (table.table === 'Global'){
+  //       return;
+  //     }
+  //     table.entries.forEach((entry)=>{
+  //       if (entry.kind === 'loop'){
+  //         modifyOffsets(findTable(entry.name), entry.offSet);
+  //         entry.offSet = -20;
+  //       }
+  //     })
+  //   })
+  // }
+  // function modifyOffsets(table, offSet){
+  //   for (let i = table.entries.length - 2 ; i >= 0 ; i --){
+  //     table.entries[i].offSet = table.entries[i+1].size + offSet;
+  //     offSet-= table.entries[i].size + offSet;
+  //     console.log(offSet);
+  //   }
+  // }
 
   function printAllTables(tables) {
     tables.unshift(tables.pop());

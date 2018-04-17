@@ -10,20 +10,6 @@
         "line": 1
       },
       {
-        "name": "number",
-        "kind": "function",
-        "type": "int : ",
-        "link": "number",
-        "line": 9
-      },
-      {
-        "name": "addNumbers",
-        "kind": "function",
-        "type": "int : int, int, int",
-        "link": "addNumbers",
-        "line": 14
-      },
-      {
         "name": "program",
         "kind": "function",
         "type": "nil",
@@ -59,44 +45,14 @@
     ]
   },
   {
-    "table": "number",
+    "table": "forLoop1",
     "entries": [
       {
-        "name": "x",
+        "name": "i",
         "kind": "variable",
         "type": "int",
-        "link": "nil",
-        "line": 10
-      }
-    ]
-  },
-  {
-    "table": "addNumbers",
-    "entries": [
-      {
-        "name": "a",
-        "kind": "parameter",
-        "type": "int",
+        "line": 15,
         "link": "nil"
-      },
-      {
-        "name": "b",
-        "kind": "parameter",
-        "type": "int",
-        "link": "nil"
-      },
-      {
-        "name": "c",
-        "kind": "parameter",
-        "type": "int",
-        "link": "nil"
-      },
-      {
-        "name": "x",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 15
       }
     ]
   },
@@ -104,18 +60,11 @@
     "table": "program",
     "entries": [
       {
-        "name": "x",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 20
-      },
-      {
-        "name": "y",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 21
+        "name": "forLoop1",
+        "kind": "loop",
+        "type": "nil",
+        "line": 15,
+        "link": "forLoop1"
       }
     ]
   }

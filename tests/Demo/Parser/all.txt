@@ -1,0 +1,85 @@
+class Car{
+    // 3.1.5 Class Declarations
+    int doors;
+    float torque;
+    Package p1;
+    Car getCar();
+};
+
+class Automobile{};
+
+// 3.1.5 Inheritance list
+class SuperCar : Car, Automobile{
+    int getHp();
+};
+
+// 3.1.3 Free function with int
+int freeFuncInt(){};
+
+// 3.1.3 Free function with float
+
+float freeFuncFloat(){
+};
+
+// 3.1.3 Free function with Car
+Car freeFuncCar(int i1, float f1, Car c1){};
+
+// 3.1.4 Member function definition
+int SuperCar :: getHp(){
+    // 3.1.7 Conditional statement
+    if(x>10)
+    then{
+        x = x+12;
+        x = x * getHp();
+        return(x);
+    }
+    else{
+        x = x * getHp();
+        return(x);
+    };
+
+    // 3.1.7 Conditional statement including nested if without brackets
+    if((((5 + 10 -13) * 2) / 2) and not -1 >= +100 * (20 + 10/23))
+    then
+        if((((5 + 10 -13) * 2) / 2) and not -1 >= +100 * (20 + 10/23))
+        then
+            return(100);
+        else
+            return(200);
+        ;
+    else
+        return(1);
+    ;
+};
+
+// 3.1.4 Member function definition return Car object
+Car Car :: getCar(){
+    // 3.1.8 Loop statement, nested for without  brackets
+    for(int int1 = getHp(); 10 <= 15 + getHp(); int1 = 10)
+            for(int int2 = 0; int2 < freeFuncInt() + getHp(); int1 = int1 +1)
+                int2 = int2 + freeFuncInt();
+            ;
+    ;
+};
+
+// 3.1.2 Program function
+
+program{
+    // 3.1.1 Variable declarations
+    int x;
+    float y;
+    Car c1;
+    int intArr[12][2];
+    Car c2[1][2];
+    // 3.1.6 Complex expressions Addop, multop, relop, sign
+    x = (((5 + 10 -13) * 2) / 2) and not -1 >= +100 * (20 + 10/23);
+    x = (((5 + 10 -13) * 2) / 2) and not -1 <> +100 * (20 + 10 or 23);
+    // 3.1.9 get/put/return statements
+    get(c1);
+    put((((5 + 10 -13) * 2) / 2) and not -1 < +100 * (20 + 10 or 23));
+    return(((5 * 2) / 2) and not -1 == +100 * (20 + 10 or 23));
+    // 3.1.10 Access to class members, including multiply nested and including arrays to
+    c2[c2.p1[1][2][3][4][5][6][123+y]][1][1][1].torque = 2.5;
+    // 3.1.11 Access to arrays
+    x = c2[freeFuncInt()][13][32][x+12-100*30/11 and 10];
+};

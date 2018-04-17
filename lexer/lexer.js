@@ -36,12 +36,14 @@ function getAllTokens(input, line) {
         i -= 1;
         currentCharacter--;
       }
-      tokens.push({
-        Token: TRANSITION_TABLE[state].token,
-        position: currentCharacter,
-        value: inputToBuffer.slice(tokenStart, i + 1).join("").trim(),
-        line
-      });
+      if (!(TRANSITION_TABLE[state].token === 'COMMENT' || TRANSITION_TABLE[state].token === 'MULTI_COMMENT')) {
+        tokens.push({
+          Token: TRANSITION_TABLE[state].token,
+          position: currentCharacter,
+          value: inputToBuffer.slice(tokenStart, i + 1).join("").trim(),
+          line
+        });
+      }
       state = 1;
     }
   }

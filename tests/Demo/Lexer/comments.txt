@@ -1,0 +1,11 @@
+// This is a comment
+
+//This is also a comment
+
+/* this is a multiline comment */
+
+//This //is a one line nested comment
+
+program{};
+
+/This is not a comment and //This is a comment

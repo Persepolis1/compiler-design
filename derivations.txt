@@ -406,1264 +406,379 @@ USED RULE :
 Sentencial Form:
  int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; funcDef program funcBody @4,1 ; 
 USED RULE :
- funcDef            -> funcHead funcBody ; funcDef 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; funcHead funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- funcHead           -> type id funcHeadInner ( fParams ) 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; type @scopeSpec @id id funcHeadInner @fparamList ( fParams ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- type               -> int 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id funcHeadInner @fparamList ( fParams ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- funcHeadInner      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( fParams ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- fParams            -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- funcBody           -> { funcBodyInner } 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { funcBodyInner } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- funcBodyInner      -> varDecl statement 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { varDecl statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- varDecl            -> type id varDeclTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { type @id id varDeclTail statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- type               -> int 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id varDeclTail statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- varDeclTail        -> arraySize ; varDeclTailTwo 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arraySize          -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; varDeclTailTwo statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- varDeclTailTwo     -> id varDeclTailThree 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id varDeclTailThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- varDeclTailThree   -> statementIdTwo 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id statementIdTwo statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statementIdTwo     -> assignStat ; statementIdThree 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id assignStat ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- assignStat         -> variable assignOp expr 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id variable @assignStat assignOp expr @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- variable           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id assignOp expr @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- assignOp          -> = 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = expr @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = arithExpr exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = term arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = factor termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statementIdThree   -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statement          -> return ( expr ) ; statementTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( expr ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( arithExpr exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( term arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( factor termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- factor             -> id idnest 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id idnest termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnest             -> indice idnestTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- indice             -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statementTail      -> statement 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statement          -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; funcDef program funcBody @4,1 ; 
-USED RULE :
- funcDef            -> funcHead funcBody ; funcDef 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; funcHead funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- funcHead           -> type id funcHeadInner ( fParams ) 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; type @scopeSpec @id id funcHeadInner @fparamList ( fParams ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- type               -> int 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id funcHeadInner @fparamList ( fParams ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- funcHeadInner      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( fParams ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- fParams            -> type id arraySize fParamsTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( type @id id @dimList arraySize @4,1 @2,1 fParamsTail ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- type               -> int 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id arraySize @4,1 @2,1 fParamsTail ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arraySize          -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id fParamsTail ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- fParamsTail        -> , fParamsTailTwo 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , fParamsTailTwo ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- fParamsTailTwo     -> type id arraySize fParamsTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , type @id id @dimList arraySize @4,1 @2,1 fParamsTail ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- type               -> int 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id arraySize @4,1 @2,1 fParamsTail ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arraySize          -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id fParamsTail ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- fParamsTail        -> , fParamsTailTwo 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , fParamsTailTwo ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- fParamsTailTwo     -> type id arraySize fParamsTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , type @id id @dimList arraySize @4,1 @2,1 fParamsTail ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- type               -> int 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id arraySize @4,1 @2,1 fParamsTail ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arraySize          -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id fParamsTail ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- fParamsTail        -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) funcBody @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- funcBody           -> { funcBodyInner } 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { funcBodyInner } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- funcBodyInner      -> varDecl statement 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { varDecl statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- varDecl            -> type id varDeclTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { type @id id varDeclTail statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- type               -> int 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id varDeclTail statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- varDeclTail        -> arraySize ; varDeclTailTwo 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arraySize          -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; varDeclTailTwo statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- varDeclTailTwo     -> id varDeclTailThree 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id varDeclTailThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- varDeclTailThree   -> statementIdTwo 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id statementIdTwo statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statementIdTwo     -> assignStat ; statementIdThree 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id assignStat ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- assignStat         -> variable assignOp expr 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id variable @assignStat assignOp expr @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- variable           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id assignOp expr @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- assignOp          -> = 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = expr @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = arithExpr exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = term arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = factor termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- factor             -> id idnest 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id idnest termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnest             -> indice idnestTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- indice             -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExprTail      -> addOp term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id addOp term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- addOp             -> + 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + factor termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- factor             -> id idnest 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id idnest termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnest             -> indice idnestTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id indice @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- indice             -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExprTail      -> addOp term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id addOp term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- addOp             -> + 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + factor termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- factor             -> id idnest 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id idnest termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnest             -> indice idnestTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id indice @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- indice             -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id exprTail @3,2 ; @2,1 statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; statementIdThree statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statementIdThree   -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statement          -> return ( expr ) ; statementTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( expr ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( arithExpr exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( term arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( factor termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- factor             -> id idnest 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id idnest termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnest             -> indice idnestTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- indice             -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id exprTail ) @2,1 ; @2,1 statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; statementTail } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statementTail      -> statement 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; statement } @6,1 ; @2,1 funcDef program funcBody @4,1 ; 
-USED RULE :
- statement          -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; funcDef program funcBody @4,1 ; 
-USED RULE :
  funcDef            -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program funcBody @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program funcBody @4,1 ; 
 USED RULE :
  funcBody           -> { funcBodyInner } 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { funcBodyInner } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { funcBodyInner } @4,1 ; 
 USED RULE :
- funcBodyInner      -> varDecl statement 
+ funcBodyInner      -> statement 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { varDecl statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { statement } @4,1 ; 
 USED RULE :
- varDecl            -> type id varDeclTail 
+ statement          -> for ( statementForTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { type @id id varDeclTail statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( statementForTail } @4,1 ; 
 USED RULE :
- type               -> int 
+ statementForTail   -> type id assignOp expr ; arithExpr relExpr ; id assignStat ) statBlock ; statementTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id varDeclTail statement } @4,1 ; 
-USED RULE :
- varDeclTail        -> arraySize ; varDeclTailTwo 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
-USED RULE :
- arraySize          -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; varDeclTailTwo statement } @4,1 ; 
-USED RULE :
- varDeclTailTwo     -> varDecl 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; varDecl statement } @4,1 ; 
-USED RULE :
- varDecl            -> type id varDeclTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; type @id id varDeclTail statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( type @id id assignOp expr ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  type               -> int 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id varDeclTail statement } @4,1 ; 
-USED RULE :
- varDeclTail        -> arraySize ; varDeclTailTwo 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id arraySize ; @4,1 @2,1 varDeclTailTwo statement } @4,1 ; 
-USED RULE :
- arraySize          -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; varDeclTailTwo statement } @4,1 ; 
-USED RULE :
- varDeclTailTwo     -> id varDeclTailThree 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id varDeclTailThree statement } @4,1 ; 
-USED RULE :
- varDeclTailThree   -> statementIdTwo 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id statementIdTwo statement } @4,1 ; 
-USED RULE :
- statementIdTwo     -> assignStat ; statementIdThree 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id assignStat ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- assignStat         -> variable assignOp expr 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id variable @assignStat assignOp expr @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- variable           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id assignOp expr @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id assignOp expr ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  assignOp          -> = 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = expr @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = expr ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  expr               -> arithExpr exprTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = arithExpr exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = arithExpr exprTail ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  arithExpr          -> term arithExprTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = term arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = term arithExprTail exprTail ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  term               -> factor termTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = factor termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = factor termTail arithExprTail exprTail ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ factor             -> intNum 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum termTail arithExprTail exprTail ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum arithExprTail exprTail ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ arithExprTail      -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum exprTail ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ exprTail           -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; arithExpr relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ arithExpr          -> term arithExprTail 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; term arithExprTail relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; factor termTail arithExprTail relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  factor             -> id idnest 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id idnest termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- idnest             -> ( aParams ) idnestTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( aParams ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- aParams            -> expr aParamsTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( expr @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( arithExpr exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( term arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( factor termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- aParamsTail       -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) termTail arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> addOp term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) addOp term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- addOp             -> - 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - factor termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> addOp term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum addOp term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- addOp             -> + 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + factor termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- factor             -> id idnest 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id idnest termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- idnest             -> ( aParams ) idnestTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( aParams ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- aParams            -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> addOp term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) addOp term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- addOp             -> + 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + term @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + factor termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- factor             -> id idnest 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id idnest termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- idnest             -> ( aParams ) idnestTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( aParams ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- aParams            -> expr aParamsTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( expr @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( arithExpr exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( term arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( factor termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- aParamsTail        -> , expr aParamsTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , expr @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , arithExpr exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , term arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , factor termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- aParamsTail        -> , expr aParamsTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , expr @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , arithExpr exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , term arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , factor termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum aParamsTail ) @3,1 @2,1 idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- aParamsTail       -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) idnestTail termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- idnestTail         -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) termTail @3,2 arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) arithExprTail exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) exprTail @3,2 ; @2,1 statementIdThree statement } @4,1 ; 
-USED RULE :
- exprTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; statementIdThree statement } @4,1 ; 
-USED RULE :
- statementIdThree   -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; statement } @4,1 ; 
-USED RULE :
- statement          -> put ( expr ) ; statementTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( expr ) @2,1 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- expr               -> arithExpr exprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( arithExpr exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( term arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( factor termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- factor             -> id idnest 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id idnest termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id idnest termTail arithExprTail relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  idnest             -> indice idnestTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id indice @3,1 @2,1 idnestTail termTail arithExprTail relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  indice             -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id idnestTail termTail arithExprTail relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  idnestTail         -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id termTail arithExprTail relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  termTail           -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id arithExprTail relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  arithExprTail      -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id relExpr ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
- exprTail           -> EPSILON 
+ relExpr            -> relOp arithExpr 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id relOp arithExpr @3,2 ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
- statementTail      -> id statementId 
+ relOp             -> leq 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id statementId } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq arithExpr @3,2 ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
- statementId        -> assignStat ; statementTail 
+ arithExpr          -> term arithExprTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id assignStat ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq term arithExprTail @3,2 ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq factor termTail arithExprTail @3,2 ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ factor             -> intNum 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum termTail arithExprTail @3,2 ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum arithExprTail @3,2 ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ arithExprTail      -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id assignStat ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  assignStat         -> variable assignOp expr 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id variable @assignStat assignOp expr @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id variable @assignStat assignOp expr @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  variable           -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id assignOp expr @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id assignOp expr @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  assignOp          -> = 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = expr @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = expr @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  expr               -> arithExpr exprTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = arithExpr exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = arithExpr exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  arithExpr          -> term arithExprTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = term arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = term arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  term               -> factor termTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = factor termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = factor termTail arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  factor             -> id idnest 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id idnest termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id idnest termTail arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  idnest             -> indice idnestTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  indice             -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id idnestTail termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id idnestTail termTail arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  idnestTail         -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- termTail           -> multOp factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id multOp factor @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- multOp            -> * 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * factor @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- factor             -> ( arithExpr ) 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( arithExpr ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( term arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( factor termTail arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum termTail arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id termTail arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  termTail           -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  arithExprTail      -> addOp term arithExprTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum addOp term @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id addOp term @3,2 arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  addOp             -> + 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + term @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + term @3,2 arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  term               -> factor termTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + factor termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- factor             -> ( arithExpr ) 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( arithExpr ) termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- arithExpr          -> term arithExprTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( term arithExprTail ) termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- term               -> factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( factor termTail arithExprTail ) termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + factor termTail @3,2 arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  factor             -> intNum 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum termTail arithExprTail ) termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- termTail           -> multOp factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum multOp factor @3,2 termTail arithExprTail ) termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- multOp            -> / 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / factor @3,2 termTail arithExprTail ) termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum termTail arithExprTail ) termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum termTail @3,2 arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  termTail           -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum arithExprTail ) termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum arithExprTail exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  arithExprTail      -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- termTail           -> multOp factor termTail 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) multOp factor @3,2 termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- multOp            -> * 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * factor @3,2 termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- factor             -> intNum 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum termTail @3,2 arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum arithExprTail ) @3,2 termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) termTail arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- termTail           -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) arithExprTail exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
-USED RULE :
- arithExprTail      -> EPSILON 
-
-Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) exprTail @3,2 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum exprTail @3,2 ) @statBlock statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  exprTail           -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) statBlock @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
- statementTail      -> statement 
+ statBlock          -> { statBlockTail } 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { statBlockTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ statBlockTail      -> statement 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { statement } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  statement          -> put ( expr ) ; statementTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( expr ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( expr ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  expr               -> arithExpr exprTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( arithExpr exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( arithExpr exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  arithExpr          -> term arithExprTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( term arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( term arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  term               -> factor termTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( factor termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( factor termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  factor             -> id idnest 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id idnest termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id idnest termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ idnest             -> ( aParams ) idnestTail 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( aParams ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ aParams            -> expr aParamsTail 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( expr @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ expr               -> arithExpr exprTail 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( arithExpr exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ arithExpr          -> term arithExprTail 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( term arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ term               -> factor termTail 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( factor termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ factor             -> id idnest 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id idnest termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  idnest             -> indice idnestTail 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id indice @3,1 @2,1 idnestTail termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  indice             -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id idnestTail termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  idnestTail         -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id termTail arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  termTail           -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id arithExprTail exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  arithExprTail      -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id exprTail ) @2,1 ; @2,1 statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id exprTail @2,1 aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  exprTail           -> EPSILON 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id ) ; statementTail } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id aParamsTail ) @3,1 @2,1 idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ aParamsTail       -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) idnestTail termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ idnestTail         -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) termTail arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ termTail           -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) arithExprTail exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ arithExprTail      -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) exprTail ) @2,1 ; @2,1 statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ exprTail           -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) ) ; statementTail } @7,1 ; @2,1 statementTail } @4,1 ; 
 USED RULE :
  statementTail      -> statement 
 
 Sentencial Form:
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id ) ; statement } @4,1 ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) ) ; statement } @7,1 ; @2,1 statementTail } @4,1 ; 
+USED RULE :
+ statement          -> EPSILON 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) ) ; } ; statementTail } @4,1 ; 
+USED RULE :
+ statementTail      -> statement 
+
+Sentencial Form:
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) ) ; } ; statement } @4,1 ; 
 USED RULE :
  statement          -> EPSILON 
 
 Successfully parsed! 
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id ) ; } ; 
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) ) ; } ; } ; 
 Token Stream : 
- int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; int id ( ) { int id ; id = intNum ; return ( id ) ; } ; int id ( int id , int id , int id ) { int id ; id = id + id + id ; return ( id ) ; } ; program { int id ; int id ; id = id ( intNum ) - intNum + id ( ) + id ( intNum , intNum , intNum ) ; put ( id ) ; id = id * ( intNum + ( intNum / intNum ) * intNum ) ; put ( id ) ; } ; $
+ int id ( int id ) { if ( id eq intNum ) then { return ( intNum ) ; } else { return ( id * id ( id - intNum ) ) ; } ; } ; program { for ( int id = intNum ; id leq intNum ; id = id + intNum ) { put ( id ( id ) ) ; } ; } ; $

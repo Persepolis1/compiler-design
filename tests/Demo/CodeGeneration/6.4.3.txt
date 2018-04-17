@@ -1,0 +1,30 @@
+class Utility{
+    int x;
+    int y;
+    int z;
+};
+class Person{
+    int health;
+    int str;
+};
+program {
+    int x;
+    int y;
+    Utility utility;
+    Person character;
+    utility.x = 5;
+    utility.y = 10;
+    utility.z = 15;
+    put(utility.x); // 5
+    put(utility.y); // 10
+    put(utility.z); // 15
+    x = utility.x + 1;  // 5 + 1
+    y = utility.y + 1;  // 10 + 1
+    put(x); // 6
+    put(y); // 11
+
+    character.health = 100;
+    put(character.health); //100
+    character.str = 10;
+    put(character.str); //10
+};

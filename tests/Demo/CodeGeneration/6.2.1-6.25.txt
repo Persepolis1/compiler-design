@@ -1,0 +1,33 @@
+int factorial(int num){
+   if (num == 0) then {
+       return (1);
+   }
+   else {
+       return (num * factorial(num-1));
+   };
+};
+
+int addFive(){
+    int x;
+    x = 5;
+    return (x);
+};
+
+int addNumbers(int a, int b, int c, int d, int e, int f, int g, int h, int i, int j){
+    int x;
+    // 10 + addFive() = 15
+    x = a + b + c + d + e + f + g + h + i + j + addFive();
+    return (x);
+};
+
+program {
+  int x;
+  // factorial 6 = 720
+  // - 300 = 420
+  // 420 + 5 = 425
+  // 425 + 15 = 440
+  x = factorial(6) - 300 + addFive() + addNumbers(1,1,1,1,1,1,1,1,1,1);
+  put(x);
+  // 120
+  put(factorial(5));
+};

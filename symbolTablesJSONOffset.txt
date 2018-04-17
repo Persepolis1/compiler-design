@@ -10,20 +10,6 @@
         "line": 1
       },
       {
-        "name": "number",
-        "kind": "function",
-        "type": "int : ",
-        "link": "number",
-        "line": 9
-      },
-      {
-        "name": "addNumbers",
-        "kind": "function",
-        "type": "int : int, int, int",
-        "link": "addNumbers",
-        "line": 14
-      },
-      {
         "name": "program",
         "kind": "function",
         "type": "nil",
@@ -33,253 +19,14 @@
     "size": 0
   },
   {
-    "table": "program",
+    "table": "forLoop1",
     "entries": [
       {
-        "name": "x",
+        "name": "i",
         "kind": "variable",
         "type": "int",
-        "link": "nil",
-        "line": 20,
-        "size": 4,
-        "offSet": -4
-      },
-      {
-        "name": "y",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 21,
-        "size": 4,
-        "offSet": -8
-      },
-      {
-        "name": "tempVar11",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-12"
-      },
-      {
-        "name": "tempVar12",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-16"
-      },
-      {
-        "name": "tempVar13",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-20"
-      },
-      {
-        "name": "tempVar14",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-24"
-      },
-      {
-        "name": "tempVar15",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-28"
-      },
-      {
-        "name": "tempVar16",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-32"
-      },
-      {
-        "name": "tempVar17",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-36"
-      },
-      {
-        "name": "tempVar18",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-40"
-      },
-      {
-        "name": "tempVar19",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-44"
-      },
-      {
-        "name": "tempVar20",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-48"
-      },
-      {
-        "name": "tempVar21",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-52"
-      },
-      {
-        "name": "tempVar22",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-56"
-      },
-      {
-        "name": "tempVar23",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-60"
-      },
-      {
-        "name": "tempVar24",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-64"
-      },
-      {
-        "name": "tempVar25",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-68"
-      },
-      {
-        "name": "tempVar26",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-72"
-      },
-      {
-        "name": "tempVar27",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-76"
-      },
-      {
-        "name": "tempVar28",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-80"
-      },
-      {
-        "name": "tempVar29",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-84"
-      }
-    ],
-    "size": 84
-  },
-  {
-    "table": "addNumbers",
-    "entries": [
-      {
-        "name": "a",
-        "kind": "parameter",
-        "type": "int",
-        "link": "nil",
-        "size": 4,
-        "offSet": -8
-      },
-      {
-        "name": "b",
-        "kind": "parameter",
-        "type": "int",
-        "link": "nil",
-        "size": 4,
-        "offSet": -12
-      },
-      {
-        "name": "c",
-        "kind": "parameter",
-        "type": "int",
-        "link": "nil",
-        "size": 4,
-        "offSet": -16
-      },
-      {
-        "name": "x",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
         "line": 15,
-        "size": 4,
-        "offSet": -20
-      },
-      {
-        "name": "tempVar9",
-        "type": "int",
-        "kind": "tempvar",
         "link": "nil",
-        "size": 4,
-        "offSet": "-24"
-      },
-      {
-        "name": "tempVar10",
-        "type": "int",
-        "kind": "tempvar",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-28"
-      },
-      {
-        "name": "returnAddr",
-        "type": "address",
-        "kind": "return",
-        "link": "nil",
-        "size": 4,
-        "offSet": "-32"
-      }
-    ],
-    "size": 32
-  },
-  {
-    "table": "number",
-    "entries": [
-      {
-        "name": "x",
-        "kind": "variable",
-        "type": "int",
-        "link": "nil",
-        "line": 10,
         "size": 4,
         "offSet": -4
       },
@@ -292,15 +39,62 @@
         "offSet": "-8"
       },
       {
-        "name": "returnAddr",
-        "type": "address",
-        "kind": "return",
+        "name": "tempVar9",
+        "type": "int",
+        "kind": "tempvar",
         "link": "nil",
         "size": 4,
         "offSet": "-12"
+      },
+      {
+        "name": "tempVar10",
+        "type": "int",
+        "kind": "tempvar",
+        "link": "nil",
+        "size": 4,
+        "offSet": "-16"
+      },
+      {
+        "name": "tempVar11",
+        "type": "int",
+        "kind": "tempvar",
+        "link": "nil",
+        "size": 4,
+        "offSet": "-20"
+      },
+      {
+        "name": "tempVar12",
+        "type": "int",
+        "kind": "tempvar",
+        "link": "nil",
+        "size": 4,
+        "offSet": "-24"
+      },
+      {
+        "name": "tempVar13",
+        "type": "int",
+        "kind": "tempvar",
+        "link": "nil",
+        "size": 4,
+        "offSet": "-28"
       }
     ],
-    "size": 12
+    "size": 28
+  },
+  {
+    "table": "program",
+    "entries": [
+      {
+        "name": "forLoop1",
+        "kind": "loop",
+        "type": "nil",
+        "line": 15,
+        "link": "forLoop1",
+        "size": 28,
+        "offSet": -28
+      }
+    ],
+    "size": 28
   },
   {
     "table": "factorial",
