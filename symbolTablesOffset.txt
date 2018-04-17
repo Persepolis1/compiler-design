@@ -2,45 +2,45 @@
 
 Table: Global
 Scope Size: 0
-Name       Kind      Type       Line  Size  Offset  Link     
----------  --------  ---------  ----  ----  ------  ---------
-factorial  function  int : int  1                   factorial
-program    function  nil                            program  
-
-
-Table: forLoop1
-Scope Size: 28
-Name       Kind      Type  Line  Size  Offset  Link
----------  --------  ----  ----  ----  ------  ----
-i          variable  int   15    4     -4      nil 
-tempVar8   tempvar   int         4     -8      nil 
-tempVar9   tempvar   int         4     -12     nil 
-tempVar10  tempvar   int         4     -16     nil 
-tempVar11  tempvar   int         4     -20     nil 
-tempVar12  tempvar   int         4     -24     nil 
-tempVar13  tempvar   int         4     -28     nil 
+Name     Kind      Type      Line  Size  Offset  Link   
+-------  --------  --------  ----  ----  ------  -------
+a        function  float :   1                   a      
+program  function  nil                           program
 
 
 Table: program
-Scope Size: 28
-Name      Kind  Type  Line  Size  Offset  Link    
---------  ----  ----  ----  ----  ------  --------
-forLoop1  loop  nil   15    28    -28     forLoop1
+Scope Size: 32
+Name       Kind      Type  Line  Size  Offset  Link
+---------  --------  ----  ----  ----  ------  ----
+x          variable  int   7     4     -4      nil 
+y          variable  int   8     4     -8      nil 
+tempVar15  tempvar   int         4     -12     nil 
+tempVar16  tempvar   int         4     -16     nil 
+tempVar17  tempvar   int         4     -20     nil 
+tempVar18  tempvar   int         4     -24     nil 
+tempVar19  tempvar   int         4     -28     nil 
+tempVar20  tempvar   int         4     -32     nil 
 
 
-Table: factorial
-Scope Size: 40
-Name        Kind       Type     Line  Size  Offset  Link
-----------  ---------  -------  ----  ----  ------  ----
-num         parameter  int            4     -8      nil 
-                                                        
-tempVar1    tempvar    int            4     -12     nil 
-tempVar2    tempvar    int            4     -16     nil 
-tempVar3    tempvar    int            4     -20     nil 
-tempVar4    tempvar    int            4     -24     nil 
-tempVar5    tempvar    int            4     -28     nil 
-tempVar6    tempvar    int            4     -32     nil 
-tempVar7    tempvar    int            4     -36     nil 
-returnAddr  return     address        4     -40     nil 
+Table: a
+Scope Size: 64
+Name        Kind      Type     Line  Size  Offset  Link
+----------  --------  -------  ----  ----  ------  ----
+x           variable  int      2     4     -4      nil 
+tempVar1    tempvar   int            4     -8      nil 
+tempVar2    tempvar   int            4     -12     nil 
+tempVar3    tempvar   int            4     -16     nil 
+tempVar4    tempvar   int            4     -20     nil 
+tempVar5    tempvar   int            4     -24     nil 
+tempVar6    tempvar   int            4     -28     nil 
+tempVar7    tempvar   int            4     -32     nil 
+tempVar8    tempvar   int            4     -36     nil 
+tempVar9    tempvar   int            4     -40     nil 
+tempVar10   tempvar   int            4     -44     nil 
+tempVar11   tempvar   int            4     -48     nil 
+tempVar12   tempvar   int            4     -52     nil 
+tempVar13   tempvar   int            4     -56     nil 
+tempVar14   tempvar   int            4     -60     nil 
+returnAddr  return    address        4     -64     nil 
 
 

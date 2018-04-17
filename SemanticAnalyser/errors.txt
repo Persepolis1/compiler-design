@@ -1,1 +1,5 @@
-No Semantic Errors
+---Semantic Errors--- 
+
+Return type does not match for function: a. Returned int, expecting float  
+Type mismatch: int(LHS) = float(RHS) at line 9  
+Undeclared Variable: z at line 11 

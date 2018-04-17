@@ -3,10 +3,10 @@
     "table": "Global",
     "entries": [
       {
-        "name": "factorial",
+        "name": "a",
         "kind": "function",
-        "type": "int : int",
-        "link": "factorial",
+        "type": "float : ",
+        "link": "a",
         "line": 1
       },
       {
@@ -18,41 +18,14 @@
     ]
   },
   {
-    "table": "factorial",
+    "table": "a",
     "entries": [
       {
-        "name": "num",
-        "kind": "parameter",
-        "type": "int",
-        "link": "nil"
-      },
-      [
-        {
-          "name": "ifThen1",
-          "kind": "ifStat",
-          "type": "nil",
-          "line": "",
-          "link": "ifThen1"
-        },
-        {
-          "name": "ifElse1",
-          "kind": "ifStat",
-          "type": "nil",
-          "line": "",
-          "link": "ifElse1"
-        }
-      ]
-    ]
-  },
-  {
-    "table": "forLoop1",
-    "entries": [
-      {
-        "name": "i",
+        "name": "x",
         "kind": "variable",
         "type": "int",
-        "line": 15,
-        "link": "nil"
+        "link": "nil",
+        "line": 2
       }
     ]
   },
@@ -60,11 +33,18 @@
     "table": "program",
     "entries": [
       {
-        "name": "forLoop1",
-        "kind": "loop",
-        "type": "nil",
-        "line": 15,
-        "link": "forLoop1"
+        "name": "x",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 7
+      },
+      {
+        "name": "y",
+        "kind": "variable",
+        "type": "int",
+        "link": "nil",
+        "line": 8
       }
     ]
   }

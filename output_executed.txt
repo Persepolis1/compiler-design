@@ -1,10 +1,7 @@
 Loading lib.m.
 Loading output.m.
-1
-1
-2
-6
-24
-120
+Warning: junk following ` ' on next line.
+  51  		 addi	 r3, r0, 10.2
 
-15796 cycles.
+Undefined symbol: undefined.
+Loader errors -- no execution.

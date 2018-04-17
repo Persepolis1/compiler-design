@@ -1,0 +1,12 @@
+int factorial(int num) {
+   if (num == 0) then {
+       return (1);
+   } else {
+       return (num * factorial(num - 1));
+   };
+};
+program{
+    for (int i = 0; i <= 6; i = i + 1) {
+        put(factorial(i));
+     };
+};

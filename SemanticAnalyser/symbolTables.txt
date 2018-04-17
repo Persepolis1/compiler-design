@@ -1,28 +1,22 @@
 ---SYMBOL TABLES--- 
 
 Table: Global
-Name       Kind      Type       Line  Link     
----------  --------  ---------  ----  ---------
-factorial  function  int : int  1     factorial
-program    function  nil              program  
+Name     Kind      Type      Line  Link   
+-------  --------  --------  ----  -------
+a        function  float :   1     a      
+program  function  nil             program
 
 
-Table: factorial
-Name  Kind       Type  Line  Link
-----  ---------  ----  ----  ----
-num   parameter  int         nil 
-                                 
-
-
-Table: forLoop1
+Table: a
 Name  Kind      Type  Line  Link
 ----  --------  ----  ----  ----
-i     variable  int   15    nil 
+x     variable  int   2     nil 
 
 
 Table: program
-Name      Kind  Type  Line  Link    
---------  ----  ----  ----  --------
-forLoop1  loop  nil   15    forLoop1
+Name  Kind      Type  Line  Link
+----  --------  ----  ----  ----
+x     variable  int   7     nil 
+y     variable  int   8     nil 
 
 

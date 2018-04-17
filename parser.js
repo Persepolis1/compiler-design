@@ -62,8 +62,12 @@ function isNullable(nonTerminal){
   return false;
 }
 if (!unitTest) {
+  const args = process.argv;
+  let file = 'input.txt';
+  if (args[2])
+    file = args[2];
   let lineNumber = 1;
-  const lr = new LineByLineReader('input.txt');
+  const lr = new LineByLineReader(file);
   lr.on('line', (line) => {
     const allTokens = getAllTokens(line, lineNumber);
     for (let i = 0; i < allTokens.length; i++) {

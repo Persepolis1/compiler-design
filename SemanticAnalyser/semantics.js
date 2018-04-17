@@ -1,8 +1,9 @@
 const jsonFile = require('jsonfile');
 const Table = require('easy-table');
 const fs = require('fs');
-function semantics(ast){
-  if (!ast){
+
+function semantics(ast) {
+  if (!ast) {
     return;
   }
   const TABLE_CREATOR_MAP = {
@@ -27,6 +28,20 @@ function semantics(ast){
     'forStat': createForStatEntries,
     'ifStat': createIfStatEntries,
   };
+  const semanticCheckingVisitors = {
+    'prog': checkProgNode,
+    'statBlock': checkStatBlock,
+    'assignStat': checkAssignStat,
+    'var': checkVar,
+    'dataMember': checkDataMember,
+    'num': checkNum,
+    'addOp': checkAddOp,
+    'multOp': checkMultOp,
+    'relOp': checkRelOp,
+    'returnStat': checkReturn,
+    'funcDefList': checkFuncDefList,
+    'funcDef': checkFuncDef,
+  };
   const tables = [];
   const errors = [];
   const warnings = [];
@@ -34,13 +49,16 @@ function semantics(ast){
   let loopCounter = 1;
   let ifThen = 1;
   let ifElse = 1;
+  const tableStack = [];
   graphAST(rootNode);
   buildTables(rootNode);
   printAllTables(tables);
+  semanticChecks(rootNode);
   printErrorsOrWarnings(errors, 'Errors');
   printErrorsOrWarnings(warnings, 'Warnings');
   printAugmentedAst(rootNode);
   return {tables, rootNode};
+
   function buildTables(node) {
     try {
       if (TABLE_CREATOR_MAP[node.node]) {
@@ -53,16 +71,16 @@ function semantics(ast){
   }
 
   // prog
-  function createProgSymTab(node){
+  function createProgSymTab(node) {
     const symtab = {
       table: 'Global',
       entries: [],
     };
-    let entries ;
-    node.children.forEach((child) =>{
-      if (child.children){
+    let entries;
+    node.children.forEach((child) => {
+      if (child.children) {
         entries = ENTRY_CREATOR_MAP[child.node](child);
-        if(entries.length > 0 ) {
+        if (entries.length > 0) {
           entries.forEach((entry) => {
             symtab.entries.push(entry);
           })
@@ -72,23 +90,23 @@ function semantics(ast){
       }
     });
     //check for duplicates
-    if(symtab.entries.length > 0){
+    if (symtab.entries.length > 0) {
       const classBucket = [];
       const funcBucket = [];
-      symtab.entries.forEach((entry) =>{
-        if(entry.kind === 'class'){
-          if (!classBucket.includes(entry.name)){
+      symtab.entries.forEach((entry) => {
+        if (entry.kind === 'class') {
+          if (!classBucket.includes(entry.name)) {
             classBucket.push(entry.name)
           }
-          else{
+          else {
             errors.push(`Duplicate class declaration: '${entry.kind} ${entry.name}' in '${symtab.table}' scope `)
           }
         }
-        else if (entry.kind === 'function'){
-          if (!funcBucket.includes(entry.name)){
+        else if (entry.kind === 'function') {
+          if (!funcBucket.includes(entry.name)) {
             funcBucket.push(entry.name)
           }
-          else{
+          else {
             errors.push(`Duplicate function declaration: '${entry.kind} ${entry.name}' in '${symtab.table}' scope `)
           }
         }
@@ -105,23 +123,24 @@ function semantics(ast){
   }
 
   // Class List
-  function createClassListEntries(node){
+  function createClassListEntries(node) {
     buildTables(node);
     return node.symtab.entries;
   }
-  function createClasslistSymTab(node){
-   const symtab = {
-     table: 'classList',
-     entries: [],
-   };
-   node.children.forEach((child) =>{
-     symtab.entries.push(ENTRY_CREATOR_MAP[child.node](child));
-   });
+
+  function createClasslistSymTab(node) {
+    const symtab = {
+      table: 'classList',
+      entries: [],
+    };
+    node.children.forEach((child) => {
+      symtab.entries.push(ENTRY_CREATOR_MAP[child.node](child));
+    });
     return symtab;
   }
 
   //Class Decl
-  function createClassDeclEntries(node){
+  function createClassDeclEntries(node) {
     const entry = {
       name: node.children[0].leaf.value,
       kind: 'class',
@@ -133,6 +152,7 @@ function semantics(ast){
     tables.push(node.symtab);
     return entry;
   }
+
   function createClassDeclTable(node) {
     const symtab = {
       table: node.children[0].leaf.value,
@@ -197,6 +217,7 @@ function semantics(ast){
     buildTables(node);
     return node.symtab.entries;
   }
+
   function createFuncDefListTable(node) {
     const symtab = {
       table: 'funcDefList',
@@ -242,6 +263,7 @@ function semantics(ast){
     }
     return entry;
   }
+
   function createFuncDefTable(node) {
     const symtab = {
       table: node.children[2].leaf.value,
@@ -304,20 +326,20 @@ function semantics(ast){
   }
 
   // Var Decl
-  function createVarDeclEntries(node){
+  function createVarDeclEntries(node) {
     const entry = {
       name: node.children[1].leaf.value,
-      kind:'variable',
+      kind: 'variable',
       type: node.children[0].leaf.value,
-      link:'nil',
+      link: 'nil',
       line: node.children[1].leaf.line,
     };
-    if(node.children[2].children) {
+    if (node.children[2].children) {
       const dimlist = [];
       node.children[2].children.forEach((child) => {
         dimlist.push(child.leaf.value);
       });
-      dimlist.forEach((num) =>{
+      dimlist.forEach((num) => {
         entry.type = entry.type.concat(`[${num}]`)
       })
     }
@@ -325,7 +347,7 @@ function semantics(ast){
   }
 
   // Func Decl
-  function createFuncDeclEntries(node){
+  function createFuncDeclEntries(node) {
     const entry = {
       name: node.children[1].leaf.value,
       kind: 'function',
@@ -333,16 +355,16 @@ function semantics(ast){
       link: node.children[1].leaf.value,
       line: node.children[1].leaf.line,
     };
-    if(node.children[2].children){
+    if (node.children[2].children) {
       const paramEntry = [];
       const bucket = [];
-      node.children[2].children.forEach((child)=> {
+      node.children[2].children.forEach((child) => {
         paramEntry.push(ENTRY_CREATOR_MAP[child.node](child));
       });
-      paramEntry.forEach((param) =>{
-        if (!bucket.includes(param.name)){
-         bucket.push(param.name);
-         entry.type = entry.type.concat(`${param.type}, `)
+      paramEntry.forEach((param) => {
+        if (!bucket.includes(param.name)) {
+          bucket.push(param.name);
+          entry.type = entry.type.concat(`${param.type}, `)
         }
         else {
           errors.push(`Duplicate param declaration: '${param.name}' at function declaration '${entry.name}' @ line ${entry.line} `)
@@ -355,19 +377,19 @@ function semantics(ast){
   }
 
   // fParam
-  function createFParamEntries(node){
+  function createFParamEntries(node) {
     const entry = {
       name: node.children[1].leaf.value,
-      kind:'parameter',
+      kind: 'parameter',
       type: node.children[0].leaf.value,
-      link:'nil',
+      link: 'nil',
     };
-    if(node.children[2].children) {
+    if (node.children[2].children) {
       const dimlist = [];
       node.children[2].children.forEach((child) => {
         dimlist.push(child.leaf.value);
       });
-      dimlist.forEach((num) =>{
+      dimlist.forEach((num) => {
         entry.type = entry.type.concat(`[${num}]`)
       })
     }
@@ -375,9 +397,9 @@ function semantics(ast){
   }
 
   // statBlock (prog)
-  function createStatBlockEntry(node){
+  function createStatBlockEntry(node) {
     const entry = {
-      name : 'program',
+      name: 'program',
       kind: 'function',
       type: 'nil',
       link: 'program',
@@ -386,13 +408,14 @@ function semantics(ast){
     tables.push(node.symtab);
     return entry;
   }
-  function createStatBlockTable(node){
+
+  function createStatBlockTable(node) {
     const symtab = {
       table: 'program',
       entries: [],
     };
     const bucket = [];
-    node.children.forEach((child) =>{
+    node.children.forEach((child) => {
       if (!ENTRY_CREATOR_MAP[child.node]) {
         return;
       }
@@ -509,7 +532,8 @@ function semantics(ast){
 
     return true;
   }
-  function printAllTables(tables){
+
+  function printAllTables(tables) {
     tables.unshift(tables.pop());
     fs.writeFileSync('SemanticAnalyser/symbolTables.txt', '---SYMBOL TABLES--- \n\n');
     tables.forEach((table) => {
@@ -532,7 +556,7 @@ function semantics(ast){
   function printErrorsOrWarnings(errors, type) {
     if (errors.length > 0) {
       fs.writeFileSync(`SemanticAnalyser/${type}.txt`, `---Semantic ${type}--- \n\n`);
-      errors.forEach((error) =>{
+      errors.forEach((error) => {
         console.error(`Semantic ${type.slice(0, -1)}: ${error}`);
         fs.appendFileSync(`SemanticAnalyser/${type}.txt`, `${error} \n`);
       });
@@ -570,6 +594,172 @@ function semantics(ast){
     if (node.node === 'prog') {
       fs.appendFileSync("SemanticAnalyser/astGraph.txt", "}");
     }
+  }
+
+  function semanticChecks(node) {
+    if (semanticCheckingVisitors[node.node]) {
+      semanticCheckingVisitors[node.node](node);
+    }
+  }
+
+  function checkProgNode(node) {
+    node.children.forEach(child => {
+      semanticChecks(child);
+    });
+  }
+
+  function checkStatBlock(node) {
+    if (node.children) {
+      if (node.symtab) {
+        tableStack.push(node.symtab);
+      }
+      node.children.forEach(child => {
+        semanticChecks(child);
+      });
+      if (node.symtab) {
+        tableStack.pop();
+      }
+    }
+  }
+
+  function checkAssignStat(node) {
+    if (node.children) {
+      node.children.forEach(child => {
+        semanticChecks(child);
+      });
+      const LHS = node.children[0].semanticType;
+      const RHS = node.children[1].semanticType;
+      if (LHS && RHS) {
+        if (LHS !== RHS) {
+          errors.push(`Type mismatch: ${LHS}(LHS) = ${RHS}(RHS) at line ${node.children[0].semanticLine} `);
+        }
+      }
+    }
+  }
+
+  function checkVar(node) {
+    if (node.children) {
+      node.children.forEach(child => {
+        semanticChecks(child);
+      });
+      node.semanticType = node.children[node.children.length - 1].semanticType;
+      node.semanticLine = node.children[node.children.length - 1].semanticLine
+    }
+  }
+
+  function checkDataMember(node) {
+    // Lookup in table and find the type
+    const type = findType(node.children[0].leaf.value);
+    if (type) {
+      node.semanticType = type;
+      node.semanticLine = node.children[0].leaf.line;
+    }
+    else {
+      errors.push(`Undeclared Variable: ${node.children[0].leaf.value} at line ${node.children[0].leaf.line}`)
+    }
+  }
+
+  function checkAddOp(node) {
+    if (node.children) {
+      node.children.forEach(child => {
+        semanticChecks(child);
+      });
+      const LHS = node.children[0].semanticType;
+      const RHS = node.children[1].semanticType;
+      let type = 'int';
+      if (RHS === 'float' || LHS === 'float')
+        type = 'float';
+      node.semanticType = type;
+    }
+  }
+
+  function checkMultOp(node) {
+    if (node.children) {
+      node.children.forEach(child => {
+        semanticChecks(child);
+      });
+      const LHS = node.children[0].semanticType;
+      const RHS = node.children[1].semanticType;
+      let type = 'int';
+      if (RHS === 'float' || LHS === 'float')
+        type = 'float';
+      node.semanticType = type;
+    }
+  }
+
+  function checkRelOp(node) {
+    if (node.children) {
+      node.children.forEach(child => {
+        semanticChecks(child);
+      });
+      node.semanticType = 'int';
+    }
+  }
+
+  function checkReturn(node) {
+    if (node.children) {
+      node.children.forEach(child => {
+        semanticChecks(child);
+      });
+      node.semanticType = node.children[0].semanticType;
+      const type = findFunction(tableStack[tableStack.length - 1].table);
+      if (node.semanticType.trim() !== type.trim()) {
+        errors.push(`Return type does not match for function: ${tableStack[tableStack.length - 1].table}. Returned ${node.semanticType}, expecting ${type}`)
+      }
+    }
+  }
+
+  function checkFuncDefList(node) {
+    if (node.children) {
+      node.children.forEach(child => {
+        semanticChecks(child);
+      });
+    }
+  }
+
+  function checkFuncDef(node) {
+    tableStack.push(node.symtab);
+    if (node.children) {
+      node.children.forEach(child => {
+        semanticChecks(child);
+      });
+    }
+    tableStack.pop();
+  }
+
+  function checkNum(node) {
+    let tokenType = node.leaf.Token;
+    if (tokenType === 'intNum') {
+      tokenType = 'int';
+    }
+    else
+      tokenType = 'float';
+    node.semanticType = tokenType;
+  }
+
+  function findType(name) {
+    for (let i = tableStack.length - 1; i >= 0; i--) {
+      if (tableStack[i].entries) {
+        for (let j = 0; j < tableStack[i].entries.length; j++) {
+          if (tableStack[i].entries[j].name === name) {
+            return tableStack[i].entries[j].type;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  function findFunction(link) {
+    let type = '';
+    tables.forEach((table) => {
+      table.entries.forEach((entry) => {
+        if (entry.link === link) {
+          type = entry.type.split(':')[0];
+        }
+      })
+    });
+    return type;
   }
 }
 

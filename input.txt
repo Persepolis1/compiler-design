@@ -1,12 +1,13 @@
-int factorial(int num) {
-   if (num == 0) then {
-       return (1);
-   } else {
-       return (num * factorial(num - 1));
-   };
+float a(){
+    int x;
+    x = 5 + 2 - 3 + 4 / 2 * + 3 + 5;
+    return (x);
 };
 program{
-    for (int i = 0; i <= 5; i = i + 1) {
-        put(factorial(i));
-     };
+    int x;
+    int y;
+    y = 10.2;
+    x = 5 + 5 * y;
+    z = 15;
+    put(x);
 };
